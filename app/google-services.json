@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "544268792500",
+    "firebase_url": "https://androidproto-a044d.firebaseio.com",
+    "project_id": "androidproto-a044d",
+    "storage_bucket": "androidproto-a044d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:544268792500:android:965a2096aa8a5e80",
+        "android_client_info": {
+          "package_name": "com.sit374group9.androidprototype"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "544268792500-n61e8gkd1asehqhrgk8nas8equlsb1ek.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKXRKgaDXPpxXEOH6M2MjiA1jqLtAJoAY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
