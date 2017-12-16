@@ -12,6 +12,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 /**
  * Created by robcunning on 16/12/17.
@@ -21,8 +22,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private static final String TAG = "LoginActivity";
 
-    private FirebaseAuth mAuth;
-
     //layout vars
     EditText editUsername;
     EditText editPassword;
@@ -30,6 +29,8 @@ public class LoginActivity extends AppCompatActivity {
     TextView textErrorLogin;
 
     //class vars
+    private FirebaseAuth firebaseAuth;
+
     String username;
     String password;
 
@@ -42,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void setup() {
-        mAuth = FirebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
 
         editUsername = (EditText) findViewById(R.id.edit_username);
         editPassword = (EditText) findViewById(R.id.edit_password);
@@ -54,12 +55,12 @@ public class LoginActivity extends AppCompatActivity {
         username = editUsername.getText().toString().trim();
         password = editPassword.getText().toString().trim();
 
-        mAuth.signInWithEmailAndPassword(username, password)
+        firebaseAuth.signInWithEmailAndPassword(username, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Intent loginIntent = new Intent(LoginActivity.this, AccountActivity.class);
+                            Intent loginIntent = new Intent(LoginActivity.this, CustomerActivity.class);
                             startActivity(loginIntent);
                         } else {
                             textErrorLogin.setText(task.getException().getMessage());
