@@ -10,9 +10,10 @@
 
 - Signup in app
 - Once signup is successful you will be pushed to login screen
-- Log into Firebase Database and add key/value pair (firstName your first name)
+- Log into Firebase Database and add key/value pair (firstName your first_name)
+- add key/value pair (usage usage_in_int)
 - Log into app, go to account tab
-- First name and email should be populated
+- Usage, First name and email should be populated
 
 # How to add more data to app
 
