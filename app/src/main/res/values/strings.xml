@@ -1,11 +1,14 @@
 <resources>
     <string name="app_name">androidprototype</string>
-    <string name="login">Login</string>
-    <string name="signup">Signup</string>
-    <string name="password">Password</string>
-    <string name="email">Email</string>
-    <string name="account">Account</string>
-    <string name="text_name">Name: </string>
-    <string name="account_title">Account</string>
-    <string name="text_email">Email: </string>
+    <string name="text_login">Login</string>
+    <string name="text_signup">Signup</string>
+    <string name="text_password">Password</string>
+    <string name="text_email">Email</string>
+
+    <string name="title_account">Account</string>
+    <string name="title_usage">Usage</string>
+
+    <string name="label_name">Name:</string>
+    <string name="label_email">Email:</string>
+    <string name="label_usage">Usage (in kWh):</string>
 </resources>

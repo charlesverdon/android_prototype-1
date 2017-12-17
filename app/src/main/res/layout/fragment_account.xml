@@ -7,7 +7,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/account_title"
+        android:text="@string/title_account"
         android:textSize="40sp"/>
 
     <LinearLayout
@@ -17,7 +17,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/text_name"
+            android:text="@string/label_name"
             />
 
         <TextView
@@ -35,7 +35,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/text_email"
+            android:text="@string/label_email"
             />
 
         <TextView

@@ -21,8 +21,6 @@ import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Iterator;
-
 /**
  * Created by robcunning on 16/12/17.
  */
