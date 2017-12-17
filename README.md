@@ -10,14 +10,14 @@
 
 - Signup in app
 - Once signup is successful you will be pushed to login screen
-- Log into Firebase Database and add key/value pair (firstName your first_name)
+- Log into Firebase Database and add key/value pair (firstName your first_name) (https://console.firebase.google.com)
 - add key/value pair (usage usage_in_int)
 - Log into app, go to account tab
 - Usage, First name and email should be populated
 
 # How to add more data to app
 
-- Log into Firebase Database and add desired key/value pair e.g.(telephone 0400000000)
+- Log into Firebase Database and add desired key/value pair e.g.(telephone 0400000000) (https://console.firebase.google.com)
 - Go to project in Android Studio, select EITHER fragment_account or fragment_usage
 - Add new TextView to either fragment
 - Initialise the TextView in the onActivityCreated(Bundle savedInstanceState) method
