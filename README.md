@@ -6,22 +6,32 @@
 - Download from https://www.sourcetreeapp.com/
 - Sign in using your github credentials
 - You should see a window (the top looks like this)
-[Imgur](https://i.imgur.com/9UseUPq.png)
+<p>
+    <img src="https://i.imgur.com/9UseUPq.png" />
+</p>
 - Go to remote, if you accepted the invite you should see the prototype
-[Imgur](https://i.imgur.com/ubd81FK.png)
+<p>
+    <img src="https://i.imgur.com/ubd81FK.png" />
+</p>
 - Click Clone, select where you want to save it (doesn't matter, up to you)
 - Once you have cloned the repository, go to local and double click. This will open the repo window
 - Click Branch (see picture)
-[Imgur](https://i.imgur.com/HS1aXBc.png)
+<p>
+    <img src="https://i.imgur.com/HS1aXBc.png" />
+</p>
 - Name your branch your first name
 
 # Android Studio
 - Open Android Studio, you should see a screen like this
-[Imgur](https://i.imgur.com/Ml6peYk.png)
+<p>
+    <img src="https://i.imgur.com/Ml6peYk.png" />
+</p>
 - Open your project at the project root folder (this should be called android_prototype)
 - Android Studio may require tools to be downloaded if this is the first time you've used it, it should prompt you to download what it needs
 - If you've done this correctly you can then go to top left corner of the window, select project on the side and then the drop down box select Android, if you can't do this you've opened the wrong folder (see picture)
-[Imgur](https://i.imgur.com/f0Efbny.png)
+<p>
+    <img src="https://i.imgur.com/f0Efbny.png" />
+</p>
 - You should now see a folder called app in the project navigator
 
 # manifest folder
@@ -46,14 +56,20 @@
 
 # Run the app
 - Click on the android virtual device manager icon (see picture)
-[Imgur](https://i.imgur.com/sMELRa0.png)
+<p>
+    <img src="https://i.imgur.com/sMELRa0.png" />
+</p>
 - Click on create virtual device (see picture)
-[Imgur](https://i.imgur.com/koOIcQx.png)
+<p>
+    <img src="https://i.imgur.com/koOIcQx.png" />
+</p>
 - Choose any device you like, I typically have one 5"+ device and 4" for layout testing
 - Choose an image, use Oreo API level 26
 - This will download the necessary files needed
 - Click the play button in the top toolbar (see picture)
-[Imgur](https://i.imgur.com/389uA0l.png)
+<p>
+    <img src="https://i.imgur.com/389uA0l.png" />
+</p>
 
 # How to use
 - Signup in app
