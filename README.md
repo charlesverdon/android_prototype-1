@@ -26,7 +26,7 @@
 <p>
     <img src="https://i.imgur.com/Ml6peYk.png" />
 </p>
-- Open your project at the project root folder (this should be called android_prototype)
+- Select import and it will configure
 - Android Studio may require tools to be downloaded if this is the first time you've used it, it should prompt you to download what it needs
 - If you've done this correctly you can then go to top left corner of the window, select project on the side and then the drop down box select Android, if you can't do this you've opened the wrong folder (see picture)
 <p>
