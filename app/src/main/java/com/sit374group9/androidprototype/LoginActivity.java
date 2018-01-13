@@ -14,10 +14,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-/**
- * Created by robcunning on 16/12/17.
- */
-
 public class LoginActivity extends AppCompatActivity {
 
     private static final String TAG = "LoginActivity";

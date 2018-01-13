@@ -21,10 +21,6 @@ import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/**
- * Created by robcunning on 16/12/17.
- */
-
 public class UsageFragment extends Fragment {
 
     private static final String TAG = "UsageFragment";
@@ -35,9 +31,16 @@ public class UsageFragment extends Fragment {
     private DatabaseReference databaseReference;
 
     private String userID;
-    private String userUsage;
 
-    private TextView textUsage;
+    //Usage text views
+    private TextView textDailyUsage;
+    private TextView textMonthlyUsage;
+    private TextView textLastMonthUsage;
+
+    //Cost text views
+    private TextView textDailyCost;
+    private TextView textMonthlyCost;
+    private TextView textLastMonthCost;
 
     @Override
     public View onCreateView(LayoutInflater layoutInflater, ViewGroup container, Bundle savedInstanceState) {
@@ -48,7 +51,13 @@ public class UsageFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstaceState) {
         super.onActivityCreated(savedInstaceState);
 
-        textUsage = (TextView) getActivity().findViewById(R.id.account_usage_value);
+        textDailyUsage = (TextView) getActivity().findViewById(R.id.account_today_usage_value);
+        textMonthlyUsage = (TextView) getActivity().findViewById(R.id.account_this_month_usage_value);
+        textLastMonthUsage = (TextView) getActivity().findViewById(R.id.account_last_month_usage_value);
+
+        textDailyCost = (TextView) getActivity().findViewById(R.id.account_today_cost);
+        textMonthlyCost = (TextView) getActivity().findViewById(R.id.account_this_month_cost);
+        textLastMonthCost = (TextView) getActivity().findViewById(R.id.account_last_month_cost);
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -85,8 +94,7 @@ public class UsageFragment extends Fragment {
     }
 
     private void showData(Object object) {
-        Log.d(TAG, "" + object);
-
+        Log.d(TAG, "Attempting to fetch usage/cost data");
         Gson gson = new Gson();
         String json = gson.toJson(object);
 
@@ -96,15 +104,30 @@ public class UsageFragment extends Fragment {
             JSONObject usersObject = userObject.getJSONObject("users");
             JSONObject userDetailsObject = usersObject.getJSONObject(userID);
 
-            Log.d(TAG, userDetailsObject.toString());
+            //Usage strings
+            String dailyUsage = userDetailsObject.getString("dailyUsage");
+            String monthlyUsage = userDetailsObject.getString("monthlyUsage");
+            String lastMonthUsage = userDetailsObject.getString("lastMonthUsage");
 
-            userUsage = userDetailsObject.getString("usage");
+            //Set usage text views
+            textDailyUsage.setText(String.format("%s kWh", dailyUsage));
+            textMonthlyUsage.setText(String.format("%s kWh", monthlyUsage));
+            textLastMonthUsage.setText(String.format("%s kWh", lastMonthUsage));
 
-            textUsage.setText(userUsage);
+            //Cost strings
+            String dailyCost = userDetailsObject.getString("dailyCost");
+            String monthlyCost = userDetailsObject.getString("monthlyCost");
+            String lastMonthCost = userDetailsObject.getString("lastMonthCost");
 
-            Log.d(TAG, userUsage);
+            //Set cost text views
+            textDailyCost.setText(String.format("$%s", dailyCost));
+            textMonthlyCost.setText(String.format("$%s", monthlyCost));
+            textLastMonthCost.setText(String.format("$%s", lastMonthCost));
+
+            Log.d(TAG, "Successfully retrieved usage/cost data");
         } catch (JSONException e) {
             e.printStackTrace();
+            Log.d(TAG, "Failed to retrieved usage/cost data");
         }
     }
 

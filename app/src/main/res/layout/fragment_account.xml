@@ -2,22 +2,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:padding="20dp">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/title_account"
-        android:textSize="40sp"/>
+        android:textSize="@dimen/heading_font_size"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/account_field_length"
             android:layout_height="wrap_content"
             android:text="@string/label_name"
+            android:textSize="@dimen/body_text_size"
             />
 
         <TextView
@@ -25,6 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
+            android:textSize="@dimen/body_text_size"
             />
     </LinearLayout>
 
@@ -33,9 +37,10 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/account_field_length"
             android:layout_height="wrap_content"
             android:text="@string/label_email"
+            android:textSize="@dimen/body_text_size"
             />
 
         <TextView
@@ -43,6 +48,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
+            android:textSize="@dimen/body_text_size"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="@dimen/account_field_length"
+            android:layout_height="wrap_content"
+            android:text="@string/label_address"
+            android:textSize="@dimen/body_text_size"
+            />
+
+        <TextView
+            android:id="@+id/account_address_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:textSize="@dimen/body_text_size"
             />
     </LinearLayout>
 

@@ -6,20 +6,38 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.sit374group9.androidprototype.MainActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/company_name"
+        android:textAlignment="center"
+        android:textSize="@dimen/heading_font_size"
+        android:layout_marginBottom="20dp"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:contentDescription="logo"
+        android:src="@drawable/logo"/>
 
     <Button
         android:id="@+id/button_login"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="@string/text_login"
-        android:onClick="goToLogin"/>
+        android:onClick="goToLogin"
+        />
 
     <Button
         android:id="@+id/button_signup"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="@string/text_signup"
-        android:onClick="goToSignup"/>
+        android:onClick="goToSignup"
+        />
 
 </LinearLayout>
