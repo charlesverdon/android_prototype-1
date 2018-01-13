@@ -1,6 +1,7 @@
 <resources>
     <!--App Strings-->
     <string name="app_name">androidprototype</string>
+    <string name="company_name">Company Name</string>
     <string name="text_login">Login</string>
     <string name="text_signup">Signup</string>
     <string name="text_password">Password</string>
@@ -8,7 +9,9 @@
 
     <!--Title Strings-->
     <string name="title_account">Account</string>
-    <string name="title_usage">Usage (in kWh)</string>
+    <string name="title_usage">Usage</string>
+    <string name="title_signup">Signup</string>
+    <string name="title_login">Login</string>
 
     <!--Account Strings-->
     <string name="label_name">Name:</string>
@@ -22,4 +25,9 @@
     <string name="label_current_subtitle_usage">Current stats</string>
     <string name="label_previous_subtitle_usage">Previous stats</string>
     <string name="label_costs_subtitle_usage">Costs</string>
+    <string name="label_previous_subtitle_cost">Previous costs</string>
+    <string name="label_current_subtitle_cost">Current costs</string>
+    <string name="generic_error">Check the fields and try again</string>
+    <string name="error_empty_field">Fields cannot be empty</string>
+
 </resources>

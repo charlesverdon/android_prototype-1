@@ -11,10 +11,6 @@ import android.view.MenuItem;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-/**
- * Created by robcunning on 16/12/17.
- */
-
 public class CustomerActivity extends AppCompatActivity {
 
     private static final String TAG = "CustomerActivity";

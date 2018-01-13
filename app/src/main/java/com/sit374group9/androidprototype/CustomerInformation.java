@@ -1,9 +1,5 @@
 package com.sit374group9.androidprototype;
 
-/**
- * Created by robcunning on 16/12/17.
- */
-
 public class CustomerInformation {
 
     private String firstname;

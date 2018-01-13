@@ -17,10 +17,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-/**
- * Created by robcunning on 16/12/17.
- */
-
 public class SignupActivity extends AppCompatActivity {
 
     private static final String TAG = "SignupActivity";
@@ -56,28 +52,32 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     public void signupButtonOnClick(View view) {
-        username = editUsername.getText().toString().trim();
-        password = editPassword.getText().toString().trim();
+        if (username.isEmpty() || password.isEmpty() || username == null || password == null) {
+            // TODO - fix this, throwing exception
+            textErrorSignup.setText(R.string.error_empty_field);
+        } else {
+            username = editUsername.getText().toString().trim();
+            password = editPassword.getText().toString().trim();
 
-        firebaseAuth.createUserWithEmailAndPassword(username, password)
-                .addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(SignupActivity.this, "Account successfully created, please login", Toast.LENGTH_LONG).show();
+            firebaseAuth.createUserWithEmailAndPassword(username, password).addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(SignupActivity.this, "Account successfully created, please login", Toast.LENGTH_LONG).show();
 
-                            firebaseUser = firebaseAuth.getCurrentUser();
-                            FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-                            DatabaseReference databaseReference = firebaseDatabase.getReference(USER_SERVICE);
+                        firebaseUser = firebaseAuth.getCurrentUser();
+                        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+                        DatabaseReference databaseReference = firebaseDatabase.getReference(USER_SERVICE);
 
-                            databaseReference.child("users").child(firebaseUser.getUid()).setValue(firebaseUser);
+                        databaseReference.child("users").child(firebaseUser.getUid()).setValue(firebaseUser);
 
-                            Intent loginIntent = new Intent(SignupActivity.this, LoginActivity.class);
-                            startActivity(loginIntent);
-                        } else {
+                        Intent loginIntent = new Intent(SignupActivity.this, LoginActivity.class);
+                        startActivity(loginIntent);
+                    } else {
                             textErrorSignup.setText(task.getException().getMessage());
-                        }
                     }
-                });
+                }
+            });
+        }
     }
 }

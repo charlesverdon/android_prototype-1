@@ -21,10 +21,6 @@ import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/**
- * Created by robcunning on 16/12/17.
- */
-
 public class AccountFragment extends Fragment {
 
     private static final String TAG = "AccountFragment";
