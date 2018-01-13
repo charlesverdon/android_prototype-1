@@ -35,9 +35,10 @@ public class UsageFragment extends Fragment {
     private DatabaseReference databaseReference;
 
     private String userID;
-    private String userUsage;
 
-    private TextView textUsage;
+    private TextView textDailyUsage;
+    private TextView textMonthlyUsage;
+    private TextView textLastMonthUsage;
 
     @Override
     public View onCreateView(LayoutInflater layoutInflater, ViewGroup container, Bundle savedInstanceState) {
@@ -48,7 +49,9 @@ public class UsageFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstaceState) {
         super.onActivityCreated(savedInstaceState);
 
-        textUsage = (TextView) getActivity().findViewById(R.id.account_usage_value);
+        textDailyUsage = (TextView) getActivity().findViewById(R.id.account_today_usage_value);
+        textMonthlyUsage = (TextView) getActivity().findViewById(R.id.account_this_month_usage_value);
+        textLastMonthUsage = (TextView) getActivity().findViewById(R.id.account_last_month_usage_value);
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -85,7 +88,6 @@ public class UsageFragment extends Fragment {
     }
 
     private void showData(Object object) {
-        Log.d(TAG, "" + object);
 
         Gson gson = new Gson();
         String json = gson.toJson(object);
@@ -96,13 +98,15 @@ public class UsageFragment extends Fragment {
             JSONObject usersObject = userObject.getJSONObject("users");
             JSONObject userDetailsObject = usersObject.getJSONObject(userID);
 
-            Log.d(TAG, userDetailsObject.toString());
+            String dailyUsage = userDetailsObject.getString("dailyUsage");
+            String monthlyUsage = userDetailsObject.getString("monthlyUsage");
+            String lastMonthUsage = userDetailsObject.getString("lastMonthUsage");
 
-            userUsage = userDetailsObject.getString("usage");
+            textDailyUsage.setText(dailyUsage);
+            textMonthlyUsage.setText(monthlyUsage);
+            textLastMonthUsage.setText(lastMonthUsage);
 
-            textUsage.setText(userUsage);
-
-            Log.d(TAG, userUsage);
+            Log.d(TAG, dailyUsage);
         } catch (JSONException e) {
             e.printStackTrace();
         }

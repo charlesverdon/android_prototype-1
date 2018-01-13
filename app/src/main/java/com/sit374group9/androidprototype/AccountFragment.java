@@ -35,11 +35,10 @@ public class AccountFragment extends Fragment {
     private DatabaseReference databaseReference;
 
     private String userID;
-    private String userFirstName;
-    private String userEmail;
 
     private TextView textFirstName;
     private TextView textEmail;
+    private TextView textAddress;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -53,6 +52,7 @@ public class AccountFragment extends Fragment {
 
         textFirstName = (TextView) getActivity().findViewById(R.id.account_name_value);
         textEmail = (TextView) getActivity().findViewById(R.id.account_email_value);
+        textAddress = (TextView) getActivity().findViewById(R.id.account_address_value);
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -89,8 +89,6 @@ public class AccountFragment extends Fragment {
     }
 
     private void showData(Object object) {
-        Log.d(TAG, "" + object);
-
         Gson gson = new Gson();
         String json = gson.toJson(object);
 
@@ -100,15 +98,15 @@ public class AccountFragment extends Fragment {
             JSONObject usersObject = userObject.getJSONObject("users");
             JSONObject userDetailsObject = usersObject.getJSONObject(userID);
 
-            Log.d(TAG, userDetailsObject.toString());
-
-            userFirstName = userDetailsObject.getString("firstName");
-            userEmail = userDetailsObject.getString("email");
+            String userFirstName = userDetailsObject.getString("firstName");
+            String userEmail = userDetailsObject.getString("email");
+            String userAddress = userDetailsObject.getString("address");
 
             textFirstName.setText(userFirstName);
             textEmail.setText(userEmail);
+            textAddress.setText(userAddress);
 
-            Log.d(TAG, userFirstName + " " + userEmail);
+            Log.d(TAG, userFirstName + " " + userEmail + " " + userAddress);
         } catch (JSONException e) {
             e.printStackTrace();
         }
