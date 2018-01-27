@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.sit374group9.androidprototype">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -20,13 +20,13 @@
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:label="@string/text_login"
-            />
+            android:label="@string/text_login"/>
         <activity
             android:name=".SignupActivity"
-            android:label="@string/text_signup"
-            />
+            android:label="@string/text_signup"/>
         <activity android:name=".CustomerActivity"/>
+        <activity android:name=".PasswordActivity">
+        </activity>
     </application>
 
 </manifest>
