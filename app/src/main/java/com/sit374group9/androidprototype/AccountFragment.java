@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -36,19 +38,27 @@ public class AccountFragment extends Fragment {
     private TextView textEmail;
     private TextView textAddress;
 
+    private LinearLayout loading;
+    private LinearLayout mainContainer;
+    private LinearLayout emptyContainer;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_account, container, false);
     }
 
-
     @Override
     public void onActivityCreated(Bundle savedInstaceState) {
         super.onActivityCreated(savedInstaceState);
 
+        mainContainer = (LinearLayout) getActivity().findViewById(R.id.container_account);
+        emptyContainer = (LinearLayout) getActivity().findViewById(R.id.account_processing_warning);
+
         textFirstName = (TextView) getActivity().findViewById(R.id.account_name_value);
         textEmail = (TextView) getActivity().findViewById(R.id.account_email_value);
         textAddress = (TextView) getActivity().findViewById(R.id.account_address_value);
+
+        loading = (LinearLayout) getActivity().findViewById(R.id.progress_bar_account);
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -88,15 +98,19 @@ public class AccountFragment extends Fragment {
         Gson gson = new Gson();
         String json = gson.toJson(object);
 
+        String userFirstName = "";
+        String userEmail = "";
+        String userAddress = "";
+
         try {
             JSONObject jsonObject = new JSONObject(json);
             JSONObject userObject = jsonObject.getJSONObject("user");;
             JSONObject usersObject = userObject.getJSONObject("users");
             JSONObject userDetailsObject = usersObject.getJSONObject(userID);
 
-            String userFirstName = userDetailsObject.getString("firstName");
-            String userEmail = userDetailsObject.getString("email");
-            String userAddress = userDetailsObject.getString("address");
+            userFirstName = userDetailsObject.getString("firstName");
+            userEmail = userDetailsObject.getString("email");
+            userAddress = userDetailsObject.getString("address");
 
             textFirstName.setText(userFirstName);
             textEmail.setText(userEmail);
@@ -105,6 +119,14 @@ public class AccountFragment extends Fragment {
             Log.d(TAG, userFirstName + " " + userEmail + " " + userAddress);
         } catch (JSONException e) {
             e.printStackTrace();
+        }
+
+        loading.setVisibility(View.GONE);
+
+        if (userFirstName.isEmpty() || userAddress.isEmpty() || userEmail.isEmpty()) {
+            emptyContainer.setVisibility(View.VISIBLE);
+        } else {
+            mainContainer.setVisibility(View.VISIBLE);
         }
     }
 

@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -42,6 +44,10 @@ public class UsageFragment extends Fragment {
     private TextView textMonthlyCost;
     private TextView textLastMonthCost;
 
+    private LinearLayout loading;
+    private LinearLayout mainContainer;
+    private LinearLayout emptyContainer;
+
     @Override
     public View onCreateView(LayoutInflater layoutInflater, ViewGroup container, Bundle savedInstanceState) {
         return layoutInflater.inflate((R.layout.fragment_usage), container, false);
@@ -51,6 +57,9 @@ public class UsageFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstaceState) {
         super.onActivityCreated(savedInstaceState);
 
+        mainContainer = (LinearLayout) getActivity().findViewById(R.id.container_usage);
+        emptyContainer = (LinearLayout) getActivity().findViewById(R.id.usage_processing_warning);
+
         textDailyUsage = (TextView) getActivity().findViewById(R.id.account_today_usage_value);
         textMonthlyUsage = (TextView) getActivity().findViewById(R.id.account_this_month_usage_value);
         textLastMonthUsage = (TextView) getActivity().findViewById(R.id.account_last_month_usage_value);
@@ -58,6 +67,8 @@ public class UsageFragment extends Fragment {
         textDailyCost = (TextView) getActivity().findViewById(R.id.account_today_cost);
         textMonthlyCost = (TextView) getActivity().findViewById(R.id.account_this_month_cost);
         textLastMonthCost = (TextView) getActivity().findViewById(R.id.account_last_month_cost);
+
+        loading = (LinearLayout) getActivity().findViewById(R.id.progress_bar_usage);
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -98,6 +109,9 @@ public class UsageFragment extends Fragment {
         Gson gson = new Gson();
         String json = gson.toJson(object);
 
+        String dailyUsage = "";
+        String dailyCost = "";
+
         try {
             JSONObject jsonObject = new JSONObject(json);
             JSONObject userObject = jsonObject.getJSONObject("user");;
@@ -105,7 +119,7 @@ public class UsageFragment extends Fragment {
             JSONObject userDetailsObject = usersObject.getJSONObject(userID);
 
             //Usage strings
-            String dailyUsage = userDetailsObject.getString("dailyUsage");
+            dailyUsage = userDetailsObject.getString("dailyUsage");
             String monthlyUsage = userDetailsObject.getString("monthlyUsage");
             String lastMonthUsage = userDetailsObject.getString("lastMonthUsage");
 
@@ -115,7 +129,7 @@ public class UsageFragment extends Fragment {
             textLastMonthUsage.setText(String.format("%s kWh", lastMonthUsage));
 
             //Cost strings
-            String dailyCost = userDetailsObject.getString("dailyCost");
+            dailyCost = userDetailsObject.getString("dailyCost");
             String monthlyCost = userDetailsObject.getString("monthlyCost");
             String lastMonthCost = userDetailsObject.getString("lastMonthCost");
 
@@ -125,9 +139,18 @@ public class UsageFragment extends Fragment {
             textLastMonthCost.setText(String.format("$%s", lastMonthCost));
 
             Log.d(TAG, "Successfully retrieved usage/cost data");
+
         } catch (JSONException e) {
             e.printStackTrace();
             Log.d(TAG, "Failed to retrieved usage/cost data");
+        }
+
+        loading.setVisibility(View.GONE);
+
+        if (dailyUsage.isEmpty() || dailyCost.isEmpty()) {
+            emptyContainer.setVisibility(View.VISIBLE);
+        } else {
+            mainContainer.setVisibility(View.VISIBLE);
         }
     }
 

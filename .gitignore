@@ -7,5 +7,7 @@
 /build
 /captures
 .externalNativeBuild
+*.m4a
 *.mov
+*.pdf
 video.png
