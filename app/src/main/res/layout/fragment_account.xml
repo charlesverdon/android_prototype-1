@@ -53,13 +53,29 @@
                 android:textSize="@dimen/body_text_size"
                 />
 
-            <TextView
+            <EditText
                 android:id="@+id/account_name_value"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
                 android:textSize="@dimen/body_text_size"
+                android:enabled="false"
                 />
+
+            <Button
+                android:id="@+id/edit_name_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_edit"/>
+
+            <Button
+                android:id="@+id/save_name_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_save"
+                android:visibility="gone"/>
         </LinearLayout>
 
         <LinearLayout
@@ -73,13 +89,27 @@
                 android:textSize="@dimen/body_text_size"
                 />
 
-            <TextView
+            <EditText
                 android:id="@+id/account_email_value"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
                 android:textSize="@dimen/body_text_size"
+                android:enabled="false"
                 />
+            <Button
+                android:id="@+id/edit_email_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_edit"/>
+            <Button
+                android:id="@+id/save_email_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_save"
+                android:visibility="gone"/>
         </LinearLayout>
 
         <LinearLayout
@@ -93,14 +123,44 @@
                 android:textSize="@dimen/body_text_size"
                 />
 
-            <TextView
+            <EditText
                 android:id="@+id/account_address_value"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
                 android:textSize="@dimen/body_text_size"
+                android:enabled="false"
                 />
+
+            <Button
+                android:id="@+id/edit_address_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_edit"/>
+            <Button
+                android:id="@+id/save_address_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_save"
+                android:visibility="gone"/>
         </LinearLayout>
+
+        <Button
+            android:id="@+id/change_password_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_change_password"
+            android:layout_marginTop="200dp"
+            />
+        <Button
+            android:id="@+id/logout_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_logout"
+            />
+
     </LinearLayout>
     <LinearLayout
         android:id="@+id/account_processing_warning"

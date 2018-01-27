@@ -33,5 +33,15 @@
     <string name="empty_string"/>
     <string name="loading_fetching">Fetching your information</string>
     <string name="warning_processing">Thank you for signing up, your account is still being processed. Check back soon.</string>
+    <string name="button_edit">Edit</string>
+    <string name="btn_save">Save</string>
+    <string name="btn_change_password">Change Password</string>
+    <string name="title_activity_password">PasswordActivity</string>
+    <string name="password_title">Change password</string>
+    <string name="password_old">Old password</string>
+    <string name="password_new_password">New password</string>
+    <string name="password_confirm_password">Confirm new password</string>
+    <string name="button_update">Update</string>
+    <string name="button_logout">Logout</string>
 
 </resources>
