@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -24,6 +25,8 @@ public class PasswordActivity extends AppCompatActivity {
 
     Button updateButton;
 
+    ProgressBar loading;
+
     //class vars
     private FirebaseAuth firebaseAuth;
 
@@ -36,6 +39,8 @@ public class PasswordActivity extends AppCompatActivity {
     }
 
     private void setup() {
+        loading = (ProgressBar) findViewById(R.id.progress_bar_password);
+
         firebaseAuth = FirebaseAuth.getInstance();
 
         newPassword = (EditText) findViewById(R.id.new_password);
@@ -51,6 +56,7 @@ public class PasswordActivity extends AppCompatActivity {
     }
 
     public void handlePasswordChange(String newPass, String newPassConf) {
+        loading.setVisibility(View.VISIBLE);
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
         if (newPass.equals(newPassConf)) {
@@ -70,6 +76,9 @@ public class PasswordActivity extends AppCompatActivity {
                     });
 
 
+        } else {
+            Toast.makeText(PasswordActivity.this, "Your new passwords did not match, please try again.", Toast.LENGTH_LONG).show();
+            loading.setVisibility(View.GONE);
         }
 
     }
