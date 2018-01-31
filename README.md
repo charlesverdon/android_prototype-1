@@ -74,10 +74,36 @@
 # How to use
 - Signup in app
 - Once signup is successful you will be pushed to login screen
-- Log into Firebase Database and add key/value pair (firstName your first_name) (https://console.firebase.google.com)
-- add key/value pair (usage usage_in_int)
-- Log into app, go to account tab
-- Usage, First name and email should be populated
+- Log into Firebase and select Database
+<p>
+    <img src="https://imgur.com/LMnXggi" />
+</p>
+
+- From here you can see the users within our database, expand the user you want to add information to
+<p>
+    <img src="https://imgur.com/BmAtFbx" />
+</p>
+
+- From here we can see the users information
+<p>
+    <img src="https://imgur.com/zOCMF0w" />
+</p>
+
+- We can now add key/value pairs which show up in the app.
+•	Current keys that work within the prototype:
+–	address
+–	dailyCost
+–	dailyUsage
+–	email 
+–	firstName 
+–	lastMonthCost
+–	lastMonthUsage
+–	monthlyCost
+–	monthlyUsage
+- No keys currently have validation checking (costs and usages as numeric only etc)
+- Log into app, (or stayed logged in to see the change live) and the app will be populated with data.
+- Some of these fields are required, otherwise you will be shown an account currently processing messagem, best to add all key pairs.
+
 
 # How to add more data to app
 - Log into Firebase Database and add desired key/value pair e.g.(telephone 0400000000) (https://console.firebase.google.com)
