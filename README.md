@@ -6,32 +6,22 @@
 * Download from https://www.sourcetreeapp.com/
 * Sign in using your github credentials
 * You should see a window (the top looks like this)
-<p>
-    <img src="https://i.imgur.com/9UseUPq.png" />
-</p>
+* <p><img src="https://i.imgur.com/9UseUPq.png" /></p>
 * Go to remote, if you accepted the invite you should see the prototype
-<p>
-    <img src="https://i.imgur.com/ubd81FK.png" />
-</p>
+* <p><img src="https://i.imgur.com/ubd81FK.png" /></p>
 * Click Clone, select where you want to save it (doesn't matter, up to you)
 * Once you have cloned the repository, go to local and double click. This will open the repo window
 * Click Branch (see picture)
-<p>
-    <img src="https://i.imgur.com/HS1aXBc.png" />
-</p>
+* <p><img src="https://i.imgur.com/HS1aXBc.png" /></p>
 * Name your branch your first name
 
 # Android Studio
 * Open Android Studio, you should see a screen like this
-<p>
-    <img src="https://i.imgur.com/Ml6peYk.png" />
-</p>
+* <p><img src="https://i.imgur.com/Ml6peYk.png" /></p>
 * Select import project and it will configure
 * Android Studio may require tools to be downloaded if this is the first time you've used it, it should prompt you to download what it needs
 * If you've done this correctly you can then go to top left corner of the window, select project on the side and then the drop down box select Android, if you can't do this you've opened the wrong folder (see picture)
-<p>
-    <img src="https://i.imgur.com/f0Efbny.png" />
-</p>
+* <p><img src="https://i.imgur.com/f0Efbny.png" /></p>
 * You should now see a folder called app in the project navigator
 
 # manifest folder
@@ -56,51 +46,37 @@
 
 # Run the app
 * Click on the android virtual device manager icon (see picture)
-<p>
-    <img src="https://i.imgur.com/sMELRa0.png" />
-</p>
+* <p><img src="https://i.imgur.com/sMELRa0.png" /></p>
 * Click on create virtual device (see picture)
-<p>
-    <img src="https://i.imgur.com/koOIcQx.png" />
-</p>
+* <p><img src="https://i.imgur.com/koOIcQx.png" /></p>
 * Choose any device you like, I typically have one 5"+ device and 4" for layout testing
 * Choose an image, use API level 26
 * This will download the necessary files needed
 * Click the play button in the top toolbar (see picture)
-<p>
-    <img src="https://i.imgur.com/389uA0l.png" />
-</p>
+* <p><img src="https://i.imgur.com/389uA0l.png" /></p>
 
 # How to use
 * Signup in app
 * Once signup is successful you will be pushed to login screen
 * Log into Firebase and select Database
-<p>
-    <img src="https://imgur.com/LMnXggi" />
-</p>
-
+*<p><img src="https://imgur.com/LMnXggi" /></p>
 * From here you can see the users within our database, expand the user you want to add information to
-<p>
-    <img src="https://imgur.com/BmAtFbx" />
-</p>
-
+*<p><img src="https://imgur.com/BmAtFbx" /></p>
 * From here we can see the users information
-<p>
-    <img src="https://imgur.com/zOCMF0w" />
-</p>
+* <p><img src="https://imgur.com/zOCMF0w" /></p>
 
 * We can now add key/value pairs which show up in the app.
-** Current keys that work within the prototype:
-*** address
-*** dailyCost
-*** dailyUsage
-*** email 
-*** firstName 
-*** lastMonthCost
-*** lastMonthUsage
-*** monthlyCost
-*** monthlyUsage
-** No keys currently have validation checking (costs and usages as numeric only etc)
+* Current keys that work within the prototype:
+* address
+* dailyCost
+* dailyUsage
+* email 
+* firstName 
+* lastMonthCost
+* lastMonthUsage
+* monthlyCost
+* monthlyUsage
+* No keys currently have validation checking (costs and usages as numeric only etc)
 * Log into app, (or stayed logged in to see the change live) and the app will be populated with data.
 * Some of these fields are required, otherwise you will be shown an account currently processing messagem, best to add all key pairs.
 
