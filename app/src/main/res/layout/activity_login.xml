@@ -54,17 +54,25 @@
             android:inputType="textPassword"/>
 
         <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+
+        <TextView
             android:id="@+id/error_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:textColor="@android:color/holo_red_light"/>
 
+
+
         <Button
             android:id="@+id/button_login"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="@string/text_login"/>
+            android:text="@string/text_login" />
 
         <ProgressBar
             android:id="@+id/progress_bar_login"
