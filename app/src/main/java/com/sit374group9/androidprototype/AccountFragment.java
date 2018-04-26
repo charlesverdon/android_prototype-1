@@ -13,20 +13,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
+import com.sit374group9.androidprototype.helpers.api;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -37,18 +29,16 @@ public class AccountFragment extends Fragment {
 
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authListener;
-    private FirebaseDatabase firebaseDatabase;
-    private DatabaseReference databaseReference;
 
-    private String userID;
+    private static String userID;
 
-    private EditText textFirstName;
-    private EditText textEmail;
-    private EditText textAddress;
+    private static EditText textFirstName;
+    private static EditText textEmail;
+    private static EditText textAddress;
 
-    private LinearLayout loading;
-    private LinearLayout mainContainer;
-    private LinearLayout emptyContainer;
+    private static LinearLayout loading;
+    private static LinearLayout mainContainer;
+    private static LinearLayout emptyContainer;
 
     private Button editName;
     private Button editEmail;
@@ -91,8 +81,6 @@ public class AccountFragment extends Fragment {
         logout = (Button) getActivity().findViewById(R.id.logout_btn);
 
         firebaseAuth = FirebaseAuth.getInstance();
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference();
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
         assert user != null;
@@ -110,18 +98,7 @@ public class AccountFragment extends Fragment {
             }
         };
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.d(TAG, "" + dataSnapshot.getValue());
-                showData(dataSnapshot.getValue());
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
+        api.profileTrackerEventListener();
 
         editName.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -183,7 +160,7 @@ public class AccountFragment extends Fragment {
         });
     }
 
-    private void showData(Object object) {
+    public static void showData(Object object) {
         Gson gson = new Gson();
         String json = gson.toJson(object);
 
@@ -254,8 +231,8 @@ public class AccountFragment extends Fragment {
     public void handleNameSave(String name) {
         Toast.makeText(getActivity(), "Name changed successfully", Toast.LENGTH_LONG).show();
 
-        databaseReference = FirebaseDatabase.getInstance().getReference();
-        databaseReference.child("user").child("users").child(userID).child("firstName").setValue(name);
+        api.updateName(userID, name);
+
         textFirstName.setText(name);
 
         editName.setVisibility(View.VISIBLE);
@@ -276,21 +253,7 @@ public class AccountFragment extends Fragment {
                         FirebaseUser user = firebaseAuth.getCurrentUser();
                         assert user != null;
 
-                        user.updateEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    Toast.makeText(getActivity(), "Email changed successfully", Toast.LENGTH_SHORT).show();
-                                    databaseReference = FirebaseDatabase.getInstance().getReference();
-                                    databaseReference.child("user").child("users").child(userID).child("email").setValue(email);
-                                    databaseReference.child("user").child("users").child(userID).child("providerData").child("0").child("email").setValue(email);
-                                    databaseReference.child("user").child("users").child(userID).child("providerData").child("1").child("uid").setValue(email);
-                                    textEmail.setText(email);
-                                } else {
-                                    Toast.makeText(getActivity(), "There was an error updating your email, please try again.", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
+                        api.updateEmail(getContext(), userID, email);
                     }
                 })
                 .setNegativeButton("Go Back", new DialogInterface.OnClickListener() {
@@ -306,10 +269,15 @@ public class AccountFragment extends Fragment {
         textEmail.setEnabled(false);
     }
 
+    public static void updateTextEmail(String email) {
+        textEmail.setText(email);
+    }
+
     public void handleAddressSave(String address) {
         Toast.makeText(getActivity(), "Address changed successfully", Toast.LENGTH_SHORT).show();
-        databaseReference = FirebaseDatabase.getInstance().getReference();
-        databaseReference.child("user").child("users").child(userID).child("address").setValue(address);
+
+        api.updateAddress(userID, address);
+
         textAddress.setText(address);
 
         editAddress.setVisibility(View.VISIBLE);
