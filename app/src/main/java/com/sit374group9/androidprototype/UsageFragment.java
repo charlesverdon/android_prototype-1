@@ -8,17 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
+import com.sit374group9.androidprototype.helpers.api;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,21 +29,21 @@ public class UsageFragment extends Fragment {
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
 
-    private String userID;
+    private static String userID;
 
     //Usage text views
-    private TextView textDailyUsage;
-    private TextView textMonthlyUsage;
-    private TextView textLastMonthUsage;
+    private static TextView textDailyUsage;
+    private static TextView textMonthlyUsage;
+    private static TextView textLastMonthUsage;
 
     //Cost text views
-    private TextView textDailyCost;
-    private TextView textMonthlyCost;
-    private TextView textLastMonthCost;
+    private static TextView textDailyCost;
+    private static TextView textMonthlyCost;
+    private static TextView textLastMonthCost;
 
-    private LinearLayout loading;
-    private LinearLayout mainContainer;
-    private LinearLayout emptyContainer;
+    private static LinearLayout loading;
+    private static LinearLayout mainContainer;
+    private static LinearLayout emptyContainer;
 
     @Override
     public View onCreateView(LayoutInflater layoutInflater, ViewGroup container, Bundle savedInstanceState) {
@@ -90,21 +87,10 @@ public class UsageFragment extends Fragment {
             }
         };
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.d(TAG, "" + dataSnapshot.getValue());
-                showData(dataSnapshot.getValue());
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
+        api.usageTrackerEventListener();
     }
 
-    private void showData(Object object) {
+    public static void showData(Object object) {
         Log.d(TAG, "Attempting to fetch usage/cost data");
         Gson gson = new Gson();
         String json = gson.toJson(object);
