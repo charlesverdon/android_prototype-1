@@ -1,8 +1,13 @@
 package com.sit374group9.androidprototype;
 
 import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -17,11 +22,10 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.gson.Gson;
+import com.sit374group9.androidprototype.datastore.UserContract;
+import com.sit374group9.androidprototype.datastore.UserHelper;
 import com.sit374group9.androidprototype.helpers.api;
-
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.sit374group9.androidprototype.helpers.broadcastmanager;
 
 public class AccountFragment extends Fragment {
 
@@ -32,13 +36,13 @@ public class AccountFragment extends Fragment {
 
     private static String userID;
 
-    private static EditText textFirstName;
+    private EditText textFirstName;
+    //TODO: fix this
     private static EditText textEmail;
-    private static EditText textAddress;
+    private EditText textAddress;
 
-    private static LinearLayout loading;
-    private static LinearLayout mainContainer;
-    private static LinearLayout emptyContainer;
+    private LinearLayout loading;
+    private LinearLayout mainContainer;
 
     private Button editName;
     private Button editEmail;
@@ -51,6 +55,11 @@ public class AccountFragment extends Fragment {
     private Button changePassword;
     private Button logout;
 
+    String firstName;
+    String lastName;
+    String email;
+    String address;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_account, container, false);
@@ -60,8 +69,12 @@ public class AccountFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstaceState) {
         super.onActivityCreated(savedInstaceState);
 
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("WROTE_TO_DATABASE");
+
+        broadcastmanager.register(getContext(), broadcastReceiver, intentFilter);
+
         mainContainer = (LinearLayout) getActivity().findViewById(R.id.container_account);
-        emptyContainer = (LinearLayout) getActivity().findViewById(R.id.account_processing_warning);
 
         textFirstName = (EditText) getActivity().findViewById(R.id.account_name_value);
         textEmail = (EditText) getActivity().findViewById(R.id.account_email_value);
@@ -97,8 +110,6 @@ public class AccountFragment extends Fragment {
                 }
             }
         };
-
-        api.profileTrackerEventListener();
 
         editName.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -160,42 +171,6 @@ public class AccountFragment extends Fragment {
         });
     }
 
-    public static void showData(Object object) {
-        Gson gson = new Gson();
-        String json = gson.toJson(object);
-
-        String userFirstName = "";
-        String userEmail = "";
-        String userAddress = "";
-
-        try {
-            JSONObject jsonObject = new JSONObject(json);
-            JSONObject userObject = jsonObject.getJSONObject("user");;
-            JSONObject usersObject = userObject.getJSONObject("users");
-            JSONObject userDetailsObject = usersObject.getJSONObject(userID);
-
-            userFirstName = userDetailsObject.getString("firstName");
-            userEmail = userDetailsObject.getString("email");
-            userAddress = userDetailsObject.getString("address");
-
-            textFirstName.setText(userFirstName);
-            textEmail.setText(userEmail);
-            textAddress.setText(userAddress);
-
-            Log.d(TAG, userFirstName + " " + userEmail + " " + userAddress);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        loading.setVisibility(View.GONE);
-
-        if (userFirstName.isEmpty() || userAddress.isEmpty() || userEmail.isEmpty()) {
-            emptyContainer.setVisibility(View.VISIBLE);
-        } else {
-            mainContainer.setVisibility(View.VISIBLE);
-        }
-    }
-
     @Override
     public void onStart() {
         super.onStart();
@@ -209,6 +184,18 @@ public class AccountFragment extends Fragment {
             firebaseAuth.removeAuthStateListener(authListener);
         }
     }
+
+    private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+
+            assert action != null;
+            if (action.equals("WROTE_TO_DATABASE")) {
+                getCustomerInfo();
+            }
+        }
+    };
 
     public void handleNameChange() {
         editName.setVisibility(View.GONE);
@@ -283,5 +270,27 @@ public class AccountFragment extends Fragment {
         editAddress.setVisibility(View.VISIBLE);
         saveAddress.setVisibility(View.GONE);
         textAddress.setEnabled(false);
+    }
+
+    public void getCustomerInfo() {
+        UserHelper userHelper = new UserHelper(getActivity());
+        SQLiteDatabase db = userHelper.getReadableDatabase();
+
+        Cursor cursor = userHelper.readUserInfo(db);
+
+        while (cursor.moveToNext()) {
+            firstName = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.FIRST_NAME));
+            lastName = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.LAST_NAME));
+            email = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.EMAIL));
+            address = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.ADDRESS));
+        }
+
+        textFirstName.setText(firstName);
+        textEmail.setText(email);
+        textAddress.setText(address);
+
+        // Hide loading container and show main container
+        loading.setVisibility(View.GONE);
+        mainContainer.setVisibility(View.VISIBLE);
     }
 }

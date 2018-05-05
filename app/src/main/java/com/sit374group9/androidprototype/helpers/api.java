@@ -1,6 +1,7 @@
 package com.sit374group9.androidprototype.helpers;
 
 import android.content.Context;
+import android.provider.SyncStateContract;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.Toast;
@@ -15,6 +16,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import com.sit374group9.androidprototype.AccountFragment;
+import com.sit374group9.androidprototype.AndroidPrototype;
+import com.sit374group9.androidprototype.CustomerActivity;
 import com.sit374group9.androidprototype.UsageFragment;
 
 public class api {
@@ -33,7 +36,7 @@ public class api {
                             Toast.makeText(context, "Password reset Link has Successfully Send to your Email!", Toast.LENGTH_LONG).show();
                         }
                         else{
-                            Toast.makeText(context, "Your Email Address is invaild, please try again!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(context, "Your Email Address is invald, please try again!", Toast.LENGTH_LONG).show();
                         }
                     }
                 });
@@ -62,30 +65,13 @@ public class api {
     /**
      * Initialize a value event listener on the complete Firebase DB and update values if changed in the Usage Fragment
      */
-    public static void usageTrackerEventListener() {
+    public static void trackerEventListener() {
         FirebaseDatabase.getInstance().getReference().addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.d("UsageFragment", "" + dataSnapshot.getValue());
-                UsageFragment.showData(dataSnapshot.getValue());
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-    }
-
-    /**
-     * Track profile changes for the user in Firebase DB
-     */
-    public static void profileTrackerEventListener() {
-        FirebaseDatabase.getInstance().getReference().addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.d("AccountFragment", "" + dataSnapshot.getValue());
-                AccountFragment.showData(dataSnapshot.getValue());
+                Log.d("CustomerActivity", "" + dataSnapshot.getValue());
+                CustomerActivity.handleUserData(dataSnapshot.getValue());
+                broadcastmanager.sendBroadcast(AndroidPrototype.getAppContext(), "FETCHED_USER_DATA");
             }
 
             @Override
