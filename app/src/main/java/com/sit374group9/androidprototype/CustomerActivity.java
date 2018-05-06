@@ -35,12 +35,12 @@ public class CustomerActivity extends AppCompatActivity {
     PagerAdapter pagerAdapter;
 
     //Usage strings
-    static String liveUsage;
+    static String recentUsage;
     static String monthlyUsage;
     static String lastMonthUsage;
 
     //Cost strings
-    static String liveCost;
+    static String recentCost;
     static String monthlyCost;
     static String lastMonthCost;
 
@@ -143,12 +143,12 @@ public class CustomerActivity extends AppCompatActivity {
             JSONObject userDetailsObject = usersObject.getJSONObject(userID);
 
             //Usage strings
-            liveUsage = userDetailsObject.getString("dailyUsage");
+            recentUsage = userDetailsObject.getString("recentUsage");
             monthlyUsage = userDetailsObject.getString("monthlyUsage");
             lastMonthUsage = userDetailsObject.getString("lastMonthUsage");
 
             //Cost strings
-            liveCost = userDetailsObject.getString("dailyCost");
+            recentCost = userDetailsObject.getString("recentCost");
             monthlyCost = userDetailsObject.getString("monthlyCost");
             lastMonthCost = userDetailsObject.getString("lastMonthCost");
 
@@ -166,7 +166,7 @@ public class CustomerActivity extends AppCompatActivity {
     public void writeToDatabase() {
         UserHelper userHelper = new UserHelper(getApplicationContext());
         SQLiteDatabase db = userHelper.getWritableDatabase();
-        UserHelper.addUserInfo(1, userFirstName, userLastName, userEmail, userAddress, liveUsage, monthlyUsage, lastMonthUsage, liveCost, monthlyCost, lastMonthCost, db);
+        UserHelper.addUserInfo(1, userFirstName, userLastName, userEmail, userAddress, recentUsage, monthlyUsage, lastMonthUsage, recentCost, monthlyCost, lastMonthCost, db);
 
         broadcastmanager.sendBroadcast(this, "WROTE_TO_DATABASE");
     }

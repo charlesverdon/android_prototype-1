@@ -19,9 +19,9 @@
     <string name="label_address">Address:</string>
 
     <!--Usage Strings-->
-    <string name="label_daily_usage">Today:</string>
-    <string name="label_month_usage">This month:</string>
-    <string name="label_last_month_usage">Last month:</string>
+    <string name="label_recent">Recent:</string>
+    <string name="label_this_month">This month:</string>
+    <string name="label_last_month">Last month:</string>
     <string name="label_current_subtitle_usage">Current stats</string>
     <string name="label_previous_subtitle_usage">Previous stats</string>
     <string name="label_costs_subtitle_usage">Costs</string>

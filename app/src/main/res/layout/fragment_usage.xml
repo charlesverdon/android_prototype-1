@@ -55,7 +55,7 @@
             <TextView
                 android:layout_width="@dimen/usage_field_length"
                 android:layout_height="wrap_content"
-                android:text="@string/label_daily_usage"
+                android:text="@string/label_recent"
                 android:textSize="@dimen/body_text_size"
                 />
 
@@ -75,7 +75,7 @@
             <TextView
                 android:layout_width="@dimen/usage_field_length"
                 android:layout_height="wrap_content"
-                android:text="@string/label_month_usage"
+                android:text="@string/label_this_month"
                 android:textSize="@dimen/body_text_size"
                 />
 
@@ -102,7 +102,7 @@
             <TextView
                 android:layout_width="@dimen/usage_field_length"
                 android:layout_height="wrap_content"
-                android:text="@string/label_last_month_usage"
+                android:text="@string/label_last_month"
                 android:textSize="@dimen/body_text_size"
                 />
 
@@ -136,7 +136,7 @@
             <TextView
                 android:layout_width="@dimen/usage_field_length"
                 android:layout_height="wrap_content"
-                android:text="@string/label_daily_usage"
+                android:text="@string/label_recent"
                 android:textSize="@dimen/body_text_size"
                 />
 
@@ -156,7 +156,7 @@
             <TextView
                 android:layout_width="@dimen/usage_field_length"
                 android:layout_height="wrap_content"
-                android:text="@string/label_month_usage"
+                android:text="@string/label_this_month"
                 android:textSize="@dimen/body_text_size"
                 />
 
@@ -183,7 +183,7 @@
             <TextView
                 android:layout_width="@dimen/usage_field_length"
                 android:layout_height="wrap_content"
-                android:text="@string/label_last_month_usage"
+                android:text="@string/label_last_month"
                 android:textSize="@dimen/body_text_size"
                 />
 
@@ -195,18 +195,5 @@
                 android:textSize="@dimen/body_text_size"
                 />
         </LinearLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/usage_processing_warning"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:visibility="gone">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/warning_processing"
-            android:textAlignment="center"/>
     </LinearLayout>
 </RelativeLayout>
