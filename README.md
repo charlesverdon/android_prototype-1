@@ -56,22 +56,23 @@
 * <p><img src="https://i.imgur.com/389uA0l.png" /></p>
 
 # How to use
+* Signup is no longer supported, please use the test account details to log in
+<strike>
 * Signup in app
 * Once signup is successful you will be pushed to login screen
 * Log into Firebase and select Database
-*<p><img src="https://i.imgur.com/LMnXggi.png" /></p>
 * From here you can see the users within our database, expand the user you want to add information to
-*<p><img src="https://i.imgur.com/BmAtFbx.png" /></p>
 * From here we can see the users information
-* <p><img src="https://i.imgur.com/zOCMF0w.png" /></p>
+</strike>
 
 * We can now add key/value pairs which show up in the app.
 * Current keys that work within the prototype:
 * address
-* dailyCost
-* dailyUsage
+* recentCost
+* recentUsage
 * email 
-* firstName 
+* firstName
+* lastName
 * lastMonthCost
 * lastMonthUsage
 * monthlyCost
