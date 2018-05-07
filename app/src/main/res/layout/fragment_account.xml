@@ -162,17 +162,4 @@
             />
 
     </LinearLayout>
-    <LinearLayout
-        android:id="@+id/account_processing_warning"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:visibility="gone">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/warning_processing"
-            android:textAlignment="center"/>
-    </LinearLayout>
 </RelativeLayout>

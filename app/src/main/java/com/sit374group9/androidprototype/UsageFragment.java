@@ -1,5 +1,11 @@
 package com.sit374group9.androidprototype;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -14,11 +20,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.gson.Gson;
-import com.sit374group9.androidprototype.helpers.api;
-
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.sit374group9.androidprototype.datastore.UserContract;
+import com.sit374group9.androidprototype.datastore.UserHelper;
+import com.sit374group9.androidprototype.helpers.broadcastmanager;
 
 public class UsageFragment extends Fragment {
 
@@ -32,18 +36,27 @@ public class UsageFragment extends Fragment {
     private static String userID;
 
     //Usage text views
-    private static TextView textDailyUsage;
-    private static TextView textMonthlyUsage;
-    private static TextView textLastMonthUsage;
+    private TextView textLiveUsage;
+    private TextView textMonthlyUsage;
+    private TextView textLastMonthUsage;
 
     //Cost text views
-    private static TextView textDailyCost;
-    private static TextView textMonthlyCost;
-    private static TextView textLastMonthCost;
+    private TextView textLiveCost;
+    private TextView textMonthlyCost;
+    private TextView textLastMonthCost;
 
-    private static LinearLayout loading;
-    private static LinearLayout mainContainer;
-    private static LinearLayout emptyContainer;
+    private LinearLayout loading;
+    private LinearLayout mainContainer;
+
+    //Usage strings
+    String liveUsage;
+    String monthlyUsage;
+    String lastMonthUsage;
+
+    //Cost strings
+    String liveCost;
+    String monthlyCost;
+    String lastMonthCost;
 
     @Override
     public View onCreateView(LayoutInflater layoutInflater, ViewGroup container, Bundle savedInstanceState) {
@@ -54,14 +67,18 @@ public class UsageFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstaceState) {
         super.onActivityCreated(savedInstaceState);
 
-        mainContainer = (LinearLayout) getActivity().findViewById(R.id.container_usage);
-        emptyContainer = (LinearLayout) getActivity().findViewById(R.id.usage_processing_warning);
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("WROTE_TO_DATABASE");
 
-        textDailyUsage = (TextView) getActivity().findViewById(R.id.account_today_usage_value);
+        broadcastmanager.register(getContext(), broadcastReceiver, intentFilter);
+
+        mainContainer = (LinearLayout) getActivity().findViewById(R.id.container_usage);
+
+        textLiveUsage = (TextView) getActivity().findViewById(R.id.account_today_usage_value);
         textMonthlyUsage = (TextView) getActivity().findViewById(R.id.account_this_month_usage_value);
         textLastMonthUsage = (TextView) getActivity().findViewById(R.id.account_last_month_usage_value);
 
-        textDailyCost = (TextView) getActivity().findViewById(R.id.account_today_cost);
+        textLiveCost = (TextView) getActivity().findViewById(R.id.account_today_cost);
         textMonthlyCost = (TextView) getActivity().findViewById(R.id.account_this_month_cost);
         textLastMonthCost = (TextView) getActivity().findViewById(R.id.account_last_month_cost);
 
@@ -86,58 +103,6 @@ public class UsageFragment extends Fragment {
                 }
             }
         };
-
-        api.usageTrackerEventListener();
-    }
-
-    public static void showData(Object object) {
-        Log.d(TAG, "Attempting to fetch usage/cost data");
-        Gson gson = new Gson();
-        String json = gson.toJson(object);
-
-        String dailyUsage = "";
-        String dailyCost = "";
-
-        try {
-            JSONObject jsonObject = new JSONObject(json);
-            JSONObject userObject = jsonObject.getJSONObject("user");;
-            JSONObject usersObject = userObject.getJSONObject("users");
-            JSONObject userDetailsObject = usersObject.getJSONObject(userID);
-
-            //Usage strings
-            dailyUsage = userDetailsObject.getString("dailyUsage");
-            String monthlyUsage = userDetailsObject.getString("monthlyUsage");
-            String lastMonthUsage = userDetailsObject.getString("lastMonthUsage");
-
-            //Set usage text views
-            textDailyUsage.setText(String.format("%s kWh", dailyUsage));
-            textMonthlyUsage.setText(String.format("%s kWh", monthlyUsage));
-            textLastMonthUsage.setText(String.format("%s kWh", lastMonthUsage));
-
-            //Cost strings
-            dailyCost = userDetailsObject.getString("dailyCost");
-            String monthlyCost = userDetailsObject.getString("monthlyCost");
-            String lastMonthCost = userDetailsObject.getString("lastMonthCost");
-
-            //Set cost text views
-            textDailyCost.setText(String.format("$%s", dailyCost));
-            textMonthlyCost.setText(String.format("$%s", monthlyCost));
-            textLastMonthCost.setText(String.format("$%s", lastMonthCost));
-
-            Log.d(TAG, "Successfully retrieved usage/cost data");
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-            Log.d(TAG, "Failed to retrieved usage/cost data");
-        }
-
-        loading.setVisibility(View.GONE);
-
-        if (dailyUsage.isEmpty() || dailyCost.isEmpty()) {
-            emptyContainer.setVisibility(View.VISIBLE);
-        } else {
-            mainContainer.setVisibility(View.VISIBLE);
-        }
     }
 
     @Override
@@ -152,5 +117,45 @@ public class UsageFragment extends Fragment {
         if (authListener != null) {
             firebaseAuth.removeAuthStateListener(authListener);
         }
+    }
+
+    private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+
+            assert action != null;
+            if (action.equals("WROTE_TO_DATABASE")) {
+                getUsageInfo();
+            }
+        }
+    };
+
+    public void getUsageInfo() {
+        UserHelper userHelper = new UserHelper(getActivity());
+        SQLiteDatabase db = userHelper.getReadableDatabase();
+
+        Cursor cursor = userHelper.readUserInfo(db);
+
+        while (cursor.moveToNext()) {
+            liveUsage = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.LIVE_USAGE));
+            monthlyUsage = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.MONTHLY_USAGE));
+            lastMonthUsage = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.LAST_MONTH_USAGE));
+            liveCost = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.LIVE_COST));
+            monthlyCost = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.MONTHLY_COST));
+            lastMonthCost = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.LAST_MONTH_COST));
+        }
+
+        textLiveUsage.setText(liveUsage);
+        textMonthlyUsage.setText(monthlyUsage);
+        textLastMonthUsage.setText(lastMonthUsage);
+
+        textLiveCost.setText(liveCost);
+        textMonthlyCost.setText(monthlyCost);
+        textLastMonthCost.setText(lastMonthCost);
+
+        // Hide loading container and show main container
+        loading.setVisibility(View.GONE);
+        mainContainer.setVisibility(View.VISIBLE);
     }
 }
