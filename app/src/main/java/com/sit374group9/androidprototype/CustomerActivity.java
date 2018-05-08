@@ -6,8 +6,12 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -25,7 +29,7 @@ import com.sit374group9.androidprototype.helpers.broadcastmanager;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class CustomerActivity extends AppCompatActivity {
+public class CustomerActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = "CustomerActivity";
 
@@ -33,6 +37,8 @@ public class CustomerActivity extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager viewPager;
     PagerAdapter pagerAdapter;
+    private DrawerLayout mDrawerlayout;
+    private ActionBarDrawerToggle mToggle;
 
     //Usage strings
     static String recentUsage;
@@ -56,6 +62,14 @@ public class CustomerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_customer);
         setupToolbar();
         api.trackerEventListener();
+        mDrawerlayout = (DrawerLayout)findViewById(R.id.drawerlayout);
+        mToggle = new ActionBarDrawerToggle(this,mDrawerlayout,R.string.open,R.string.close);
+        mDrawerlayout.addDrawerListener(mToggle);
+        mToggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        NavigationView navigationView=(NavigationView)findViewById(R.id.navigationview);
+        navigationView.setNavigationItemSelectedListener(this);
+
 
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction("FETCHED_USER_DATA");
@@ -79,32 +93,8 @@ public class CustomerActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText("Usage"));
-        tabLayout.addTab(tabLayout.newTab().setText("Account"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-        viewPager = (ViewPager) findViewById(R.id.pager);
-        pagerAdapter = new PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
-
-        viewPager.setAdapter(pagerAdapter);
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
     }
 
     @Override
@@ -115,6 +105,9 @@ public class CustomerActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        if (mToggle.onOptionsItemSelected(item)){
+            return true;
+        }
         int id = item.getItemId();
         if (id == R.id.action_settings) {
             return true;
@@ -170,4 +163,17 @@ public class CustomerActivity extends AppCompatActivity {
 
         broadcastmanager.sendBroadcast(this, "WROTE_TO_DATABASE");
     }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item){
+        int id =item.getItemId();
+
+        if(id ==R.id.db0){
+            Intent signupIntent = new Intent(CustomerActivity.this, MainActivity.class);
+            startActivity(signupIntent);
+        }
+
+        return false;
+    }
+
 }

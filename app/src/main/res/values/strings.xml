@@ -43,5 +43,7 @@
     <string name="password_confirm_password">Confirm new password</string>
     <string name="button_update">Update</string>
     <string name="button_logout">Logout</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 
 </resources>
