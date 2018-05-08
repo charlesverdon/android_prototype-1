@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.sit374group9.androidprototype">
+          package="com.sit374group9.androidprototype">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -13,20 +13,28 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:label="@string/text_login" />
+            android:label="@string/text_login"/>
         <activity
             android:name=".SignupActivity"
-            android:label="@string/text_signup" />
-        <activity android:name=".CustomerActivity" />
-        <activity android:name=".PasswordActivity"></activity>
-        <activity android:name=".ForgetPassword"></activity>
+            android:label="@string/text_signup"/>
+        <activity android:name=".LoadingActivity"/>
+        <activity android:name=".PasswordActivity"/>
+        <activity android:name=".ForgetPassword"/>
+        <activity android:name=".AccountActivity">
+        </activity>
+        <activity android:name=".UsageActivity">
+        </activity>
+        <activity android:name=".MoreActivity">
+        </activity>
+        <activity android:name=".PaymentsActivity">
+        </activity>
     </application>
 
 </manifest>

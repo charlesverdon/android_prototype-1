@@ -30,7 +30,7 @@
     <string name="generic_error">Check the fields and try again</string>
     <string name="error_empty_field">Fields cannot be empty</string>
     <string name="error_empty_field_login_signup">Username or password field cannot be empty</string>
-    <string name="empty_string" />
+    <string name="empty_string"/>
     <string name="loading_fetching">Fetching your information</string>
     <string name="warning_processing">Thank you for signing up, your account is still being processed. Check back soon.</string>
     <string name="button_edit">Edit</string>
@@ -45,5 +45,12 @@
     <string name="button_logout">Logout</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
+    <string name="drawer_usage">Usage</string>
+    <string name="drawer_bills">Bills</string>
+    <string name="drawer_account">Account</string>
+    <string name="drawer_more">More</string>
+    <string name="drawer_sign_out">Sign Out</string>
+    <string name="drawer_logout">Logout</string>
+    <string name="drawer_payments">Payments</string>
 
 </resources>

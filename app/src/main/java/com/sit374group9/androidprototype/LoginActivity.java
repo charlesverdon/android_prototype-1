@@ -3,6 +3,7 @@ package com.sit374group9.androidprototype;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -18,8 +19,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-
-import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -47,21 +46,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        TextView tv2 = (TextView) this.findViewById(R.id.textView2);
-        String text = (String) "Forget your Password? Click Here";
-        SpannableString ss=new SpannableString(text);
-        ss.setSpan(new ClickableSpan() {
-
-            @Override
-            public void onClick(View widget) {
-                Intent i=new Intent(LoginActivity.this,ForgetPassword.class);
-                startActivity(i);
-
-            }
-        }, 0, text.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        tv2.setText(ss);
-        tv2.setMovementMethod(LinkMovementMethod.getInstance());
-
         setup();
     }
 
@@ -83,6 +67,25 @@ public class LoginActivity extends AppCompatActivity {
                 loginButtonOnClick();
             }
         });
+
+        TextView tv2 = (TextView) this.findViewById(R.id.textView2);
+        String text = (String) "Forget your Password? Click Here";
+        SpannableString ss=new SpannableString(text);
+        ss.setSpan(new ClickableSpan() {
+
+            @Override
+            public void onClick(View widget) {
+                Intent i=new Intent(LoginActivity.this,ForgetPassword.class);
+                startActivity(i);
+
+            }
+        }, 0, text.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        tv2.setText(ss);
+        tv2.setMovementMethod(LinkMovementMethod.getInstance());
+
+        ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.hide();
     }
 
     public void loginButtonOnClick() {
@@ -105,7 +108,7 @@ public class LoginActivity extends AppCompatActivity {
                     loading.setVisibility(View.GONE);
                     loginButton.setVisibility(View.VISIBLE);
                     if (task.isSuccessful()) {
-                        Intent loginIntent = new Intent(LoginActivity.this, CustomerActivity.class);
+                        Intent loginIntent = new Intent(LoginActivity.this, LoadingActivity.class);
                         startActivity(loginIntent);
                     } else {
                         textErrorLogin.setText(task.getException().getMessage());

@@ -1,5 +1,6 @@
 package com.sit374group9.androidprototype;
 
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -29,15 +30,10 @@ import com.sit374group9.androidprototype.helpers.broadcastmanager;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class CustomerActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class LoadingActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    private static final String TAG = "CustomerActivity";
+    private static final String TAG = "LoadingActivity";
 
-    Toolbar toolbar;
-    TabLayout tabLayout;
-    ViewPager viewPager;
-    PagerAdapter pagerAdapter;
-    private DrawerLayout mDrawerlayout;
     private ActionBarDrawerToggle mToggle;
 
     //Usage strings
@@ -59,22 +55,31 @@ public class CustomerActivity extends AppCompatActivity implements NavigationVie
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customer);
-        setupToolbar();
+        setContentView(R.layout.activity_loading);
         api.trackerEventListener();
-        mDrawerlayout = (DrawerLayout)findViewById(R.id.drawerlayout);
-        mToggle = new ActionBarDrawerToggle(this,mDrawerlayout,R.string.open,R.string.close);
+
+        setup();
+    }
+
+    public void setup() {
+
+        // Setup drawer menu
+        DrawerLayout mDrawerlayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mToggle = new ActionBarDrawerToggle(this, mDrawerlayout, R.string.open, R.string.close);
         mDrawerlayout.addDrawerListener(mToggle);
         mToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        NavigationView navigationView=(NavigationView)findViewById(R.id.navigationview);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
+        // Setup broadcast handling
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction("FETCHED_USER_DATA");
 
         broadcastmanager.register(this, broadcastReceiver, intentFilter);
+
+        // Fixes oreo no animation flash bug
+        overridePendingTransition(R.anim.empty_animation, R.anim.empty_animation);
     }
 
     private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
@@ -89,14 +94,6 @@ public class CustomerActivity extends AppCompatActivity implements NavigationVie
         }
     };
 
-    private void setupToolbar() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -105,15 +102,12 @@ public class CustomerActivity extends AppCompatActivity implements NavigationVie
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (mToggle.onOptionsItemSelected(item)){
+        if (mToggle.onOptionsItemSelected(item)) {
             return true;
         }
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
+        return id == R.id.action_settings || super.onOptionsItemSelected(item);
 
-        return super.onOptionsItemSelected(item);
     }
 
     public static void handleUserData(Object object) {
@@ -131,7 +125,7 @@ public class CustomerActivity extends AppCompatActivity implements NavigationVie
 
         try {
             JSONObject jsonObject = new JSONObject(json);
-            JSONObject userObject = jsonObject.getJSONObject("user");;
+            JSONObject userObject = jsonObject.getJSONObject("user");
             JSONObject usersObject = userObject.getJSONObject("users");
             JSONObject userDetailsObject = usersObject.getJSONObject(userID);
 
@@ -150,8 +144,7 @@ public class CustomerActivity extends AppCompatActivity implements NavigationVie
             userEmail = userDetailsObject.getString("email");
             userAddress = userDetailsObject.getString("address");
 
-
-        } catch(JSONException e) {
+        } catch (JSONException e) {
             e.printStackTrace();
         }
     }
@@ -162,14 +155,40 @@ public class CustomerActivity extends AppCompatActivity implements NavigationVie
         UserHelper.addUserInfo(1, userFirstName, userLastName, userEmail, userAddress, recentUsage, monthlyUsage, lastMonthUsage, recentCost, monthlyCost, lastMonthCost, db);
 
         broadcastmanager.sendBroadcast(this, "WROTE_TO_DATABASE");
+
+//        Intent intent = new Intent(this, UsageActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        Intent intent = new Intent(this, UsageActivity.class);
+        startActivity(intent);
     }
 
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item){
-        int id =item.getItemId();
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        int id = item.getItemId();
 
-        if(id ==R.id.db0){
-            Intent signupIntent = new Intent(CustomerActivity.this, MainActivity.class);
+        if (id == R.id.drawer_usage) {
+            Intent usageIntent = new Intent(this, UsageActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(usageIntent);
+        }
+
+        if (id == R.id.drawer_payments) {
+            Intent paymentsIntent = new Intent(this, PaymentsActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(paymentsIntent);
+        }
+
+        if (id == R.id.drawer_account) {
+            Intent accountIntent = new Intent(this, AccountActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(accountIntent);
+        }
+
+        if (id == R.id.drawer_more) {
+            Intent moreIntent = new Intent(this, MoreActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(moreIntent);
+        }
+
+        if (id == R.id.drawer_logout) {
+            firebaseAuth.signOut();
+            Intent signupIntent = new Intent(this, MainActivity.class);
             startActivity(signupIntent);
         }
 
