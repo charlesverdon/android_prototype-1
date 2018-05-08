@@ -1,20 +1,14 @@
 package com.sit374group9.androidprototype;
 
-import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
-import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -30,7 +24,7 @@ import com.sit374group9.androidprototype.helpers.broadcastmanager;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class LoadingActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class LoadingActivity extends AppCompatActivity {
 
     private static final String TAG = "LoadingActivity";
 
@@ -63,20 +57,14 @@ public class LoadingActivity extends AppCompatActivity implements NavigationView
 
     public void setup() {
 
-        // Setup drawer menu
-        DrawerLayout mDrawerlayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mToggle = new ActionBarDrawerToggle(this, mDrawerlayout, R.string.open, R.string.close);
-        mDrawerlayout.addDrawerListener(mToggle);
-        mToggle.syncState();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
         // Setup broadcast handling
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction("FETCHED_USER_DATA");
-
         broadcastmanager.register(this, broadcastReceiver, intentFilter);
+
+        ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.hide();
 
         // Fixes oreo no animation flash bug
         overridePendingTransition(R.anim.empty_animation, R.anim.empty_animation);
@@ -156,43 +144,7 @@ public class LoadingActivity extends AppCompatActivity implements NavigationView
 
         broadcastmanager.sendBroadcast(this, "WROTE_TO_DATABASE");
 
-//        Intent intent = new Intent(this, UsageActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        Intent intent = new Intent(this, UsageActivity.class);
+        Intent intent = new Intent(this, UsageActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        int id = item.getItemId();
-
-        if (id == R.id.drawer_usage) {
-            Intent usageIntent = new Intent(this, UsageActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-            startActivity(usageIntent);
-        }
-
-        if (id == R.id.drawer_payments) {
-            Intent paymentsIntent = new Intent(this, PaymentsActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-            startActivity(paymentsIntent);
-        }
-
-        if (id == R.id.drawer_account) {
-            Intent accountIntent = new Intent(this, AccountActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-            startActivity(accountIntent);
-        }
-
-        if (id == R.id.drawer_more) {
-            Intent moreIntent = new Intent(this, MoreActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-            startActivity(moreIntent);
-        }
-
-        if (id == R.id.drawer_logout) {
-            firebaseAuth.signOut();
-            Intent signupIntent = new Intent(this, MainActivity.class);
-            startActivity(signupIntent);
-        }
-
-        return false;
-    }
-
 }
