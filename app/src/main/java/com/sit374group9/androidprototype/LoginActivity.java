@@ -69,13 +69,13 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         TextView tv2 = (TextView) this.findViewById(R.id.textView2);
-        String text = (String) "Forget your Password? Click Here";
+        String text = (String) "Forgot Password";
         SpannableString ss=new SpannableString(text);
         ss.setSpan(new ClickableSpan() {
 
             @Override
             public void onClick(View widget) {
-                Intent i=new Intent(LoginActivity.this,ForgetPassword.class);
+                Intent i=new Intent(LoginActivity.this,ForgotPasswordActivity.class);
                 startActivity(i);
 
             }

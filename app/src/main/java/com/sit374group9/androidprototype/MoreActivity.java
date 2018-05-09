@@ -25,6 +25,7 @@ public class MoreActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void setup() {
+        setTitle("More");
         // Setup drawer menu
         DrawerLayout mDrawerlayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mToggle = new ActionBarDrawerToggle(this, mDrawerlayout, R.string.open, R.string.close);

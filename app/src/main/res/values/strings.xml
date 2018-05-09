@@ -52,5 +52,12 @@
     <string name="drawer_sign_out">Sign Out</string>
     <string name="drawer_logout">Logout</string>
     <string name="drawer_payments">Payments</string>
+    <string name="button_change_password">Change Password</string>
+    <string name="button_contact_us">Contact Us</string>
+    <string name="button_feedback">Feedback</string>
+    <string name="button_about_us">About Us</string>
+    <string name="button_terms_conditions"><![CDATA[Terms & Conditions]]></string>
+    <string name="button_get_started">get started</string>
+    <string name="forgot_password_error">Please enter a valid email address</string>
 
 </resources>

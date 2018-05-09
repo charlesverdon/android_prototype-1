@@ -25,6 +25,7 @@ public class UsageActivity extends AppCompatActivity implements NavigationView.O
     }
 
     public void setup() {
+        setTitle("Usage");
         // Setup drawer menu
         DrawerLayout mDrawerlayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mToggle = new ActionBarDrawerToggle(this, mDrawerlayout, R.string.open, R.string.close);

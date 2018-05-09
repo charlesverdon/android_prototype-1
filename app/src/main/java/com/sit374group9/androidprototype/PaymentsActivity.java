@@ -25,6 +25,7 @@ public class PaymentsActivity extends AppCompatActivity implements NavigationVie
     }
 
     public void setup() {
+        setTitle("Payments");
         // Setup drawer menu
         DrawerLayout mDrawerlayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mToggle = new ActionBarDrawerToggle(this, mDrawerlayout, R.string.open, R.string.close);

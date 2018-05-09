@@ -22,7 +22,7 @@ public class api {
 
     /**
      * Forgot password method to send password reset email to be called in case the user forgets their login password
-     * @param context : ForgetPassword activity context
+     * @param context : ForgotPasswordActivity activity context
      * @param email : Email of the user to send reset email
      */
     public static void forgotPassword(final Context context, String email) {
@@ -31,10 +31,10 @@ public class api {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(context, "Password reset Link has Successfully Send to your Email!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(context, "Password reset link has successfully been sent to your email", Toast.LENGTH_LONG).show();
                         }
                         else{
-                            Toast.makeText(context, "Your Email Address is invald, please try again!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(context, "Your email address is invalid, please try again", Toast.LENGTH_LONG).show();
                         }
                     }
                 });
