@@ -6,10 +6,9 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -25,14 +24,11 @@ import com.sit374group9.androidprototype.helpers.broadcastmanager;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class CustomerActivity extends AppCompatActivity {
+public class LoadingActivity extends AppCompatActivity {
 
-    private static final String TAG = "CustomerActivity";
+    private static final String TAG = "LoadingActivity";
 
-    Toolbar toolbar;
-    TabLayout tabLayout;
-    ViewPager viewPager;
-    PagerAdapter pagerAdapter;
+    private ActionBarDrawerToggle mToggle;
 
     //Usage strings
     static String recentUsage;
@@ -53,14 +49,25 @@ public class CustomerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customer);
-        setupToolbar();
+        setContentView(R.layout.activity_loading);
         api.trackerEventListener();
 
+        setup();
+    }
+
+    public void setup() {
+
+        // Setup broadcast handling
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction("FETCHED_USER_DATA");
-
         broadcastmanager.register(this, broadcastReceiver, intentFilter);
+
+        ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.hide();
+
+        // Fixes oreo no animation flash bug
+        overridePendingTransition(R.anim.empty_animation, R.anim.empty_animation);
     }
 
     private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
@@ -75,38 +82,6 @@ public class CustomerActivity extends AppCompatActivity {
         }
     };
 
-    private void setupToolbar() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText("Usage"));
-        tabLayout.addTab(tabLayout.newTab().setText("Account"));
-        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-
-        viewPager = (ViewPager) findViewById(R.id.pager);
-        pagerAdapter = new PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
-
-        viewPager.setAdapter(pagerAdapter);
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -115,12 +90,12 @@ public class CustomerActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
+        if (mToggle.onOptionsItemSelected(item)) {
             return true;
         }
+        int id = item.getItemId();
+        return id == R.id.action_settings || super.onOptionsItemSelected(item);
 
-        return super.onOptionsItemSelected(item);
     }
 
     public static void handleUserData(Object object) {
@@ -138,7 +113,7 @@ public class CustomerActivity extends AppCompatActivity {
 
         try {
             JSONObject jsonObject = new JSONObject(json);
-            JSONObject userObject = jsonObject.getJSONObject("user");;
+            JSONObject userObject = jsonObject.getJSONObject("user");
             JSONObject usersObject = userObject.getJSONObject("users");
             JSONObject userDetailsObject = usersObject.getJSONObject(userID);
 
@@ -157,8 +132,7 @@ public class CustomerActivity extends AppCompatActivity {
             userEmail = userDetailsObject.getString("email");
             userAddress = userDetailsObject.getString("address");
 
-
-        } catch(JSONException e) {
+        } catch (JSONException e) {
             e.printStackTrace();
         }
     }
@@ -169,5 +143,8 @@ public class CustomerActivity extends AppCompatActivity {
         UserHelper.addUserInfo(1, userFirstName, userLastName, userEmail, userAddress, recentUsage, monthlyUsage, lastMonthUsage, recentCost, monthlyCost, lastMonthCost, db);
 
         broadcastmanager.sendBroadcast(this, "WROTE_TO_DATABASE");
+
+        Intent intent = new Intent(this, UsageActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 }

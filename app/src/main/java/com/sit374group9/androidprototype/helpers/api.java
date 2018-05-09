@@ -1,7 +1,6 @@
 package com.sit374group9.androidprototype.helpers;
 
 import android.content.Context;
-import android.provider.SyncStateContract;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.Toast;
@@ -17,8 +16,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import com.sit374group9.androidprototype.AccountFragment;
 import com.sit374group9.androidprototype.AndroidPrototype;
-import com.sit374group9.androidprototype.CustomerActivity;
-import com.sit374group9.androidprototype.UsageFragment;
+import com.sit374group9.androidprototype.LoadingActivity;
 
 public class api {
 
@@ -69,8 +67,8 @@ public class api {
         FirebaseDatabase.getInstance().getReference().addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.d("CustomerActivity", "" + dataSnapshot.getValue());
-                CustomerActivity.handleUserData(dataSnapshot.getValue());
+                Log.d("LoadingActivity", "" + dataSnapshot.getValue());
+                LoadingActivity.handleUserData(dataSnapshot.getValue());
                 broadcastmanager.sendBroadcast(AndroidPrototype.getAppContext(), "FETCHED_USER_DATA");
             }
 
