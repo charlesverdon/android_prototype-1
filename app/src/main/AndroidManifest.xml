@@ -21,9 +21,6 @@
         <activity
             android:name=".LoginActivity"
             android:label="@string/text_login"/>
-        <activity
-            android:name=".SignupActivity"
-            android:label="@string/text_signup"/>
         <activity android:name=".LoadingActivity"/>
         <activity android:name=".PasswordActivity"/>
         <activity android:name=".ForgotPasswordActivity"/>

@@ -24,11 +24,6 @@ public class MainActivity extends AppCompatActivity {
         actionBar.hide();
     }
 
-    public void goToSignup(View view) {
-        Intent signupIntent = new Intent(MainActivity.this, SignupActivity.class);
-        startActivity(signupIntent);
-    }
-
     public void goToLogin(View view) {
         Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(loginIntent);
