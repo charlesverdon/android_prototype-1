@@ -59,5 +59,23 @@
     <string name="button_terms_conditions"><![CDATA[Terms & Conditions]]></string>
     <string name="button_get_started">get started</string>
     <string name="forgot_password_error">Please enter a valid email address</string>
+    <string name="button_make_a_payment">Make a payment</string>
+    <string name="button_download">download</string>
+    <string name="lorem_ipsum">dolor sit amet, quo an erat indoctum maluisset, accusam copiosae at sea. Convenire complectitur sit at. Est no postulant vituperatoribus, quod solet oporteat mei an. Postea intellegam id mei, cum insolens legendos platonem eu. Verterem accusata dignissim at est, tale honestatis no quo, diceret detracto atomorum ei vim. Alii facilisis id sed. Ut sea natum veniam incorrupte, per eius expetendis an, nec mazim labore ne. Quo an summo ignota senserit, ex nec eruditi atomorum, ad sed eros fabulas laboramus. Ei nam facer assum noluisse. Vix te imperdiet mnesarchum. Aliquid gubergren temporibus id sed, ne duo solum sadipscing. Eligendi eloquentiam ea eum, nam ad mundi quaestio. Eam at zril homero aliquid, ei mazim nusquam recusabo nam, tamquam vulputate forensibus usu in. Quem mollis lobortis ne pri. Eam fabulas forensibus te, persius dissentiet eu his, cu usu fabulas perpetua contentiones. Mel eripuit fabulas ne, mel eu mentitum nominati. No cum fugit senserit. In sea aeterno offendit instructior. Fugit albucius sapientem vis ex, cum invenire similique ex. Ea accusam ocurreret pro, et qui viderer iudicabit, eam libris integre eu. Eu zril appellantur pri, mei ad falli impedit, ei clita apeirian eum. Vidit interpretaris et sit, oratio tractatos ius te, ut sea tacimates dissentiet. Ei eos simul probatus, est tantas essent verear at. Labores mentitum voluptatibus eam te.</string>
+    <string name="lorem_ipsum_title">Lorem Ipsum</string>
+    <string name="text_amount_due">Amount due</string>
+    <string name="text_payment_type">Payment Type:</string>
+    <string name="text_credit_card">Credit Card</string>
+    <string name="text_direct_debit">Direct Debit</string>
+    <string name="text_visa">Visa</string>
+    <string name="text_mastercard">Mastercard</string>
+    <string name="text_card_name">Card Name</string>
+    <string name="text_card_number">Card Number</string>
+    <string name="text_expiry_date">Expiry Date</string>
+    <string name="text_cvv">CVV</string>
+    <string name="text_account_name">Account Name</string>
+    <string name="text_bsb_number">BSB Number</string>
+    <string name="text_account_number">Account Number</string>
+    <string name="button_continue">Continue</string>
 
 </resources>

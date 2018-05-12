@@ -52,7 +52,6 @@ public class LoginActivity extends AppCompatActivity {
     private void setup() {
         firebaseAuth = FirebaseAuth.getInstance();
 
-
         editUsername = (EditText) findViewById(R.id.edit_username);
         editPassword = (EditText) findViewById(R.id.edit_password);
 

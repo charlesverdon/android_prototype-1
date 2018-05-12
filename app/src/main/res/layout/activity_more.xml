@@ -11,36 +11,36 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="10dp"
+        >
 
         <Button
+            android:id="@+id/button_contact_us"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/button_contact_us"
             />
 
         <Button
+            android:id="@+id/button_feedback"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/button_feedback"
             />
 
         <Button
+            android:id="@+id/button_about_us"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/button_about_us"
             />
 
         <Button
+            android:id="@+id/button_termsconditions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/button_terms_conditions"
-            />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/button_logout"
             />
 
     </LinearLayout>

@@ -10,34 +10,70 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-public class PaymentsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MakePaymentActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private ActionBarDrawerToggle mToggle;
+    LinearLayout creditView;
+    LinearLayout bankView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_payments);
+        setContentView(R.layout.activity_make_payment);
 
         setup();
     }
 
     public void setup() {
-        setTitle("Payments");
+        setTitle("Make Payment");
         // Setup drawer menu
         DrawerLayout mDrawerlayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mToggle = new ActionBarDrawerToggle(this, mDrawerlayout, R.string.open, R.string.close);
         mDrawerlayout.addDrawerListener(mToggle);
         mToggle.syncState();
+        assert getSupportActionBar() != null;
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         // Fixes oreo no animation flash bug
         overridePendingTransition(R.anim.empty_animation, R.anim.empty_animation);
+
+        creditView = (LinearLayout) findViewById(R.id.view_credit);
+        bankView = (LinearLayout) findViewById(R.id.view_bank);
+    }
+
+    public void onRadioButtonClicked(View view) {
+        boolean checked = ((RadioButton) view).isChecked();
+
+        switch (view.getId()) {
+            case R.id.radio_credit:
+                if (checked) {
+                    creditView.setVisibility(View.VISIBLE);
+                    bankView.setVisibility(View.GONE);
+                }
+                break;
+            case R.id.radio_bank:
+                if (checked) {
+                    creditView.setVisibility(View.GONE);
+                    bankView.setVisibility(View.VISIBLE);
+                }
+                break;
+            case R.id.radio_visa:
+                if (checked)
+                    // stuff
+                    break;
+            case R.id.radio_mastercard:
+                if (checked)
+                    // stuff
+                    break;
+        }
     }
 
     @Override
@@ -88,10 +124,5 @@ public class PaymentsActivity extends AppCompatActivity implements NavigationVie
         }
 
         return false;
-    }
-
-    public void goToPayment(View view) {
-        Intent makePaymentIntent = new Intent(this, MakePaymentActivity.class);
-        startActivity(makePaymentIntent);
     }
 }

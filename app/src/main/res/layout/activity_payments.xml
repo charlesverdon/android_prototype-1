@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:padding="10dp"
         >
 
         <TextView
@@ -27,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:text="You could save $15.27 based on projection"
+            android:text="Due March 2, 2018"
             android:textSize="@dimen/large_body_text_size"/>
 
         <LinearLayout
@@ -45,17 +46,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
-                    android:text="$148.42"
+                    android:text="Feb 24, 2018"
                     android:layout_weight="1"
-                    android:textSize="@dimen/semi_featured_font"/>
+                    android:textSize="@dimen/subheading_font_size"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
-                    android:text="$163.69"
+                    android:text="Jan 22 - Feb 22"
                     android:layout_weight="1"
-                    android:textSize="@dimen/semi_featured_font"/>
+                    android:textSize="@dimen/subheading_font_size"/>
             </LinearLayout>
 
             <LinearLayout
@@ -67,7 +68,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
-                    android:text="Your Target"
+                    android:text="Date Issued"
                     android:layout_weight="1"
                     android:textSize="@dimen/small_body_text_size"/>
 
@@ -75,13 +76,25 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
-                    android:text="Projected"
+                    android:text="Service Period"
                     android:layout_weight="1"
                     android:textSize="@dimen/small_body_text_size"/>
             </LinearLayout>
 
         </LinearLayout>
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_make_a_payment"
+            android:onClick="goToPayment"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_download"
+            />
     </LinearLayout>
 
     <android.support.design.widget.NavigationView

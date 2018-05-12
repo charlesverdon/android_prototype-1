@@ -9,12 +9,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MoreActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private ActionBarDrawerToggle mToggle;
+    Button contactUsButton;
+    Button feedbackButton;
+    Button aboutUsButton;
+    Button termsAndConditionsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +43,43 @@ public class MoreActivity extends AppCompatActivity implements NavigationView.On
 
         // Fixes oreo no animation flash bug
         overridePendingTransition(R.anim.empty_animation, R.anim.empty_animation);
+
+        contactUsButton = (Button) findViewById(R.id.button_contact_us);
+        contactUsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                buttonClick();
+            }
+        });
+
+        feedbackButton = (Button) findViewById(R.id.button_feedback);
+        feedbackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                buttonClick();
+            }
+        });
+
+        aboutUsButton = (Button) findViewById(R.id.button_about_us);
+        aboutUsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                buttonClick();
+            }
+        });
+
+        termsAndConditionsButton = (Button) findViewById(R.id.button_termsconditions);
+        termsAndConditionsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                buttonClick();
+            }
+        });
+    }
+
+    public void buttonClick() {
+        Intent aboutUsIntent = new Intent(this, PlaceholderActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        startActivity(aboutUsIntent);
     }
 
     @Override

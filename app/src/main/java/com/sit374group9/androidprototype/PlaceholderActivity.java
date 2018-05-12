@@ -9,24 +9,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-public class PaymentsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class PlaceholderActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private ActionBarDrawerToggle mToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_payments);
+        setContentView(R.layout.activity_placeholder);
 
         setup();
     }
 
     public void setup() {
-        setTitle("Payments");
+        setTitle("");
         // Setup drawer menu
         DrawerLayout mDrawerlayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mToggle = new ActionBarDrawerToggle(this, mDrawerlayout, R.string.open, R.string.close);
@@ -39,6 +38,7 @@ public class PaymentsActivity extends AppCompatActivity implements NavigationVie
         // Fixes oreo no animation flash bug
         overridePendingTransition(R.anim.empty_animation, R.anim.empty_animation);
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -88,10 +88,5 @@ public class PaymentsActivity extends AppCompatActivity implements NavigationVie
         }
 
         return false;
-    }
-
-    public void goToPayment(View view) {
-        Intent makePaymentIntent = new Intent(this, MakePaymentActivity.class);
-        startActivity(makePaymentIntent);
     }
 }
