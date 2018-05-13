@@ -15,13 +15,14 @@
         android:layout_marginBottom="20dp"
         android:text="@string/title_login"
         android:textAlignment="center"
-        android:textSize="@dimen/heading_font_size"/>
+        android:textSize="@dimen/heading_font_size"
+        android:textColor="@color/colorFont"/>
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:contentDescription="logo"
+        android:contentDescription="@string/description_logo"
         android:src="@drawable/logo"/>
 
     <LinearLayout
@@ -33,25 +34,29 @@
             android:layout_width="match_parent"
             android:layout_height="15dp"
             android:labelFor="@id/edit_username"
-            android:text="@string/text_email"/>
+            android:text="@string/text_email"
+            android:textColor="@color/colorFont"/>
 
         <EditText
             android:id="@+id/edit_username"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:inputType="textEmailAddress"/>
+            android:inputType="textEmailAddress"
+            android:textColor="@color/colorFont"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="15dp"
             android:labelFor="@id/edit_password"
-            android:text="@string/text_password"/>
+            android:text="@string/text_password"
+            android:textColor="@color/colorFont"/>
 
         <EditText
             android:id="@+id/edit_password"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:inputType="textPassword"/>
+            android:inputType="textPassword"
+            android:textColor="@color/colorFont"/>
 
         <TextView
             android:id="@+id/textView2"

@@ -20,6 +20,7 @@
             android:text="@string/text_amount_due"
             android:textSize="@dimen/subheading_font_size"
             android:textAlignment="center"
+            android:textColor="@color/colorFont"
             />
 
         <TextView
@@ -29,13 +30,15 @@
             android:textSize="@dimen/heading_font_size"
             android:textAlignment="center"
             android:paddingBottom="40dp"
+            android:textColor="@color/colorFont"
             />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/text_payment_type"
-            android:textSize="@dimen/large_body_text_size"/>
+            android:textSize="@dimen/large_body_text_size"
+            android:textColor="@color/colorFont"/>
 
         <RadioGroup
             android:layout_width="wrap_content"
@@ -55,7 +58,8 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="@string/text_credit_card"
-                android:textSize="@dimen/body_text_size"/>
+                android:textSize="@dimen/body_text_size"
+                android:textColor="@color/colorFont"/>
 
             <RadioButton
                 android:id="@+id/radio_bank"
@@ -69,7 +73,8 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="@string/text_direct_debit"
-                android:textSize="@dimen/body_text_size"/>
+                android:textSize="@dimen/body_text_size"
+                android:textColor="@color/colorFont"/>
 
         </RadioGroup>
 
@@ -113,7 +118,8 @@
                             android:layout_height="match_parent"
                             android:gravity="center"
                             android:text="@string/text_visa"
-                            android:textSize="@dimen/body_text_size"/>
+                            android:textSize="@dimen/body_text_size"
+                            android:textColor="@color/colorFont"/>
 
                         <RadioButton
                             android:id="@+id/radio_mastercard"
@@ -126,31 +132,36 @@
                             android:layout_height="match_parent"
                             android:gravity="center"
                             android:text="@string/text_mastercard"
-                            android:textSize="@dimen/body_text_size"/>
+                            android:textSize="@dimen/body_text_size"
+                            android:textColor="@color/colorFont"/>
 
                     </RadioGroup>
 
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/text_card_name"/>
+                        android:hint="@string/text_card_name"
+                        android:textColor="@color/colorFont"/>
 
 
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/text_card_number"/>
+                        android:hint="@string/text_card_number"
+                        android:textColor="@color/colorFont"/>
 
 
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/text_expiry_date"/>
+                        android:hint="@string/text_expiry_date"
+                        android:textColor="@color/colorFont"/>
 
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/text_cvv"/>
+                        android:hint="@string/text_cvv"
+                        android:textColor="@color/colorFont"/>
                 </LinearLayout>
 
                 <LinearLayout

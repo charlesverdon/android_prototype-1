@@ -26,7 +26,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     public void setup() {
         setTitle("Forgot Password");
 
-        setContentView(R.layout.activity_forget_password);
+        setContentView(R.layout.activity_forgot_password);
 
         forgotInput = (EditText) findViewById(R.id.forgetemail);
         submitBtn = (Button)findViewById(R.id.button2);

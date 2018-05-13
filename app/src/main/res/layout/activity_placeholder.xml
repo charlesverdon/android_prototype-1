@@ -24,6 +24,7 @@
                 android:paddingBottom="10dp"
                 android:text="@string/lorem_ipsum_title"
                 android:textSize="@dimen/large_body_text_size"
+                android:textColor="@color/colorFont"
                 />
 
             <TextView
@@ -31,6 +32,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/lorem_ipsum"
                 android:textSize="@dimen/body_text_size"
+                android:textColor="@color/colorFont"
                 />
         </LinearLayout>
 

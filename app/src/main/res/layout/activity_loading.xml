@@ -28,6 +28,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/loading_fetching"
                 android:textAlignment="center"
+                android:textColor="@color/colorFont"
                 />
 
             <ProgressBar

@@ -77,5 +77,8 @@
     <string name="text_bsb_number">BSB Number</string>
     <string name="text_account_number">Account Number</string>
     <string name="button_continue">Continue</string>
+    <string name="description_logo">logo</string>
+    <string name="text_forgot_password">Please enter your email address below</string>
+    <string name="button_submit">submit</string>
 
 </resources>

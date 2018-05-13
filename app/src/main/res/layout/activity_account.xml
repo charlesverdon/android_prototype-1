@@ -32,6 +32,7 @@
                 android:layout_height="wrap_content"
                 android:text="Account No: 1234567890"
                 android:textAlignment="center"
+                android:textColor="@color/colorFont"
                 />
 
 

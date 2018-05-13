@@ -21,7 +21,7 @@
             android:textAlignment="center"
             android:text="$129.95"
             android:textSize="@dimen/featured_font"
-
+            android:textColor="@color/colorFont"
             />
 
         <TextView
@@ -29,7 +29,8 @@
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:text="You could save $15.27 based on projection"
-            android:textSize="@dimen/large_body_text_size"/>
+            android:textSize="@dimen/large_body_text_size"
+            android:textColor="@color/colorFont"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -48,7 +49,8 @@
                     android:textAlignment="center"
                     android:text="$148.42"
                     android:layout_weight="1"
-                    android:textSize="@dimen/semi_featured_font"/>
+                    android:textSize="@dimen/semi_featured_font"
+                    android:textColor="@color/colorFont"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -56,7 +58,8 @@
                     android:textAlignment="center"
                     android:text="$163.69"
                     android:layout_weight="1"
-                    android:textSize="@dimen/semi_featured_font"/>
+                    android:textSize="@dimen/semi_featured_font"
+                    android:textColor="@color/colorFont"/>
             </LinearLayout>
 
             <LinearLayout
@@ -70,7 +73,8 @@
                     android:textAlignment="center"
                     android:text="Your Target"
                     android:layout_weight="1"
-                    android:textSize="@dimen/small_body_text_size"/>
+                    android:textSize="@dimen/small_body_text_size"
+                    android:textColor="@color/colorFont"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -78,7 +82,8 @@
                     android:textAlignment="center"
                     android:text="Projected"
                     android:layout_weight="1"
-                    android:textSize="@dimen/small_body_text_size"/>
+                    android:textSize="@dimen/small_body_text_size"
+                    android:textColor="@color/colorFont"/>
             </LinearLayout>
 
         </LinearLayout>
