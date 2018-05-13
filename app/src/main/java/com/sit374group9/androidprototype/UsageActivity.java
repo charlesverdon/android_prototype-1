@@ -1,6 +1,7 @@
 package com.sit374group9.androidprototype;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -11,6 +12,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.GridLabelRenderer;
+import com.jjoe64.graphview.LegendRenderer;
+import com.jjoe64.graphview.helper.StaticLabelsFormatter;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
 
 public class UsageActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -22,6 +29,7 @@ public class UsageActivity extends AppCompatActivity implements NavigationView.O
         setContentView(R.layout.activity_usage);
 
         setup();
+        setupGraph();
     }
 
     public void setup() {
@@ -37,6 +45,60 @@ public class UsageActivity extends AppCompatActivity implements NavigationView.O
 
         // Fixes oreo no animation flash bug
         overridePendingTransition(R.anim.empty_animation, R.anim.empty_animation);
+    }
+
+    public void setupGraph() {
+        GraphView graphView = (GraphView) findViewById(R.id.graph_usage);
+
+        LineGraphSeries<DataPoint> usageLineGraphSeries = new LineGraphSeries<>(getUsageData());
+        usageLineGraphSeries.setTitle("Estimate recent usage");
+        usageLineGraphSeries.setColor(Color.GREEN);
+        graphView.addSeries(usageLineGraphSeries);
+
+        LineGraphSeries<DataPoint> usageProjectedGraphSeries = new LineGraphSeries<>(getProjectedData());
+        usageProjectedGraphSeries.setTitle("Projected usage");
+        usageProjectedGraphSeries.setColor(Color.RED);
+        graphView.addSeries(usageProjectedGraphSeries);
+
+        graphView.setTitle("Average recent Usage");
+        graphView.setTitleTextSize(75);
+        graphView.getLegendRenderer().setVisible(true);
+        graphView.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.TOP);
+
+        StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graphView);
+        staticLabelsFormatter.setHorizontalLabels(new String[] {"Fri", "Sat", "Sun", "Mon", "Tue", "Wed", "Thur"});
+        graphView.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
+
+        GridLabelRenderer gridLabel = graphView.getGridLabelRenderer();
+        gridLabel.setVerticalAxisTitle("kWh");
+    }
+
+    private DataPoint[] getUsageData() {
+        DataPoint[] dataPoints = new DataPoint[]{
+            new DataPoint(0, 22.7),
+            new DataPoint(1, 30.5),
+            new DataPoint(2, 18.9),
+            new DataPoint(3, 25.4),
+            new DataPoint(4, 23.3),
+            new DataPoint(5, 19.1),
+            new DataPoint(6, 20.8),
+        };
+
+        return dataPoints;
+    }
+
+    private DataPoint[] getProjectedData() {
+        DataPoint[] dataPoints = new DataPoint[] {
+            new DataPoint(0, 25.0),
+            new DataPoint(1, 25.0),
+            new DataPoint(2, 25.0),
+            new DataPoint(3, 25.0),
+            new DataPoint(4, 18.0),
+            new DataPoint(5, 18.0),
+            new DataPoint(6, 18.0),
+        };
+
+        return dataPoints;
     }
 
     @Override

@@ -83,9 +83,13 @@
 
         </LinearLayout>
 
+        <com.jjoe64.graphview.GraphView
+            android:id="@+id/graph_usage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"/>
+
     </LinearLayout>
-
-
 
     <android.support.design.widget.NavigationView
         android:id="@+id/navigation_view"

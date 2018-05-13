@@ -51,7 +51,6 @@ public class PaymentsActivity extends AppCompatActivity implements NavigationVie
         BarGraphSeries<DataPoint> barGraphSeries = new BarGraphSeries<>(getDataPoint());
 
         graphView.addSeries(barGraphSeries);
-        graphView.getViewport().setMinY(0.0);
         graphView.setTitle("Past Payments");
         graphView.setTitleTextSize(75);
 
