@@ -9,8 +9,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.helper.StaticLabelsFormatter;
+import com.jjoe64.graphview.series.BarGraphSeries;
+import com.jjoe64.graphview.series.DataPoint;
 
 public class PaymentsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -22,9 +27,11 @@ public class PaymentsActivity extends AppCompatActivity implements NavigationVie
         setContentView(R.layout.activity_payments);
 
         setup();
+        setupGraph();
     }
 
     public void setup() {
+        setTitle("Payments");
         // Setup drawer menu
         DrawerLayout mDrawerlayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mToggle = new ActionBarDrawerToggle(this, mDrawerlayout, R.string.open, R.string.close);
@@ -36,6 +43,34 @@ public class PaymentsActivity extends AppCompatActivity implements NavigationVie
 
         // Fixes oreo no animation flash bug
         overridePendingTransition(R.anim.empty_animation, R.anim.empty_animation);
+    }
+
+    public void setupGraph() {
+        GraphView graphView = (GraphView) findViewById(R.id.graph_payment);
+
+        BarGraphSeries<DataPoint> barGraphSeries = new BarGraphSeries<>(getDataPoint());
+
+        graphView.addSeries(barGraphSeries);
+        graphView.setTitle("Past Payments");
+        graphView.setTitleTextSize(75);
+
+        StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graphView);
+        staticLabelsFormatter.setHorizontalLabels(new String[] {"Feb", "Mar", "Apr", "May"});
+        graphView.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
+
+        barGraphSeries.setSpacing(5);
+
+    }
+
+    private DataPoint[] getDataPoint() {
+        DataPoint[] dataPoints = new DataPoint[] {
+                new DataPoint(0, 30),
+                new DataPoint(1, 60),
+                new DataPoint(2, 90),
+                new DataPoint(3, 60),
+        };
+
+        return dataPoints;
     }
 
     @Override
@@ -86,5 +121,10 @@ public class PaymentsActivity extends AppCompatActivity implements NavigationVie
         }
 
         return false;
+    }
+
+    public void goToPayment(View view) {
+        Intent makePaymentIntent = new Intent(this, MakePaymentActivity.class);
+        startActivity(makePaymentIntent);
     }
 }

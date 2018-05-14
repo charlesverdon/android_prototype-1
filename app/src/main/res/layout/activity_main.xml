@@ -7,29 +7,27 @@
     android:layout_height="match_parent"
     tools:context="com.sit374group9.androidprototype.MainActivity"
     android:orientation="vertical"
-    android:padding="20dp">
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/company_name"
-        android:textAlignment="center"
-        android:textSize="@dimen/heading_font_size"
-        android:layout_marginBottom="20dp"/>
+    android:padding="10dp"
+    >
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:contentDescription="logo"
+        android:contentDescription="@string/description_logo"
         android:src="@drawable/logo"/>
 
     <Button
         android:id="@+id/button_login"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="@string/text_login"
+        android:text="@string/button_get_started"
         android:onClick="goToLogin"
         />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

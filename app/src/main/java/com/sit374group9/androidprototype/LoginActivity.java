@@ -52,7 +52,6 @@ public class LoginActivity extends AppCompatActivity {
     private void setup() {
         firebaseAuth = FirebaseAuth.getInstance();
 
-
         editUsername = (EditText) findViewById(R.id.edit_username);
         editPassword = (EditText) findViewById(R.id.edit_password);
 
@@ -69,13 +68,13 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         TextView tv2 = (TextView) this.findViewById(R.id.textView2);
-        String text = (String) "Forget your Password? Click Here";
-        SpannableString ss=new SpannableString(text);
+        String text = (String) "Forgot Password";
+        SpannableString ss = new SpannableString(text);
         ss.setSpan(new ClickableSpan() {
 
             @Override
             public void onClick(View widget) {
-                Intent i=new Intent(LoginActivity.this,ForgetPassword.class);
+                Intent i = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
                 startActivity(i);
 
             }
@@ -102,7 +101,7 @@ public class LoginActivity extends AppCompatActivity {
             loading.setVisibility(View.GONE);
             loginButton.setVisibility(View.VISIBLE);
         } else {
-            firebaseAuth.signInWithEmailAndPassword(username, password) .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            firebaseAuth.signInWithEmailAndPassword(username, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     loading.setVisibility(View.GONE);

@@ -8,10 +8,107 @@
     android:layout_height="match_parent"
     tools:context="com.sit374group9.androidprototype.PaymentsActivity">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="PAYMENTS"/>
+        android:orientation="vertical"
+        android:padding="10dp"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="$129.95"
+            android:textSize="@dimen/featured_font"
+            android:textColor="@color/colorFont"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="Due March 2, 2018"
+            android:textSize="@dimen/large_body_text_size"
+            android:textColor="@color/colorFont"
+            android:paddingBottom="30dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="vertical"
+            android:layout_marginBottom="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:text="Feb 24, 2018"
+                    android:layout_weight="1"
+                    android:textSize="@dimen/subheading_font_size"
+                    android:textColor="@color/colorFont"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:text="Jan 22 - Feb 22"
+                    android:layout_weight="1"
+                    android:textSize="@dimen/subheading_font_size"
+                    android:textColor="@color/colorFont"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:text="Date Issued"
+                    android:layout_weight="1"
+                    android:textSize="@dimen/small_body_text_size"
+                    android:textColor="@color/colorFont"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:text="Service Period"
+                    android:layout_weight="1"
+                    android:textSize="@dimen/small_body_text_size"
+                    android:textColor="@color/colorFont"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_make_a_payment"
+            android:onClick="goToPayment"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_download"
+            android:layout_marginBottom="20dp"
+            />
+        
+        <com.jjoe64.graphview.GraphView
+            android:id="@+id/graph_payment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
 
     <android.support.design.widget.NavigationView
         android:id="@+id/navigation_view"

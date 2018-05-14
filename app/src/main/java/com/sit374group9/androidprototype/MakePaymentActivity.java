@@ -1,7 +1,6 @@
 package com.sit374group9.androidprototype;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -10,92 +9,71 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.GridLabelRenderer;
-import com.jjoe64.graphview.LegendRenderer;
-import com.jjoe64.graphview.helper.StaticLabelsFormatter;
-import com.jjoe64.graphview.series.DataPoint;
-import com.jjoe64.graphview.series.LineGraphSeries;
 
-public class UsageActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MakePaymentActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private ActionBarDrawerToggle mToggle;
+    LinearLayout creditView;
+    LinearLayout bankView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_usage);
+        setContentView(R.layout.activity_make_payment);
 
         setup();
-        setupGraph();
     }
 
     public void setup() {
-        setTitle("Usage");
+        setTitle("Make Payment");
         // Setup drawer menu
         DrawerLayout mDrawerlayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mToggle = new ActionBarDrawerToggle(this, mDrawerlayout, R.string.open, R.string.close);
         mDrawerlayout.addDrawerListener(mToggle);
         mToggle.syncState();
+        assert getSupportActionBar() != null;
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         // Fixes oreo no animation flash bug
         overridePendingTransition(R.anim.empty_animation, R.anim.empty_animation);
+
+        creditView = (LinearLayout) findViewById(R.id.view_credit);
+        bankView = (LinearLayout) findViewById(R.id.view_bank);
     }
 
-    public void setupGraph() {
-        GraphView graphView = (GraphView) findViewById(R.id.graph_usage);
+    public void onRadioButtonClicked(View view) {
+        boolean checked = ((RadioButton) view).isChecked();
 
-        LineGraphSeries<DataPoint> usageLineGraphSeries = new LineGraphSeries<>(getUsageData());
-        usageLineGraphSeries.setTitle("Estimate recent usage");
-        usageLineGraphSeries.setColor(Color.GREEN);
-        graphView.addSeries(usageLineGraphSeries);
-
-        LineGraphSeries<DataPoint> usageProjectedGraphSeries = new LineGraphSeries<>(getProjectedData());
-        usageProjectedGraphSeries.setTitle("Projected usage");
-        usageProjectedGraphSeries.setColor(Color.RED);
-        graphView.addSeries(usageProjectedGraphSeries);
-
-        graphView.setTitle("Average recent usage in kWh");
-        graphView.setTitleTextSize(60);
-        graphView.getLegendRenderer().setVisible(true);
-        graphView.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.TOP);
-
-        StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graphView);
-        staticLabelsFormatter.setHorizontalLabels(new String[] {"Fri", "Sat", "Sun", "Mon", "Tue", "Wed", "Thur"});
-        graphView.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
-    }
-
-    private DataPoint[] getUsageData() {
-        DataPoint[] dataPoints = new DataPoint[]{
-            new DataPoint(0, 22.7),
-            new DataPoint(1, 30.5),
-            new DataPoint(2, 18.9),
-            new DataPoint(3, 25.4),
-            new DataPoint(4, 23.3),
-            new DataPoint(5, 19.1),
-            new DataPoint(6, 20.8),
-        };
-
-        return dataPoints;
-    }
-
-    private DataPoint[] getProjectedData() {
-        DataPoint[] dataPoints = new DataPoint[] {
-            new DataPoint(0, 25.0),
-            new DataPoint(1, 25.0),
-            new DataPoint(2, 25.0),
-            new DataPoint(3, 18.0),
-            new DataPoint(4, 18.0),
-            new DataPoint(5, 18.0),
-            new DataPoint(6, 18.0),
-        };
-
-        return dataPoints;
+        switch (view.getId()) {
+            case R.id.radio_credit:
+                if (checked) {
+                    creditView.setVisibility(View.VISIBLE);
+                    bankView.setVisibility(View.GONE);
+                }
+                break;
+            case R.id.radio_bank:
+                if (checked) {
+                    creditView.setVisibility(View.GONE);
+                    bankView.setVisibility(View.VISIBLE);
+                }
+                break;
+            case R.id.radio_visa:
+                if (checked)
+                    // stuff
+                    break;
+            case R.id.radio_mastercard:
+                if (checked)
+                    // stuff
+                    break;
+        }
     }
 
     @Override

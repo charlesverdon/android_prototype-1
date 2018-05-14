@@ -21,12 +21,9 @@
         <activity
             android:name=".LoginActivity"
             android:label="@string/text_login"/>
-        <activity
-            android:name=".SignupActivity"
-            android:label="@string/text_signup"/>
         <activity android:name=".LoadingActivity"/>
         <activity android:name=".PasswordActivity"/>
-        <activity android:name=".ForgetPassword"/>
+        <activity android:name=".ForgotPasswordActivity"/>
         <activity android:name=".AccountActivity">
         </activity>
         <activity android:name=".UsageActivity">
@@ -34,6 +31,10 @@
         <activity android:name=".MoreActivity">
         </activity>
         <activity android:name=".PaymentsActivity">
+        </activity>
+        <activity android:name=".PlaceholderActivity">
+        </activity>
+        <activity android:name=".MakePaymentActivity">
         </activity>
     </application>
 
