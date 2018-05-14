@@ -26,16 +26,18 @@ public class UserHelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLE = "create table "  + UserContract.UserEntry.TABLE_NAME
                                                                 + "("
                                                                 + UserContract.UserEntry.ID + numberType
+                                                                + UserContract.UserEntry.ADDRESS + textType
+                                                                + UserContract.UserEntry.EMAIL + textType
                                                                 + UserContract.UserEntry.FIRST_NAME + textType
                                                                 + UserContract.UserEntry.LAST_NAME + textType
-                                                                + UserContract.UserEntry.EMAIL + textType
-                                                                + UserContract.UserEntry.ADDRESS + textType
-                                                                + UserContract.UserEntry.LIVE_USAGE + textType
-                                                                + UserContract.UserEntry.MONTHLY_USAGE + textType
-                                                                + UserContract.UserEntry.LAST_MONTH_USAGE + textType
+                                                                + UserContract.UserEntry.MOBILE + textType
+                                                                + UserContract.UserEntry.ESTIMATE_RECENT_USAGE + textType
+                                                                + UserContract.UserEntry.PROJECTED_GRAPH_DATA + textType
+                                                                + UserContract.UserEntry.DUE_DATE + textType
+                                                                + UserContract.UserEntry.INVOICE_DATE_ISSUED + textType
                                                                 + UserContract.UserEntry.LIVE_COST + textType
-                                                                + UserContract.UserEntry.MONTHLY_COST + textType
-                                                                + UserContract.UserEntry.LAST_MONTH_COST
+                                                                + UserContract.UserEntry.PAST_PAYMENTS + textType
+                                                                + UserContract.UserEntry.PROJECTED_COST
                                                                 + " text);";
 
     private static final String DROP_TABLE = "DROP TABLE IF EXISTS " + UserContract.UserEntry.TABLE_NAME;
@@ -63,19 +65,21 @@ public class UserHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public static void addUserInfo(int id, String firstName, String lastName, String email, String address, String liveUsage, String monthlyUsage, String lastMonthUsage, String liveCost, String monthlyCost, String lastMonthCost, SQLiteDatabase db) {
+    public static void addUserInfo(int id, String address, String email, String firstName, String lastName, String mobile, String estimateRecentUsage, String projectedGraphData, String dueDate, String invoiceDateIssued, String liveCost, String pastPayments, String projectedCost, SQLiteDatabase db) {
         ContentValues values = new ContentValues();
         values.put(UserContract.UserEntry.ID, id);
+        values.put(UserContract.UserEntry.ADDRESS, address);
+        values.put(UserContract.UserEntry.EMAIL, email);
         values.put(UserContract.UserEntry.FIRST_NAME, firstName);
         values.put(UserContract.UserEntry.LAST_NAME, lastName);
-        values.put(UserContract.UserEntry.EMAIL, email);
-        values.put(UserContract.UserEntry.ADDRESS, address);
-        values.put(UserContract.UserEntry.LIVE_USAGE, liveUsage);
-        values.put(UserContract.UserEntry.MONTHLY_USAGE, monthlyUsage);
-        values.put(UserContract.UserEntry.LAST_MONTH_USAGE, lastMonthUsage);
+        values.put(UserContract.UserEntry.MOBILE, mobile);
+        values.put(UserContract.UserEntry.ESTIMATE_RECENT_USAGE, estimateRecentUsage);
+        values.put(UserContract.UserEntry.PROJECTED_GRAPH_DATA, projectedGraphData);
+        values.put(UserContract.UserEntry.DUE_DATE, dueDate);
+        values.put(UserContract.UserEntry.INVOICE_DATE_ISSUED, invoiceDateIssued);
         values.put(UserContract.UserEntry.LIVE_COST, liveCost);
-        values.put(UserContract.UserEntry.MONTHLY_COST, monthlyCost);
-        values.put(UserContract.UserEntry.LAST_MONTH_COST, lastMonthCost);
+        values.put(UserContract.UserEntry.PAST_PAYMENTS, pastPayments);
+        values.put(UserContract.UserEntry.PROJECTED_COST, projectedCost);
 
         db.insert(UserContract.UserEntry.TABLE_NAME, null, values);
         Log.d(TAG, "Row inserted");
@@ -84,16 +88,19 @@ public class UserHelper extends SQLiteOpenHelper {
     public Cursor readUserInfo(SQLiteDatabase db) {
         String[] columnNames = {
             UserContract.UserEntry.ID,
+            UserContract.UserEntry.ADDRESS,
+            UserContract.UserEntry.EMAIL,
             UserContract.UserEntry.FIRST_NAME,
             UserContract.UserEntry.LAST_NAME,
-            UserContract.UserEntry.EMAIL,
-            UserContract.UserEntry.ADDRESS,
-            UserContract.UserEntry.LIVE_USAGE,
-            UserContract.UserEntry.MONTHLY_USAGE,
-            UserContract.UserEntry.LAST_MONTH_USAGE,
+            UserContract.UserEntry.MOBILE,
+            UserContract.UserEntry.ESTIMATE_RECENT_USAGE,
+            UserContract.UserEntry.PROJECTED_GRAPH_DATA,
             UserContract.UserEntry.LIVE_COST,
-            UserContract.UserEntry.MONTHLY_COST,
-            UserContract.UserEntry.LAST_MONTH_COST
+            UserContract.UserEntry.DUE_DATE,
+            UserContract.UserEntry.INVOICE_DATE_ISSUED,
+            UserContract.UserEntry.LIVE_COST,
+            UserContract.UserEntry.PAST_PAYMENTS,
+            UserContract.UserEntry.PROJECTED_COST
         };
 
         Cursor cursor = db.query(UserContract.UserEntry.TABLE_NAME, columnNames, null, null, null, null, null);
