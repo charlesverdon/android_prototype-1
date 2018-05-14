@@ -60,17 +60,14 @@ public class UsageActivity extends AppCompatActivity implements NavigationView.O
         usageProjectedGraphSeries.setColor(Color.RED);
         graphView.addSeries(usageProjectedGraphSeries);
 
-        graphView.setTitle("Average recent Usage");
-        graphView.setTitleTextSize(75);
+        graphView.setTitle("Average recent usage in kWh");
+        graphView.setTitleTextSize(60);
         graphView.getLegendRenderer().setVisible(true);
         graphView.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.TOP);
 
         StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graphView);
         staticLabelsFormatter.setHorizontalLabels(new String[] {"Fri", "Sat", "Sun", "Mon", "Tue", "Wed", "Thur"});
         graphView.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
-
-        GridLabelRenderer gridLabel = graphView.getGridLabelRenderer();
-        gridLabel.setVerticalAxisTitle("kWh");
     }
 
     private DataPoint[] getUsageData() {
@@ -92,7 +89,7 @@ public class UsageActivity extends AppCompatActivity implements NavigationView.O
             new DataPoint(0, 25.0),
             new DataPoint(1, 25.0),
             new DataPoint(2, 25.0),
-            new DataPoint(3, 25.0),
+            new DataPoint(3, 18.0),
             new DataPoint(4, 18.0),
             new DataPoint(5, 18.0),
             new DataPoint(6, 18.0),

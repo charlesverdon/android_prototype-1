@@ -30,13 +30,15 @@
             android:textAlignment="center"
             android:text="Due March 2, 2018"
             android:textSize="@dimen/large_body_text_size"
-            android:textColor="@color/colorFont"/>
+            android:textColor="@color/colorFont"
+            android:paddingBottom="30dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:baselineAligned="false"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginBottom="20dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -99,13 +101,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/button_download"
+            android:layout_marginBottom="20dp"
             />
         
         <com.jjoe64.graphview.GraphView
             android:id="@+id/graph_payment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp"/>
+            android:layout_height="match_parent"/>
     </LinearLayout>
 
     <android.support.design.widget.NavigationView
