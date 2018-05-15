@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.sit374group9.androidprototype.AccountActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="10dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:contentDescription="logo"
+                android:src="@drawable/logo"/>
+
+            <TextView
+                android:id="@+id/accountnumb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Account No: 1234567890"
+                android:textAlignment="center"
+                android:textColor="@color/colorFont"
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/account_background"
+            android:orientation="vertical"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:id="@+id/username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Name: Joe Bloggs"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:paddingTop="10dp"
+                android:textSize="@dimen/small_body_text_size"
+                />
+
+            <TextView
+                android:id="@+id/accountnumb1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Account No: 1234567890"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="10dp"
+                android:textSize="@dimen/small_body_text_size"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/account_background"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Email: sample@gmail.com"
+                android:padding="10dp"
+                android:paddingTop="10dp"
+                android:textSize="@dimen/small_body_text_size"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/account_background"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:id="@+id/mobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mobile: 2813308004"
+                android:padding="10dp"
+                android:paddingTop="10dp"
+                android:textSize="@dimen/small_body_text_size"
+                />
+
+        </LinearLayout>
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_change_password"
+            />
+    </LinearLayout>
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/navigation_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:menu="@menu/drawer_menu"
+        />
+</android.support.v4.widget.DrawerLayout>

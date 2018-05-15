@@ -6,14 +6,9 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
-import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -26,55 +21,59 @@ import com.sit374group9.androidprototype.datastore.UserHelper;
 import com.sit374group9.androidprototype.helpers.api;
 import com.sit374group9.androidprototype.helpers.broadcastmanager;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class CustomerActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+import java.util.ArrayList;
 
-    private static final String TAG = "CustomerActivity";
+public class LoadingActivity extends AppCompatActivity {
 
-    Toolbar toolbar;
-    TabLayout tabLayout;
-    ViewPager viewPager;
-    PagerAdapter pagerAdapter;
-    private DrawerLayout mDrawerlayout;
+    private static final String TAG = "LoadingActivity";
+
     private ActionBarDrawerToggle mToggle;
 
-    //Usage strings
-    static String recentUsage;
-    static String monthlyUsage;
-    static String lastMonthUsage;
+    //Usage objects
+    static JSONArray estimateRecentUsage;
+    static JSONArray projectedGraphData;
 
-    //Cost strings
-    static String recentCost;
-    static String monthlyCost;
-    static String lastMonthCost;
+    //Cost objects
+    static String dueDate;
+    static String invoiceDateIssued;
+    static String liveCost;
+    static JSONArray pastPayments;
+    static String projectedCost;
+    static String targetCost;
 
     //User strings
     static String userFirstName;
     static String userLastName;
     static String userEmail;
     static String userAddress;
+    static String userMobile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customer);
-        setupToolbar();
+        setContentView(R.layout.activity_loading);
         api.trackerEventListener();
-        mDrawerlayout = (DrawerLayout)findViewById(R.id.drawerlayout);
-        mToggle = new ActionBarDrawerToggle(this,mDrawerlayout,R.string.open,R.string.close);
-        mDrawerlayout.addDrawerListener(mToggle);
-        mToggle.syncState();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        NavigationView navigationView=(NavigationView)findViewById(R.id.navigationview);
-        navigationView.setNavigationItemSelectedListener(this);
 
+        setup();
+    }
 
+    public void setup() {
+
+        // Setup broadcast handling
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction("FETCHED_USER_DATA");
-
         broadcastmanager.register(this, broadcastReceiver, intentFilter);
+
+        ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.hide();
+
+        // Fixes oreo no animation flash bug
+        overridePendingTransition(R.anim.empty_animation, R.anim.empty_animation);
     }
 
     private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
@@ -89,14 +88,6 @@ public class CustomerActivity extends AppCompatActivity implements NavigationVie
         }
     };
 
-    private void setupToolbar() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -105,15 +96,12 @@ public class CustomerActivity extends AppCompatActivity implements NavigationVie
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (mToggle.onOptionsItemSelected(item)){
+        if (mToggle.onOptionsItemSelected(item)) {
             return true;
         }
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
+        return id == R.id.action_settings || super.onOptionsItemSelected(item);
 
-        return super.onOptionsItemSelected(item);
     }
 
     public static void handleUserData(Object object) {
@@ -131,27 +119,31 @@ public class CustomerActivity extends AppCompatActivity implements NavigationVie
 
         try {
             JSONObject jsonObject = new JSONObject(json);
-            JSONObject userObject = jsonObject.getJSONObject("user");;
+            JSONObject userObject = jsonObject.getJSONObject("user");
             JSONObject usersObject = userObject.getJSONObject("users");
             JSONObject userDetailsObject = usersObject.getJSONObject(userID);
 
-            //Usage strings
-            recentUsage = userDetailsObject.getString("recentUsage");
-            monthlyUsage = userDetailsObject.getString("monthlyUsage");
-            lastMonthUsage = userDetailsObject.getString("lastMonthUsage");
 
-            //Cost strings
-            recentCost = userDetailsObject.getString("recentCost");
-            monthlyCost = userDetailsObject.getString("monthlyCost");
-            lastMonthCost = userDetailsObject.getString("lastMonthCost");
+            //Usage data
+            estimateRecentUsage = userDetailsObject.getJSONArray("estimateRecentUsage");
+            projectedGraphData = userDetailsObject.getJSONArray("projectedGraphData");
 
+            //Cost data
+            dueDate = userDetailsObject.getString("dueDate");
+            invoiceDateIssued = userDetailsObject.getString("invoiceDateIssued");
+            liveCost = userDetailsObject.getString("liveCost");
+            pastPayments = userDetailsObject.getJSONArray("pastPayments");
+            projectedCost = userDetailsObject.getString("projectedCost");
+            targetCost = userDetailsObject.getString("targetCost");
+
+            //User strings
             userFirstName = userDetailsObject.getString("firstName");
             userLastName = userDetailsObject.getString("lastName");
             userEmail = userDetailsObject.getString("email");
             userAddress = userDetailsObject.getString("address");
+            userMobile = userDetailsObject.getString("mobile");
 
-
-        } catch(JSONException e) {
+        } catch (JSONException e) {
             e.printStackTrace();
         }
     }
@@ -159,21 +151,12 @@ public class CustomerActivity extends AppCompatActivity implements NavigationVie
     public void writeToDatabase() {
         UserHelper userHelper = new UserHelper(getApplicationContext());
         SQLiteDatabase db = userHelper.getWritableDatabase();
-        UserHelper.addUserInfo(1, userFirstName, userLastName, userEmail, userAddress, recentUsage, monthlyUsage, lastMonthUsage, recentCost, monthlyCost, lastMonthCost, db);
+
+        UserHelper.addUserInfo(1, userAddress, userEmail, userFirstName, userLastName, userMobile, estimateRecentUsage.toString(), projectedGraphData.toString(), dueDate, invoiceDateIssued, liveCost, pastPayments.toString(), projectedCost, db);
 
         broadcastmanager.sendBroadcast(this, "WROTE_TO_DATABASE");
+
+        Intent intent = new Intent(this, UsageActivity.class).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item){
-        int id =item.getItemId();
-
-        if(id ==R.id.db0){
-            Intent signupIntent = new Intent(CustomerActivity.this, MainActivity.class);
-            startActivity(signupIntent);
-        }
-
-        return false;
-    }
-
 }

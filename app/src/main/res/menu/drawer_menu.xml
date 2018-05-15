@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/drawer_usage" android:title="@string/drawer_usage"/>
+        <item android:id="@+id/drawer_payments" android:title="@string/drawer_payments"/>
+        <item android:id="@+id/drawer_account" android:title="@string/drawer_account"/>
+        <item android:id="@+id/drawer_more" android:title="@string/drawer_more"/>
+        <item android:id="@+id/drawer_logout" android:title="@string/drawer_logout"/>
+    </group>
+</menu>

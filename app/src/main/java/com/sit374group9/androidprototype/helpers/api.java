@@ -1,7 +1,6 @@
 package com.sit374group9.androidprototype.helpers;
 
 import android.content.Context;
-import android.provider.SyncStateContract;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.Toast;
@@ -17,14 +16,13 @@ import com.google.firebase.database.ValueEventListener;
 
 import com.sit374group9.androidprototype.AccountFragment;
 import com.sit374group9.androidprototype.AndroidPrototype;
-import com.sit374group9.androidprototype.CustomerActivity;
-import com.sit374group9.androidprototype.UsageFragment;
+import com.sit374group9.androidprototype.LoadingActivity;
 
 public class api {
 
     /**
      * Forgot password method to send password reset email to be called in case the user forgets their login password
-     * @param context : ForgetPassword activity context
+     * @param context : ForgotPasswordActivity activity context
      * @param email : Email of the user to send reset email
      */
     public static void forgotPassword(final Context context, String email) {
@@ -33,10 +31,10 @@ public class api {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(context, "Password reset Link has Successfully Send to your Email!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(context, "Password reset link has successfully been sent to your email", Toast.LENGTH_LONG).show();
                         }
                         else{
-                            Toast.makeText(context, "Your Email Address is invald, please try again!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(context, "Your email address is invalid, please try again", Toast.LENGTH_LONG).show();
                         }
                     }
                 });
@@ -69,8 +67,8 @@ public class api {
         FirebaseDatabase.getInstance().getReference().addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.d("CustomerActivity", "" + dataSnapshot.getValue());
-                CustomerActivity.handleUserData(dataSnapshot.getValue());
+                Log.d("LoadingActivity", "" + dataSnapshot.getValue());
+                LoadingActivity.handleUserData(dataSnapshot.getValue());
                 broadcastmanager.sendBroadcast(AndroidPrototype.getAppContext(), "FETCHED_USER_DATA");
             }
 

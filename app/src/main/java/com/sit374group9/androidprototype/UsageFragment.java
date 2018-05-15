@@ -132,30 +132,31 @@ public class UsageFragment extends Fragment {
     };
 
     public void getUsageInfo() {
-        UserHelper userHelper = new UserHelper(getActivity());
-        SQLiteDatabase db = userHelper.getReadableDatabase();
-
-        Cursor cursor = userHelper.readUserInfo(db);
-
-        while (cursor.moveToNext()) {
-            liveUsage = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.LIVE_USAGE));
-            monthlyUsage = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.MONTHLY_USAGE));
-            lastMonthUsage = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.LAST_MONTH_USAGE));
-            liveCost = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.LIVE_COST));
-            monthlyCost = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.MONTHLY_COST));
-            lastMonthCost = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.LAST_MONTH_COST));
-        }
-
-        textLiveUsage.setText(liveUsage);
-        textMonthlyUsage.setText(monthlyUsage);
-        textLastMonthUsage.setText(lastMonthUsage);
-
-        textLiveCost.setText(liveCost);
-        textMonthlyCost.setText(monthlyCost);
-        textLastMonthCost.setText(lastMonthCost);
-
-        // Hide loading container and show main container
-        loading.setVisibility(View.GONE);
-        mainContainer.setVisibility(View.VISIBLE);
+//        UserHelper userHelper = new UserHelper(getActivity());
+//        SQLiteDatabase db = userHelper.getReadableDatabase();
+//
+//        Cursor cursor = userHelper.readUserInfo(db);
+//
+//        while (cursor.moveToNext()) {
+//            liveUsage = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.ESTIMATE_RECENT_USAGE));
+//            monthlyUsage = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.Mon));
+//            lastMonthUsage = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.LAST_MONTH_USAGE));
+//            liveCost = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.LIVE_COST));
+//            monthlyCost = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.MONTHLY_COST));
+//            lastMonthCost = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.LAST_MONTH_COST));
+//        }
+//
+//        textLiveUsage.setText(liveUsage);
+//        textMonthlyUsage.setText(monthlyUsage);
+//        textLastMonthUsage.setText(lastMonthUsage);
+//
+//        textLiveCost.setText(liveCost);
+//        textMonthlyCost.setText(monthlyCost);
+//        textLastMonthCost.setText(lastMonthCost);
+//
+//        // Hide loading container and show main container
+//        loading.setVisibility(View.GONE);
+//        mainContainer.setVisibility(View.VISIBLE);
     }
 }
+
