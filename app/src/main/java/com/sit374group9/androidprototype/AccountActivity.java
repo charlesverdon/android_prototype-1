@@ -34,7 +34,6 @@ public class AccountActivity extends AppCompatActivity implements NavigationView
     String mobilephone;
     String address;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -137,4 +136,3 @@ public class AccountActivity extends AppCompatActivity implements NavigationView
         emailtxt.setText(String.format("Email: %s", email));
         mobiletxt.setText(String.format("Mobile: %s", mobilephone));
     }
-}

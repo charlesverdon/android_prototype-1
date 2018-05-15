@@ -26,8 +26,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Array;
-
 public class PaymentsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private ActionBarDrawerToggle mToggle;
@@ -42,8 +40,6 @@ public class PaymentsActivity extends AppCompatActivity implements NavigationVie
     TextView dueDateText;
     TextView dateIssuedText;
     TextView periodText;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +63,6 @@ public class PaymentsActivity extends AppCompatActivity implements NavigationVie
 
         // Fixes oreo no animation flash bug
         overridePendingTransition(R.anim.empty_animation, R.anim.empty_animation);
-
         currentCostText = (TextView)findViewById(R.id.usagepay);
         dueDateText = (TextView)findViewById(R.id.duedate);
         dateIssuedText = (TextView)findViewById(R.id.dateissued);
@@ -154,7 +149,6 @@ public class PaymentsActivity extends AppCompatActivity implements NavigationVie
         Intent makePaymentIntent = new Intent(this, MakePaymentActivity.class);
         startActivity(makePaymentIntent);
     }
-
     public void getUsageInfo() {
         UserHelper userHelper = new UserHelper(this);
         SQLiteDatabase db = userHelper.getReadableDatabase();

@@ -140,6 +140,8 @@ public class UsageFragment extends Fragment {
 //        while (cursor.moveToNext()) {
 //            liveUsage = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.ESTIMATE_RECENT_USAGE));
 //            monthlyUsage = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.Mon));
+//            liveUsage = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.LIVE_USAGE));
+//            monthlyUsage = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.MONTHLY_USAGE));
 //            lastMonthUsage = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.LAST_MONTH_USAGE));
 //            liveCost = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.LIVE_COST));
 //            monthlyCost = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.MONTHLY_COST));

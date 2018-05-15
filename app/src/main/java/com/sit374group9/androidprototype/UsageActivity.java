@@ -12,13 +12,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.GridLabelRenderer;
 import com.jjoe64.graphview.LegendRenderer;
 import com.jjoe64.graphview.helper.StaticLabelsFormatter;
 import com.jjoe64.graphview.series.DataPoint;
@@ -28,9 +25,6 @@ import com.sit374group9.androidprototype.datastore.UserHelper;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-
-import static com.sit374group9.androidprototype.LoadingActivity.liveCost;
-import static com.sit374group9.androidprototype.LoadingActivity.projectedCost;
 
 public class UsageActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -56,10 +50,6 @@ public class UsageActivity extends AppCompatActivity implements NavigationView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_usage);
 
-        usage = (TextView) this.findViewById(R.id.usage);
-        Tusage = (TextView) this.findViewById(R.id.targetusage);
-        Pusage = (TextView) this.findViewById(R.id.projectedusage);
-
         setup();
         getUsageInfo();
     }
@@ -77,6 +67,10 @@ public class UsageActivity extends AppCompatActivity implements NavigationView.O
 
         // Fixes oreo no animation flash bug
         overridePendingTransition(R.anim.empty_animation, R.anim.empty_animation);
+
+        usage = (TextView) this.findViewById(R.id.usage);
+        Tusage = (TextView) this.findViewById(R.id.targetusage);
+        Pusage = (TextView) this.findViewById(R.id.projectedusage);
     }
 
     public void setupGraph() {
@@ -179,8 +173,6 @@ public class UsageActivity extends AppCompatActivity implements NavigationView.O
 
         return false;
     }
-
-
 
     public void getUsageInfo() {
         UserHelper userHelper = new UserHelper(this);
