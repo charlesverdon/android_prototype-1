@@ -15,6 +15,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/LimeGreen"
             android:orientation="vertical"
             android:padding="10dp">
 
@@ -23,17 +24,15 @@
                 android:layout_height="wrap_content"
                 android:paddingBottom="10dp"
                 android:text="@string/lorem_ipsum_title"
-                android:textSize="@dimen/large_body_text_size"
                 android:textColor="@color/colorFont"
-                />
+                android:textSize="@dimen/large_body_text_size" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/lorem_ipsum"
-                android:textSize="@dimen/body_text_size"
                 android:textColor="@color/colorFont"
-                />
+                android:textSize="@dimen/body_text_size" />
         </LinearLayout>
 
     </ScrollView>

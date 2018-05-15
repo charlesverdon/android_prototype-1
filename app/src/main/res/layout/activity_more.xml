@@ -11,37 +11,49 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/LimeGreen"
         android:orientation="vertical"
-        android:padding="10dp"
-        >
+        android:padding="10dp">
 
         <Button
             android:id="@+id/button_contact_us"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/AccPageChangePassword"
             android:text="@string/button_contact_us"
-            />
+            android:fontFamily="sans-serif-smallcaps"
+            android:textStyle="bold"
+            android:textColor="@color/White" />
 
         <Button
             android:id="@+id/button_feedback"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/AccPageChangePassword"
             android:text="@string/button_feedback"
-            />
+            android:fontFamily="sans-serif-smallcaps"
+            android:textStyle="bold"
+            android:textColor="@color/White" />
 
         <Button
             android:id="@+id/button_about_us"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/AccPageChangePassword"
             android:text="@string/button_about_us"
-            />
+            android:fontFamily="sans-serif-smallcaps"
+            android:textStyle="bold"
+            android:textColor="@color/White" />
 
         <Button
             android:id="@+id/button_termsconditions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/AccPageChangePassword"
             android:text="@string/button_terms_conditions"
-            />
+            android:fontFamily="sans-serif-smallcaps"
+            android:textStyle="bold"
+            android:textColor="@color/White" />
 
     </LinearLayout>
 

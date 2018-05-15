@@ -11,34 +11,36 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/LimeGreen"
         android:orientation="vertical"
-        android:padding="10dp"
-        >
+        android:padding="10dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
             android:text="$129.95"
-            android:textSize="@dimen/featured_font"
+            android:fontFamily="sans-serif-smallcaps"
+            android:textStyle="bold"
+            android:textAlignment="center"
             android:textColor="@color/colorFont"
-            />
+            android:textSize="@dimen/featured_font" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
+            android:layout_marginBottom="30dp"
             android:text="You could save $15.27 based on projection"
-            android:textSize="@dimen/large_body_text_size"
+            android:fontFamily="sans-serif-smallcaps"
+            android:textAlignment="center"
             android:textColor="@color/colorFont"
-            android:layout_marginBottom="30dp"/>
+            android:textSize="@dimen/large_body_text_size" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:baselineAligned="false"
-            android:orientation="vertical"
-            android:layout_marginBottom="20dp">
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -48,20 +50,24 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:text="$148.42"
                     android:layout_weight="1"
-                    android:textSize="@dimen/semi_featured_font"
-                    android:textColor="@color/colorFont"/>
+                    android:text="$148.42"
+                    android:fontFamily="sans-serif-smallcaps"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorFont"
+                    android:textSize="@dimen/semi_featured_font" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:text="$163.69"
                     android:layout_weight="1"
-                    android:textSize="@dimen/semi_featured_font"
-                    android:textColor="@color/colorFont"/>
+                    android:text="$163.69"
+                    android:fontFamily="sans-serif-smallcaps"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorFont"
+                    android:textSize="@dimen/semi_featured_font" />
             </LinearLayout>
 
             <LinearLayout
@@ -72,20 +78,22 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:text="Your Target"
                     android:layout_weight="1"
-                    android:textSize="@dimen/small_body_text_size"
-                    android:textColor="@color/colorFont"/>
+                    android:text="Your Target"
+                    android:fontFamily="sans-serif-smallcaps"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorFont"
+                    android:textSize="@dimen/small_body_text_size" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:text="Projected"
                     android:layout_weight="1"
-                    android:textSize="@dimen/small_body_text_size"
-                    android:textColor="@color/colorFont"/>
+                    android:text="Projected"
+                    android:fontFamily="sans-serif-smallcaps"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorFont"
+                    android:textSize="@dimen/small_body_text_size" />
             </LinearLayout>
 
         </LinearLayout>
@@ -93,7 +101,7 @@
         <com.jjoe64.graphview.GraphView
             android:id="@+id/graph_usage"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 
@@ -103,6 +111,6 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:menu="@menu/drawer_menu"
-        />
+        tools:background="E3EBB2" />
 
 </android.support.v4.widget.DrawerLayout>

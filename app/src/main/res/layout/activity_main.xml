@@ -1,33 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.sit374group9.androidprototype.MainActivity"
+    android:background="@color/LimeGreen"
     android:orientation="vertical"
     android:padding="10dp"
-    >
+    tools:context="com.sit374group9.androidprototype.MainActivity">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:contentDescription="@string/description_logo"
-        android:src="@drawable/logo"/>
+        android:src="@drawable/logo" />
 
     <Button
         android:id="@+id/button_login"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="@string/button_get_started"
+        android:background="@color/AccPageChangePassword"
         android:onClick="goToLogin"
-        />
+        android:text="@string/button_get_started"
+        android:fontFamily="sans-serif-smallcaps"
+        android:textStyle="bold"
+        android:textColor="@color/White" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-smallcaps"
+        android:textStyle="bold"
+        android:textAlignment="center" />
 
 </LinearLayout>

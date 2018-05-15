@@ -2,32 +2,33 @@
 
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:padding="20dp"
-              android:layout_centerVertical="true">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerVertical="true"
+    android:background="@color/LimeGreen"
+    android:orientation="vertical"
+    android:padding="20dp">
 
     <LinearLayout
         android:id="@+id/progress_bar_account"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_centerVertical="true">
+        android:layout_centerVertical="true"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/loading_fetching"
-            android:textAlignment="center"
-            />
+            android:fontFamily="sans-serif-smallcaps"
+            android:textStyle="bold"
+            android:textAlignment="center" />
 
         <ProgressBar
+            style="@android:style/Widget.Material.ProgressBar.Horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@android:style/Widget.Material.ProgressBar.Horizontal"
-            android:indeterminate="true"
-            />
+            android:indeterminate="true" />
     </LinearLayout>
 
     <LinearLayout
@@ -41,7 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/title_account"
-            android:textSize="@dimen/heading_font_size"/>
+            android:textSize="@dimen/heading_font_size" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -52,32 +53,30 @@
                 android:layout_width="@dimen/account_field_length"
                 android:layout_height="wrap_content"
                 android:text="@string/label_name"
-                android:textSize="@dimen/body_text_size"
-                />
+                android:textSize="@dimen/body_text_size" />
 
             <EditText
                 android:id="@+id/account_name_value"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
                 android:layout_weight="1"
-                android:textSize="@dimen/body_text_size"
                 android:enabled="false"
-                />
+                android:textSize="@dimen/body_text_size" />
 
             <Button
                 android:id="@+id/edit_name_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/button_edit"/>
+                android:text="@string/button_edit" />
 
             <Button
                 android:id="@+id/save_name_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/btn_save"
-                android:visibility="gone"/>
+                android:visibility="gone" />
         </LinearLayout>
 
         <LinearLayout
@@ -88,30 +87,30 @@
                 android:layout_width="@dimen/account_field_length"
                 android:layout_height="wrap_content"
                 android:text="@string/label_email"
-                android:textSize="@dimen/body_text_size"
-                />
+                android:textSize="@dimen/body_text_size" />
 
             <EditText
                 android:id="@+id/account_email_value"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
                 android:layout_weight="1"
-                android:textSize="@dimen/body_text_size"
                 android:enabled="false"
-                />
+                android:textSize="@dimen/body_text_size" />
+
             <Button
                 android:id="@+id/edit_email_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/button_edit"/>
+                android:text="@string/button_edit" />
+
             <Button
                 android:id="@+id/save_email_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/btn_save"
-                android:visibility="gone"/>
+                android:visibility="gone" />
         </LinearLayout>
 
         <LinearLayout
@@ -122,46 +121,44 @@
                 android:layout_width="@dimen/account_field_length"
                 android:layout_height="wrap_content"
                 android:text="@string/label_address"
-                android:textSize="@dimen/body_text_size"
-                />
+                android:textSize="@dimen/body_text_size" />
 
             <EditText
                 android:id="@+id/account_address_value"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
                 android:layout_weight="1"
-                android:textSize="@dimen/body_text_size"
                 android:enabled="false"
-                />
+                android:textSize="@dimen/body_text_size" />
 
             <Button
                 android:id="@+id/edit_address_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/button_edit"/>
+                android:text="@string/button_edit" />
+
             <Button
                 android:id="@+id/save_address_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/btn_save"
-                android:visibility="gone"/>
+                android:visibility="gone" />
         </LinearLayout>
 
         <Button
             android:id="@+id/change_password_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/btn_change_password"
             android:layout_marginTop="200dp"
-            />
+            android:text="@string/btn_change_password" />
+
         <Button
             android:id="@+id/logout_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/button_logout"
-            />
+            android:text="@string/button_logout" />
 
     </LinearLayout>
 </RelativeLayout>

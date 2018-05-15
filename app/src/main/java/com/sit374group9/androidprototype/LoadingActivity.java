@@ -21,11 +21,8 @@ import com.sit374group9.androidprototype.datastore.UserHelper;
 import com.sit374group9.androidprototype.helpers.api;
 import com.sit374group9.androidprototype.helpers.broadcastmanager;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
 
 public class LoadingActivity extends AppCompatActivity {
 
@@ -33,24 +30,21 @@ public class LoadingActivity extends AppCompatActivity {
 
     private ActionBarDrawerToggle mToggle;
 
-    //Usage objects
-    static JSONArray estimateRecentUsage;
-    static JSONArray projectedGraphData;
+    //Usage strings
+    static String recentUsage;
+    static String monthlyUsage;
+    static String lastMonthUsage;
 
-    //Cost objects
-    static String dueDate;
-    static String invoiceDateIssued;
-    static String liveCost;
-    static JSONArray pastPayments;
-    static String projectedCost;
-    static String targetCost;
+    //Cost strings
+    static String recentCost;
+    static String monthlyCost;
+    static String lastMonthCost;
 
     //User strings
     static String userFirstName;
     static String userLastName;
     static String userEmail;
     static String userAddress;
-    static String userMobile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,20 +117,16 @@ public class LoadingActivity extends AppCompatActivity {
             JSONObject usersObject = userObject.getJSONObject("users");
             JSONObject userDetailsObject = usersObject.getJSONObject(userID);
 
+            //Usage strings
+            recentUsage = userDetailsObject.getString("recentUsage");
+            monthlyUsage = userDetailsObject.getString("monthlyUsage");
+            lastMonthUsage = userDetailsObject.getString("lastMonthUsage");
 
-            //Usage data
-            estimateRecentUsage = userDetailsObject.getJSONArray("estimateRecentUsage");
-            projectedGraphData = userDetailsObject.getJSONArray("projectedGraphData");
+            //Cost strings
+            recentCost = userDetailsObject.getString("recentCost");
+            monthlyCost = userDetailsObject.getString("monthlyCost");
+            lastMonthCost = userDetailsObject.getString("lastMonthCost");
 
-            //Cost data
-            dueDate = userDetailsObject.getString("dueDate");
-            invoiceDateIssued = userDetailsObject.getString("invoiceDateIssued");
-            liveCost = userDetailsObject.getString("liveCost");
-            pastPayments = userDetailsObject.getJSONArray("pastPayments");
-            projectedCost = userDetailsObject.getString("projectedCost");
-            targetCost = userDetailsObject.getString("targetCost");
-
-            //User strings
             userFirstName = userDetailsObject.getString("firstName");
             userLastName = userDetailsObject.getString("lastName");
             userEmail = userDetailsObject.getString("email");
@@ -150,8 +140,7 @@ public class LoadingActivity extends AppCompatActivity {
     public void writeToDatabase() {
         UserHelper userHelper = new UserHelper(getApplicationContext());
         SQLiteDatabase db = userHelper.getWritableDatabase();
-
-        UserHelper.addUserInfo(1, userAddress, userEmail, userFirstName, userLastName, userMobile, estimateRecentUsage.toString(), projectedGraphData.toString(), dueDate, invoiceDateIssued, liveCost, pastPayments.toString(), projectedCost, db);
+        UserHelper.addUserInfo(1, userFirstName, userLastName, userEmail, userAddress, recentUsage, monthlyUsage, lastMonthUsage, recentCost, monthlyCost, lastMonthCost, db);
 
         broadcastmanager.sendBroadcast(this, "WROTE_TO_DATABASE");
 

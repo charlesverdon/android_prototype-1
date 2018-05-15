@@ -11,34 +11,36 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/LimeGreen"
         android:orientation="vertical"
-        android:padding="10dp"
-        >
+        android:padding="10dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
             android:text="$129.95"
-            android:textSize="@dimen/featured_font"
+            android:fontFamily="sans-serif-smallcaps"
+            android:textStyle="bold"
+            android:textAlignment="center"
             android:textColor="@color/colorFont"
-            />
+            android:textSize="@dimen/featured_font" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
+            android:paddingBottom="30dp"
             android:text="Due March 2, 2018"
-            android:textSize="@dimen/large_body_text_size"
+            android:fontFamily="sans-serif-smallcaps"
+            android:textAlignment="center"
             android:textColor="@color/colorFont"
-            android:paddingBottom="30dp"/>
+            android:textSize="@dimen/large_body_text_size" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:baselineAligned="false"
-            android:orientation="vertical"
-            android:layout_marginBottom="20dp">
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -48,20 +50,24 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:text="Feb 24, 2018"
                     android:layout_weight="1"
-                    android:textSize="@dimen/subheading_font_size"
-                    android:textColor="@color/colorFont"/>
+                    android:text="Feb 24, 2018"
+                    android:fontFamily="sans-serif-smallcaps"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorFont"
+                    android:textSize="@dimen/subheading_font_size" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:text="Jan 22 - Feb 22"
                     android:layout_weight="1"
-                    android:textSize="@dimen/subheading_font_size"
-                    android:textColor="@color/colorFont"/>
+                    android:text="Jan 22 - Feb 22"
+                    android:fontFamily="sans-serif-smallcaps"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorFont"
+                    android:textSize="@dimen/subheading_font_size" />
             </LinearLayout>
 
             <LinearLayout
@@ -72,20 +78,22 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:text="Date Issued"
                     android:layout_weight="1"
-                    android:textSize="@dimen/small_body_text_size"
-                    android:textColor="@color/colorFont"/>
+                    android:text="Date Issued"
+                    android:fontFamily="sans-serif-smallcaps"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorFont"
+                    android:textSize="@dimen/small_body_text_size" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:text="Service Period"
                     android:layout_weight="1"
-                    android:textSize="@dimen/small_body_text_size"
-                    android:textColor="@color/colorFont"/>
+                    android:text="Service Period"
+                    android:fontFamily="sans-serif-smallcaps"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorFont"
+                    android:textSize="@dimen/small_body_text_size" />
             </LinearLayout>
 
         </LinearLayout>
@@ -93,21 +101,27 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/button_make_a_payment"
+            android:background="@color/AccPageChangePassword"
+            android:fontFamily="sans-serif-smallcaps"
             android:onClick="goToPayment"
-            />
+            android:text="@string/button_make_a_payment"
+            android:textColor="@color/White"
+            android:textStyle="bold" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/button_download"
             android:layout_marginBottom="20dp"
-            />
-        
+            android:background="@color/AccPageChangePassword"
+            android:text="@string/button_download"
+            android:fontFamily="sans-serif-smallcaps"
+            android:textStyle="bold"
+            android:textColor="@color/White" />
+
         <com.jjoe64.graphview.GraphView
             android:id="@+id/graph_payment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
     </LinearLayout>
 
     <android.support.design.widget.NavigationView

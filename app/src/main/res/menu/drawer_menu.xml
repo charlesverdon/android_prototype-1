@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
+
+
+
     <group android:checkableBehavior="single">
         <item android:id="@+id/drawer_usage" android:title="@string/drawer_usage"/>
         <item android:id="@+id/drawer_payments" android:title="@string/drawer_payments"/>

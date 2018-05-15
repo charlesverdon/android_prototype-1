@@ -11,29 +11,31 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/LimeGreen"
         android:orientation="vertical"
         android:padding="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="10dp">
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical">
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_weight="1"
                 android:contentDescription="logo"
-                android:src="@drawable/logo"/>
+                android:src="@drawable/logo" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Account No: 1234567890"
                 android:textAlignment="center"
-                android:textColor="@color/colorFont"
-                />
+                android:fontFamily="sans-serif-smallcaps"
+                android:textStyle="bold"
+                android:textColor="@color/colorFont" />
 
 
         </LinearLayout>
@@ -41,63 +43,64 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/account_background"
-            android:orientation="vertical"
-            android:layout_marginBottom="10dp">
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingEnd="10dp"
+                android:paddingStart="10dp"
+                android:paddingTop="10dp"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="Name: Joe Bloggs"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:paddingTop="10dp"
-                android:textSize="@dimen/small_body_text_size"
-                />
+
+                android:textSize="@dimen/small_body_text_size" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Account No: 1234567890"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
                 android:paddingBottom="10dp"
-                android:textSize="@dimen/small_body_text_size"
-                />
+                android:paddingEnd="10dp"
+                android:paddingStart="10dp"
+                android:fontFamily="sans-serif-smallcaps"
+                android:text="Account No: 1234567890"
+                android:textSize="@dimen/small_body_text_size" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/account_background"
-            android:layout_marginBottom="10dp">
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/account_background">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:paddingTop="10dp"
+                android:fontFamily="sans-serif-smallcaps"
                 android:text="Email: sample@gmail.com"
-                android:padding="10dp"
-                android:paddingTop="10dp"
-                android:textSize="@dimen/small_body_text_size"
-                />
+                android:textSize="@dimen/small_body_text_size" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/account_background"
-            android:layout_marginBottom="10dp">
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/account_background">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Mobile: 2813308004"
                 android:padding="10dp"
                 android:paddingTop="10dp"
-                android:textSize="@dimen/small_body_text_size"
-                />
+                android:fontFamily="sans-serif-smallcaps"
+                android:text="Mobile: 2813308004"
+                android:textSize="@dimen/small_body_text_size" />
 
         </LinearLayout>
 
@@ -105,8 +108,11 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/AccPageChangePassword"
             android:text="@string/button_change_password"
-            />
+            android:fontFamily="sans-serif-smallcaps"
+            android:textStyle="bold"
+            android:textColor="@color/White" />
     </LinearLayout>
 
     <android.support.design.widget.NavigationView
