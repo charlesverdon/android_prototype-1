@@ -14,7 +14,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import com.sit374group9.androidprototype.AccountFragment;
 import com.sit374group9.androidprototype.AndroidPrototype;
 import com.sit374group9.androidprototype.LoadingActivity;
 
@@ -82,15 +81,15 @@ public class api {
     /**
      * Update name of user in Firebase Real Time DB
      * @param userID : Firebase UID of the user
-     * @param name : Name to be updated for the user
+     * @param mobile : Name to be updated for the user
      */
-    public static void updateName(String userID, String name) {
-        FirebaseDatabase.getInstance().getReference().child("user").child("users").child(userID).child("firstName").setValue(name);
+    public static void updateMobile(String userID, String mobile) {
+        FirebaseDatabase.getInstance().getReference().child("user").child("users").child(userID).child("mobile").setValue(mobile);
     }
 
     /**
      * Update email address in Firebase Real Time DB
-     * @param context : Base context from AccountFragment activity
+     * @param context : Base context from AccountActivity
      * @param userID : Firebase UID of the user
      * @param email : Email to be updated for the user
      */
@@ -104,20 +103,10 @@ public class api {
                     databaseReference.child("user").child("users").child(userID).child("email").setValue(email);
                     databaseReference.child("user").child("users").child(userID).child("providerData").child("0").child("email").setValue(email);
                     databaseReference.child("user").child("users").child(userID).child("providerData").child("1").child("uid").setValue(email);
-                    AccountFragment.updateTextEmail(email);
                 } else {
                     Toast.makeText(context, "There was an error updating your email, please try again.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-    }
-
-    /**
-     * Update user address in Firebase DB
-     * @param userID : Firebase UID of the user
-     * @param address : Address to be updated for the user
-     */
-    public static void updateAddress(String userID, String address) {
-        FirebaseDatabase.getInstance().getReference().child("user").child("users").child(userID).child("address").setValue(address);
     }
 }
