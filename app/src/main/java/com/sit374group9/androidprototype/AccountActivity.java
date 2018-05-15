@@ -131,17 +131,21 @@ public class AccountActivity extends AppCompatActivity implements NavigationView
         editEmailButton.setVisibility(View.GONE);
         saveEmailButton.setVisibility(View.VISIBLE);
         textEmail.setEnabled(true);
+        textEmail.setText("");
+        textEmail.requestFocus();
     }
 
     private void editMobile() {
         editMobileButton.setVisibility(View.GONE);
         saveMobileButton.setVisibility(View.VISIBLE);
         textMobile.setEnabled(true);
+        textMobile.setText("");
+        textMobile.requestFocus();
     }
 
     private void saveEmail(final String email) {
 
-        if (email != null) {
+        if (email.isEmpty()) {
             final AlertDialog.Builder builder;
             builder = new AlertDialog.Builder(this);
 
@@ -174,7 +178,7 @@ public class AccountActivity extends AppCompatActivity implements NavigationView
     }
 
     private void saveMobile(String mobile) {
-        if (mobile != null) {
+        if (mobile.isEmpty()) {
             Toast.makeText(this, "Mobile changed successfully", Toast.LENGTH_LONG).show();
 
             api.updateMobile(userID, mobile);
@@ -260,5 +264,10 @@ public class AccountActivity extends AppCompatActivity implements NavigationView
         addresstxt.setText(String.format("Address: %s", address));
         textEmail.setText(String.format("Email: %s", email));
         textMobile.setText(String.format("Mobile: %s", mobilephone));
+    }
+
+    public void goToChangePassword(View view) {
+        Intent passwordIntent = new Intent(this, PasswordActivity.class);
+        startActivity(passwordIntent);
     }
 }
