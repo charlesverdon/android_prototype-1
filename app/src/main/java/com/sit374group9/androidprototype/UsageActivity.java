@@ -26,6 +26,9 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 import com.sit374group9.androidprototype.datastore.UserContract;
 import com.sit374group9.androidprototype.datastore.UserHelper;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
 import static com.sit374group9.androidprototype.LoadingActivity.liveCost;
 import static com.sit374group9.androidprototype.LoadingActivity.projectedCost;
 
@@ -34,7 +37,15 @@ public class UsageActivity extends AppCompatActivity implements NavigationView.O
     private ActionBarDrawerToggle mToggle;
     String liveUsage;
     String targetUsage;
-    String ProjectedUsage;
+    String projectedUsage;
+    String projectedGraphString;
+    String estimateString;
+
+    JSONArray projectedGraphData;
+    float[] projectedArray;
+
+    JSONArray estimateUsage;
+    float[] estimateArray;
 
     TextView usage;
     TextView Tusage;
@@ -50,7 +61,6 @@ public class UsageActivity extends AppCompatActivity implements NavigationView.O
         Pusage = (TextView) this.findViewById(R.id.projectedusage);
 
         setup();
-        setupGraph();
         getUsageInfo();
     }
 
@@ -94,13 +104,13 @@ public class UsageActivity extends AppCompatActivity implements NavigationView.O
 
     private DataPoint[] getUsageData() {
         DataPoint[] dataPoints = new DataPoint[]{
-            new DataPoint(0, 22.7),
-            new DataPoint(1, 30.5),
-            new DataPoint(2, 18.9),
-            new DataPoint(3, 25.4),
-            new DataPoint(4, 23.3),
-            new DataPoint(5, 19.1),
-            new DataPoint(6, 20.8),
+            new DataPoint(0, estimateArray[0]),
+            new DataPoint(1, estimateArray[1]),
+            new DataPoint(2, estimateArray[2]),
+            new DataPoint(3, estimateArray[3]),
+            new DataPoint(4, estimateArray[4]),
+            new DataPoint(5, estimateArray[5]),
+            new DataPoint(6, estimateArray[6]),
         };
 
         return dataPoints;
@@ -108,13 +118,13 @@ public class UsageActivity extends AppCompatActivity implements NavigationView.O
 
     private DataPoint[] getProjectedData() {
         DataPoint[] dataPoints = new DataPoint[] {
-            new DataPoint(0, 25.0),
-            new DataPoint(1, 25.0),
-            new DataPoint(2, 25.0),
-            new DataPoint(3, 18.0),
-            new DataPoint(4, 18.0),
-            new DataPoint(5, 18.0),
-            new DataPoint(6, 18.0),
+            new DataPoint(0, projectedArray[0]),
+            new DataPoint(1, projectedArray[1]),
+            new DataPoint(2, projectedArray[2]),
+            new DataPoint(3, projectedArray[3]),
+            new DataPoint(4, projectedArray[4]),
+            new DataPoint(5, projectedArray[5]),
+            new DataPoint(6, projectedArray[6]),
         };
 
         return dataPoints;
@@ -179,17 +189,40 @@ public class UsageActivity extends AppCompatActivity implements NavigationView.O
 
         while (cursor.moveToNext()) {
             liveUsage = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.LIVE_COST));
-            targetUsage = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.ESTIMATE_RECENT_USAGE));
-            ProjectedUsage = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.PROJECTED_COST));
-
-
+            targetUsage = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.TARGET_COST));
+            projectedUsage = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.PROJECTED_COST));
+            projectedGraphString = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.PROJECTED_GRAPH_DATA));
+            estimateString = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.ESTIMATE_RECENT_USAGE));
         }
 
-        usage.setText("$"+liveUsage);
-        Tusage.setText("$"+targetUsage);
-        Pusage.setText("$"+ProjectedUsage);
+        try {
+            projectedGraphData = new JSONArray(projectedGraphString);
+            estimateUsage = new JSONArray(estimateString);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        float[] projected = new float[projectedGraphData.length()];
+
+        for (int i = 0; i < projectedGraphData.length(); ++i) {
+            projected[i] = projectedGraphData.optInt(i);
+        }
+
+        projectedArray = projected;
+
+        float[] estimate = new float[estimateUsage.length()];
+
+        for (int i = 0; i < estimateUsage.length(); ++i) {
+            estimate[i] = estimateUsage.optInt(i);
+        }
+
+        estimateArray = estimate;
+
+        usage.setText(String.format("$%s", liveUsage));
+        Tusage.setText(String.format("$%s", targetUsage));
+        Pusage.setText(String.format("$%s", projectedUsage));
+
+        setupGraph();
     }
-
-
-
 }

@@ -22,21 +22,26 @@ import com.jjoe64.graphview.series.DataPoint;
 import com.sit374group9.androidprototype.datastore.UserContract;
 import com.sit374group9.androidprototype.datastore.UserHelper;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.lang.reflect.Array;
+
 public class PaymentsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private ActionBarDrawerToggle mToggle;
-    String fee;
-    String due;
-    String Dayissued;
-    String Period;
+    String dueDate;
+    String dateIssued;
+    String pastPayments;
 
+    JSONArray pastPaymentsArray;
+    int[] paymentsArray;
 
-
-
-    TextView usagefee;
-    TextView duedate;
-    TextView dateissued;
-    TextView period;
+    TextView currentCostText;
+    TextView dueDateText;
+    TextView dateIssuedText;
+    TextView periodText;
 
 
 
@@ -45,14 +50,7 @@ public class PaymentsActivity extends AppCompatActivity implements NavigationVie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payments);
 
-        usagefee = (TextView)findViewById(R.id.usagepay);
-        duedate = (TextView)findViewById(R.id.duedate);
-        dateissued = (TextView)findViewById(R.id.dateissued);
-        period = (TextView)findViewById(R.id.period);
-
-
         setup();
-        setupGraph();
         getUsageInfo();
     }
 
@@ -69,6 +67,11 @@ public class PaymentsActivity extends AppCompatActivity implements NavigationVie
 
         // Fixes oreo no animation flash bug
         overridePendingTransition(R.anim.empty_animation, R.anim.empty_animation);
+
+        currentCostText = (TextView)findViewById(R.id.usagepay);
+        dueDateText = (TextView)findViewById(R.id.duedate);
+        dateIssuedText = (TextView)findViewById(R.id.dateissued);
+        periodText = (TextView)findViewById(R.id.period);
     }
 
     public void setupGraph() {
@@ -89,14 +92,12 @@ public class PaymentsActivity extends AppCompatActivity implements NavigationVie
     }
 
     private DataPoint[] getDataPoint() {
-        DataPoint[] dataPoints = new DataPoint[] {
-                new DataPoint(0, 30),
-                new DataPoint(1, 60),
-                new DataPoint(2, 90),
-                new DataPoint(3, 60),
+        return new DataPoint[]{
+                new DataPoint(0, paymentsArray[0]),
+                new DataPoint(1, paymentsArray[1]),
+                new DataPoint(2, paymentsArray[2]),
+                new DataPoint(3, paymentsArray[3]),
         };
-
-        return dataPoints;
     }
 
     @Override
@@ -160,16 +161,31 @@ public class PaymentsActivity extends AppCompatActivity implements NavigationVie
         Cursor cursor = userHelper.readUserInfo(db);
 
         while (cursor.moveToNext()) {
-            fee = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.LIVE_COST));
-            due = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.DUE_DATE));
-            Dayissued = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.INVOICE_DATE_ISSUED));
-
+            dueDate = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.DUE_DATE));
+            dateIssued = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.INVOICE_DATE_ISSUED));
+            pastPayments = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.PAST_PAYMENTS));
 
         }
 
-        usagefee.setText("$"+fee);
-        duedate.setText("Due on: "+due);
-        dateissued.setText(""+Dayissued);
-        period.setText("Jan 3rd - Feb 2nd");
+        try {
+            pastPaymentsArray = new JSONArray(pastPayments);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        int[] payments = new int[pastPaymentsArray.length()];
+
+        for (int i = 0; i < pastPaymentsArray.length(); ++i) {
+            payments[i] = pastPaymentsArray.optInt(i);
+        }
+
+        paymentsArray = payments;
+
+        currentCostText.setText(String.format("$%s.00", paymentsArray[3]));
+        dueDateText.setText(String.format("Due on: %s", dueDate));
+        dateIssuedText.setText(dateIssued);
+        periodText.setText("Jan 3rd - Feb 2nd");
+
+        setupGraph();
     }
 }

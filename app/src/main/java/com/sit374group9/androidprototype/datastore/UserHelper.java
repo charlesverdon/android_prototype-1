@@ -37,7 +37,8 @@ public class UserHelper extends SQLiteOpenHelper {
                                                                 + UserContract.UserEntry.INVOICE_DATE_ISSUED + textType
                                                                 + UserContract.UserEntry.LIVE_COST + textType
                                                                 + UserContract.UserEntry.PAST_PAYMENTS + textType
-                                                                + UserContract.UserEntry.PROJECTED_COST
+                                                                + UserContract.UserEntry.PROJECTED_COST + textType
+                                                                + UserContract.UserEntry.TARGET_COST
                                                                 + " text);";
 
     private static final String DROP_TABLE = "DROP TABLE IF EXISTS " + UserContract.UserEntry.TABLE_NAME;
@@ -65,7 +66,7 @@ public class UserHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public static void addUserInfo(int id, String address, String email, String firstName, String lastName, String mobile, String estimateRecentUsage, String projectedGraphData, String dueDate, String invoiceDateIssued, String liveCost, String pastPayments, String projectedCost, SQLiteDatabase db) {
+    public static void addUserInfo(int id, String address, String email, String firstName, String lastName, String mobile, String estimateRecentUsage, String projectedGraphData, String dueDate, String invoiceDateIssued, String liveCost, String pastPayments, String projectedCost, String targetCost, SQLiteDatabase db) {
         ContentValues values = new ContentValues();
         values.put(UserContract.UserEntry.ID, id);
         values.put(UserContract.UserEntry.ADDRESS, address);
@@ -80,6 +81,7 @@ public class UserHelper extends SQLiteOpenHelper {
         values.put(UserContract.UserEntry.LIVE_COST, liveCost);
         values.put(UserContract.UserEntry.PAST_PAYMENTS, pastPayments);
         values.put(UserContract.UserEntry.PROJECTED_COST, projectedCost);
+        values.put(UserContract.UserEntry.TARGET_COST, targetCost);
 
         db.insert(UserContract.UserEntry.TABLE_NAME, null, values);
         Log.d(TAG, "Row inserted");
@@ -100,7 +102,8 @@ public class UserHelper extends SQLiteOpenHelper {
             UserContract.UserEntry.INVOICE_DATE_ISSUED,
             UserContract.UserEntry.LIVE_COST,
             UserContract.UserEntry.PAST_PAYMENTS,
-            UserContract.UserEntry.PROJECTED_COST
+            UserContract.UserEntry.PROJECTED_COST,
+            UserContract.UserEntry.TARGET_COST
         };
 
         Cursor cursor = db.query(UserContract.UserEntry.TABLE_NAME, columnNames, null, null, null, null, null);

@@ -23,14 +23,16 @@ public class AccountActivity extends AppCompatActivity implements NavigationView
 
     TextView nametxt;
     TextView acctnumb;
-    TextView acctnumb1;
     TextView emailtxt;
     TextView mobiletxt;
+    TextView addresstxt;
 
-    String name;
+    String firstname;
+    String lastname;
     String accountnumb;
     String email;
     String mobilephone;
+    String address;
 
 
     @Override
@@ -39,7 +41,7 @@ public class AccountActivity extends AppCompatActivity implements NavigationView
         setContentView(R.layout.activity_account);
         nametxt = (TextView)findViewById(R.id.username);
         acctnumb = (TextView)findViewById(R.id.accountnumb);
-        acctnumb1 = (TextView)findViewById(R.id.accountnumb1);
+        addresstxt = (TextView)findViewById(R.id.address);
         emailtxt = (TextView)findViewById(R.id.email);
         mobiletxt = (TextView)findViewById(R.id.mobile);
 
@@ -119,18 +121,20 @@ public class AccountActivity extends AppCompatActivity implements NavigationView
         Cursor cursor = userHelper.readUserInfo(db);
 
         while (cursor.moveToNext()) {
-            name = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.FIRST_NAME)
-                    +cursor.getColumnIndex(UserContract.UserEntry.LAST_NAME));
+
+            firstname = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.FIRST_NAME));
+            lastname = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.LAST_NAME));
             accountnumb = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.ID));
+            address = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.ADDRESS));
             email = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.EMAIL));
             mobilephone = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.MOBILE));
 
         }
 
-        nametxt.setText("Name:"+name);
-        acctnumb.setText("Account No:"+accountnumb);
-        acctnumb1.setText("Account No:"+accountnumb);
-        emailtxt.setText("Email:"+email);
-        mobiletxt.setText("Mobile:"+mobilephone);
+        nametxt.setText(String.format("Name: %s %s", firstname, lastname));
+        acctnumb.setText(String.format("Account No: %s", accountnumb));
+        addresstxt.setText(String.format("Address: %s", address));
+        emailtxt.setText(String.format("Email: %s", email));
+        mobiletxt.setText(String.format("Mobile: %s", mobilephone));
     }
 }

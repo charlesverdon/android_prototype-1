@@ -152,7 +152,7 @@ public class LoadingActivity extends AppCompatActivity {
         UserHelper userHelper = new UserHelper(getApplicationContext());
         SQLiteDatabase db = userHelper.getWritableDatabase();
 
-        UserHelper.addUserInfo(1, userAddress, userEmail, userFirstName, userLastName, userMobile, estimateRecentUsage.toString(), projectedGraphData.toString(), dueDate, invoiceDateIssued, liveCost, pastPayments.toString(), projectedCost, db);
+        UserHelper.addUserInfo(1, userAddress, userEmail, userFirstName, userLastName, userMobile, estimateRecentUsage.toString(), projectedGraphData.toString(), dueDate, invoiceDateIssued, liveCost, pastPayments.toString(), projectedCost, targetCost, db);
 
         broadcastmanager.sendBroadcast(this, "WROTE_TO_DATABASE");
 
