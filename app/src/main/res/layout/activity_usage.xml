@@ -13,33 +13,43 @@
         android:layout_height="match_parent"
         android:background="@color/LimeGreen"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:padding="1dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="$129.95"
-            android:fontFamily="sans-serif-smallcaps"
-            android:textStyle="bold"
-            android:textAlignment="center"
-            android:textColor="@color/colorFont"
-            android:textSize="@dimen/featured_font" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
             android:text="You could save $15.27 based on projection"
             android:fontFamily="sans-serif-smallcaps"
             android:textAlignment="center"
             android:textColor="@color/colorFont"
-            android:textSize="@dimen/large_body_text_size" />
+            android:textSize="30sp" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="$129.95"
+            android:textAlignment="center"
+            android:textColor="@color/colorFont"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Current Usage"
+            android:layout_marginBottom="30dp"
+            android:fontFamily="sans-serif-smallcaps"
+            android:textAlignment="center"
+            android:textColor="@color/colorFont"
+            android:textSize="15sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:baselineAligned="false"
             android:orientation="vertical">
 
             <LinearLayout
