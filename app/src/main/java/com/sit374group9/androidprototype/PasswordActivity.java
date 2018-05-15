@@ -1,5 +1,6 @@
 package com.sit374group9.androidprototype;
 
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -31,6 +32,10 @@ public class PasswordActivity extends AppCompatActivity {
     }
 
     private void setup() {
+        ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.hide();
+
         loading = (ProgressBar) findViewById(R.id.progress_bar_password);
 
         newPassword = (EditText) findViewById(R.id.new_password);

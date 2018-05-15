@@ -31,7 +31,6 @@
                 android:id="@+id/accountnumb"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Account No: 1234567890"
                 android:textAlignment="center"
                 android:textColor="@color/colorFont"
                 />
@@ -50,7 +49,6 @@
                 android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Name: Joe Bloggs"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
                 android:paddingTop="10dp"
@@ -61,7 +59,6 @@
                 android:id="@+id/address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Address: 123 Test St"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
                 android:paddingBottom="10dp"
@@ -76,15 +73,35 @@
             android:background="@drawable/account_background"
             android:layout_marginBottom="10dp">
 
-            <TextView
+            <EditText
                 android:id="@+id/email"
-                android:layout_width="match_parent"
+                android:layout_weight="3"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Email: sample@gmail.com"
+                android:inputType="textEmailAddress"
+                android:textColorHint="@color/colorFont"
                 android:padding="10dp"
                 android:paddingTop="10dp"
                 android:textSize="@dimen/small_body_text_size"
+                tools:ignore="LabelFor"
+                android:background="@android:color/transparent"
+                android:enabled="false"/>
+
+            <Button
+                android:id="@+id/edit_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_edit"
+                android:background="@android:color/transparent"
                 />
+
+            <Button
+                android:id="@+id/save_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_save"
+                android:visibility="gone"
+                android:background="@android:color/transparent"/>
 
         </LinearLayout>
 
@@ -92,17 +109,39 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/account_background"
-            android:layout_marginBottom="10dp">
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
 
-            <TextView
+            <EditText
                 android:id="@+id/mobile"
-                android:layout_width="match_parent"
+                android:layout_weight="3"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Mobile: 2813308004"
+                android:textColorHint="@color/colorFont"
                 android:padding="10dp"
                 android:paddingTop="10dp"
                 android:textSize="@dimen/small_body_text_size"
+                tools:ignore="LabelFor"
+                android:background="@android:color/transparent"
+                android:enabled="false"
+                android:inputType="phone"
                 />
+
+            <Button
+                android:id="@+id/edit_mobile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_edit"
+                android:background="@android:color/transparent"
+                />
+
+            <Button
+                android:id="@+id/save_mobile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_save"
+                android:visibility="gone"
+                android:background="@android:color/transparent"/>
 
         </LinearLayout>
 
@@ -111,6 +150,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/button_change_password"
+            android:onClick="goToChangePassword"
             />
     </LinearLayout>
 
