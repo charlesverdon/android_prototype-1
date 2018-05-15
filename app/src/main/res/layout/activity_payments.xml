@@ -16,19 +16,19 @@
         >
 
         <TextView
+            android:id="@+id/usagepay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:text="$129.95"
             android:textSize="@dimen/featured_font"
             android:textColor="@color/colorFont"
             />
 
         <TextView
+            android:id="@+id/duedate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:text="Due March 2, 2018"
             android:textSize="@dimen/large_body_text_size"
             android:textColor="@color/colorFont"
             android:paddingBottom="30dp"/>
@@ -46,19 +46,19 @@
                 android:weightSum="2">
 
                 <TextView
+                    android:id="@+id/dateissued"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
-                    android:text="Feb 24, 2018"
                     android:layout_weight="1"
                     android:textSize="@dimen/subheading_font_size"
                     android:textColor="@color/colorFont"/>
 
                 <TextView
+                    android:id="@+id/period"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
-                    android:text="Jan 22 - Feb 22"
                     android:layout_weight="1"
                     android:textSize="@dimen/subheading_font_size"
                     android:textColor="@color/colorFont"/>

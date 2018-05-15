@@ -1,6 +1,8 @@
 package com.sit374group9.androidprototype;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -10,18 +12,38 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.GridLabelRenderer;
 import com.jjoe64.graphview.LegendRenderer;
 import com.jjoe64.graphview.helper.StaticLabelsFormatter;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
+import com.sit374group9.androidprototype.datastore.UserContract;
+import com.sit374group9.androidprototype.datastore.UserHelper;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 
 public class UsageActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private ActionBarDrawerToggle mToggle;
+    String liveUsage;
+    String targetUsage;
+    String projectedUsage;
+    String projectedGraphString;
+    String estimateString;
+
+    JSONArray projectedGraphData;
+    float[] projectedArray;
+
+    JSONArray estimateUsage;
+    float[] estimateArray;
+
+    TextView usage;
+    TextView Tusage;
+    TextView Pusage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +51,7 @@ public class UsageActivity extends AppCompatActivity implements NavigationView.O
         setContentView(R.layout.activity_usage);
 
         setup();
-        setupGraph();
+        getUsageInfo();
     }
 
     public void setup() {
@@ -45,6 +67,10 @@ public class UsageActivity extends AppCompatActivity implements NavigationView.O
 
         // Fixes oreo no animation flash bug
         overridePendingTransition(R.anim.empty_animation, R.anim.empty_animation);
+
+        usage = (TextView) this.findViewById(R.id.usage);
+        Tusage = (TextView) this.findViewById(R.id.targetusage);
+        Pusage = (TextView) this.findViewById(R.id.projectedusage);
     }
 
     public void setupGraph() {
@@ -72,13 +98,13 @@ public class UsageActivity extends AppCompatActivity implements NavigationView.O
 
     private DataPoint[] getUsageData() {
         DataPoint[] dataPoints = new DataPoint[]{
-            new DataPoint(0, 22.7),
-            new DataPoint(1, 30.5),
-            new DataPoint(2, 18.9),
-            new DataPoint(3, 25.4),
-            new DataPoint(4, 23.3),
-            new DataPoint(5, 19.1),
-            new DataPoint(6, 20.8),
+            new DataPoint(0, estimateArray[0]),
+            new DataPoint(1, estimateArray[1]),
+            new DataPoint(2, estimateArray[2]),
+            new DataPoint(3, estimateArray[3]),
+            new DataPoint(4, estimateArray[4]),
+            new DataPoint(5, estimateArray[5]),
+            new DataPoint(6, estimateArray[6]),
         };
 
         return dataPoints;
@@ -86,13 +112,13 @@ public class UsageActivity extends AppCompatActivity implements NavigationView.O
 
     private DataPoint[] getProjectedData() {
         DataPoint[] dataPoints = new DataPoint[] {
-            new DataPoint(0, 25.0),
-            new DataPoint(1, 25.0),
-            new DataPoint(2, 25.0),
-            new DataPoint(3, 18.0),
-            new DataPoint(4, 18.0),
-            new DataPoint(5, 18.0),
-            new DataPoint(6, 18.0),
+            new DataPoint(0, projectedArray[0]),
+            new DataPoint(1, projectedArray[1]),
+            new DataPoint(2, projectedArray[2]),
+            new DataPoint(3, projectedArray[3]),
+            new DataPoint(4, projectedArray[4]),
+            new DataPoint(5, projectedArray[5]),
+            new DataPoint(6, projectedArray[6]),
         };
 
         return dataPoints;
@@ -146,5 +172,49 @@ public class UsageActivity extends AppCompatActivity implements NavigationView.O
         }
 
         return false;
+    }
+
+    public void getUsageInfo() {
+        UserHelper userHelper = new UserHelper(this);
+        SQLiteDatabase db = userHelper.getReadableDatabase();
+        Cursor cursor = userHelper.readUserInfo(db);
+
+        while (cursor.moveToNext()) {
+            liveUsage = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.LIVE_COST));
+            targetUsage = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.TARGET_COST));
+            projectedUsage = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.PROJECTED_COST));
+            projectedGraphString = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.PROJECTED_GRAPH_DATA));
+            estimateString = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.ESTIMATE_RECENT_USAGE));
+        }
+
+        try {
+            projectedGraphData = new JSONArray(projectedGraphString);
+            estimateUsage = new JSONArray(estimateString);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        float[] projected = new float[projectedGraphData.length()];
+
+        for (int i = 0; i < projectedGraphData.length(); ++i) {
+            projected[i] = projectedGraphData.optInt(i);
+        }
+
+        projectedArray = projected;
+
+        float[] estimate = new float[estimateUsage.length()];
+
+        for (int i = 0; i < estimateUsage.length(); ++i) {
+            estimate[i] = estimateUsage.optInt(i);
+        }
+
+        estimateArray = estimate;
+
+        usage.setText(String.format("$%s", liveUsage));
+        Tusage.setText(String.format("$%s", targetUsage));
+        Pusage.setText(String.format("$%s", projectedUsage));
+
+        setupGraph();
     }
 }

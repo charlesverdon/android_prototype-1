@@ -33,5 +33,6 @@ public final class UserContract {
         public static String LIVE_COST = "live_cost";
         public static String PAST_PAYMENTS = "past_payments";
         public static String PROJECTED_COST = "projected_cost";
+        public static String TARGET_COST = "target_cost";
     }
 }

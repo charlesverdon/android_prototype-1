@@ -138,6 +138,8 @@ public class UsageFragment extends Fragment {
 //        Cursor cursor = userHelper.readUserInfo(db);
 //
 //        while (cursor.moveToNext()) {
+//            liveUsage = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.ESTIMATE_RECENT_USAGE));
+//            monthlyUsage = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.Mon));
 //            liveUsage = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.LIVE_USAGE));
 //            monthlyUsage = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.MONTHLY_USAGE));
 //            lastMonthUsage = cursor.getString(cursor.getColumnIndex(UserContract.UserEntry.LAST_MONTH_USAGE));
@@ -159,3 +161,4 @@ public class UsageFragment extends Fragment {
 //        mainContainer.setVisibility(View.VISIBLE);
     }
 }
+
