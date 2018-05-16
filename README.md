@@ -1,4 +1,4 @@
-# android_prototype
+# reVolt Android
 
 # Get Started
 
