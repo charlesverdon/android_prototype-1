@@ -13,30 +13,28 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="30dp"
-        >
+        android:background="@color/LimeGreenBackGround"
+        android:padding="30dp">
 
         <LinearLayout
             android:id="@+id/progress_bar_account"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_centerVertical="true">
+            android:layout_centerVertical="true"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/loading_fetching"
                 android:textAlignment="center"
-                android:textColor="@color/colorFont"
-                />
+                android:textColor="@color/colorFont" />
 
             <ProgressBar
+                style="@android:style/Widget.Material.ProgressBar.Horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@android:style/Widget.Material.ProgressBar.Horizontal"
-                android:indeterminate="true"
-                />
+                android:indeterminate="true" />
         </LinearLayout>
     </RelativeLayout>
 
