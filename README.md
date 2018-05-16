@@ -56,37 +56,30 @@
 * <p><img src="https://i.imgur.com/389uA0l.png" /></p>
 
 # How to use
-* Signup is no longer supported, please use the test account details to log in
-<strike>
-* Signup in app
-* Once signup is successful you will be pushed to login screen
-* Log into Firebase and select Database
-* From here you can see the users within our database, expand the user you want to add information to
-* From here we can see the users information
-</strike>
-
+* Login with account credentials
+* Can add/remove key/value pairs in Firebase Console
+* Current list of keys that we use with the app
 * We can now add key/value pairs which show up in the app.
 * Current keys that work within the prototype:
-* address
-* recentCost
-* recentUsage
-* email 
-* firstName
-* lastName
-* lastMonthCost
-* lastMonthUsage
-* monthlyCost
-* monthlyUsage
+* address (String)
+* dueDate (String)
+* email (String)
+* estimateRecentUsage (Array)
+* firstName (String)
+* lastName (String)
+* liveCost (Float)
+* mobile (String)
+* pastPayments (Array)
+* projectedCost (Float)
+* projectedGraphData (Array)
+* targetCost (Float)
 * No keys currently have validation checking (costs and usages as numeric only etc)
 * Log into app, (or stayed logged in to see the change live) and the app will be populated with data.
 * Some of these fields are required, otherwise you will be shown an account currently processing messagem, best to add all key pairs.
 
-
 # How to add more data to app
 * Log into Firebase Database and add desired key/value pair e.g.(telephone 0400000000) (https://console.firebase.google.com)
-* Go to project in Android Studio, select EITHER fragment_account or fragment_usage
-* Add new TextView to either fragment
-* Initialise the TextView in the onActivityCreated(Bundle savedInstanceState) method
-* See fragments showData() method on how to retrieve data and render to screen
-
-# As long as you branch off master, you can do what you like. If you break your branch just nuke it, rebranch and start again.
+* In the datastore folder, update the UserContract and UserHelper files to add/remove columns to local DB
+* In the loading activity ensure new value is written to database
+* In desired activity, retrieve wanted value from database
+* To remove data, follow instructions in reverse
