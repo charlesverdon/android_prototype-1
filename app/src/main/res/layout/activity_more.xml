@@ -19,6 +19,7 @@
             android:id="@+id/button_contact_us"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:background="@color/ButtonBrown"
             android:text="@string/button_contact_us"
             android:textColor="@color/White" />
@@ -27,6 +28,7 @@
             android:id="@+id/button_feedback"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:background="@color/ButtonBrown"
             android:text="@string/button_feedback"
             android:textColor="@color/White" />
@@ -35,6 +37,7 @@
             android:id="@+id/button_about_us"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:background="@color/ButtonBrown"
             android:text="@string/button_about_us"
             android:textColor="@color/White" />

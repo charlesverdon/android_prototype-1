@@ -95,6 +95,7 @@
             android:background="@color/ButtonBrown"
             android:onClick="goToPayment"
             android:text="@string/button_make_a_payment"
+            android:layout_marginBottom="10dp"
             android:textColor="@color/White" />
 
         <Button
