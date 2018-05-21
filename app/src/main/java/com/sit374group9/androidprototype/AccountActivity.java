@@ -145,7 +145,7 @@ public class AccountActivity extends AppCompatActivity implements NavigationView
 
     private void saveEmail(final String email) {
 
-        if (email.isEmpty()) {
+        if (!email.isEmpty()) {
             final AlertDialog.Builder builder;
             builder = new AlertDialog.Builder(this);
 
@@ -178,7 +178,7 @@ public class AccountActivity extends AppCompatActivity implements NavigationView
     }
 
     private void saveMobile(String mobile) {
-        if (mobile.isEmpty()) {
+        if (!mobile.isEmpty()) {
             Toast.makeText(this, "Mobile changed successfully", Toast.LENGTH_LONG).show();
 
             api.updateMobile(userID, mobile);
