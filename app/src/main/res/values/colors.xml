@@ -10,4 +10,5 @@
     <color name="LimeGreenBackGround">#e5ebad</color>
     <color name="ButtonBrown">#b39861</color>
     <color name="White">#ffffff</color>
+    <color name="primaryColor">#C0C44C</color>
 </resources>

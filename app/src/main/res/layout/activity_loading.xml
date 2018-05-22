@@ -28,7 +28,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/loading_fetching"
                 android:textAlignment="center"
-                android:textColor="@color/colorFont" />
+                android:textColor="@color/colorFont"
+                android:textSize="@dimen/small_body_text_size" />
 
             <ProgressBar
                 style="@android:style/Widget.Material.ProgressBar.Horizontal"
@@ -44,6 +45,8 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:menu="@menu/drawer_menu"
+        android:background="@color/ButtonBrown"
+        app:itemTextColor="@color/White"
         />
 
 </android.support.v4.widget.DrawerLayout>

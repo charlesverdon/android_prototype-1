@@ -23,12 +23,14 @@
         android:background="@color/ButtonBrown"
         android:onClick="goToLogin"
         android:text="@string/button_get_started"
-        android:textColor="@color/White" />
+        android:textColor="@color/White"
+        android:textSize="@dimen/small_body_text_size"/>
 
     <TextView
         android:id="@+id/textView2"
         android:layout_marginTop="5dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/small_body_text_size"/>
 
 </LinearLayout>

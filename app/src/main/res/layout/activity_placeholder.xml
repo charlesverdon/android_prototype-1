@@ -43,5 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="start"
         app:menu="@menu/drawer_menu"
+        android:background="@color/ButtonBrown"
+        app:itemTextColor="@color/White"
         />
 </android.support.v4.widget.DrawerLayout>

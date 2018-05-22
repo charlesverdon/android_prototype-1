@@ -32,10 +32,11 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="15dp"
+            android:layout_height="wrap_content"
             android:labelFor="@id/edit_username"
             android:text="@string/text_email"
-            android:textColor="@color/colorFont" />
+            android:textColor="@color/colorFont"
+            android:textSize="@dimen/small_body_text_size" />
 
         <EditText
             android:id="@+id/edit_username"
@@ -46,10 +47,11 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="15dp"
+            android:layout_height="wrap_content"
             android:labelFor="@id/edit_password"
             android:text="@string/text_password"
-            android:textColor="@color/colorFont" />
+            android:textColor="@color/colorFont"
+            android:textSize="@dimen/small_body_text_size" />
 
         <EditText
             android:id="@+id/edit_password"
@@ -61,14 +63,16 @@
         <TextView
             android:id="@+id/textView2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/small_body_text_size" />
 
         <TextView
             android:id="@+id/error_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:textColor="@color/error" />
+            android:textColor="@color/error"
+            android:textSize="@dimen/small_body_text_size" />
 
         <Button
             android:id="@+id/button_login"
@@ -76,7 +80,8 @@
             android:layout_height="50dp"
             android:background="@color/ButtonBrown"
             android:text="@string/text_login"
-            android:textColor="@color/White" />
+            android:textColor="@color/White"
+            android:textSize="@dimen/small_body_text_size" />
 
         <ProgressBar
             android:id="@+id/progress_bar_login"

@@ -21,7 +21,8 @@
             android:text="@string/text_amount_due"
             android:textAlignment="center"
             android:textColor="@color/colorFont"
-            android:textSize="@dimen/subheading_font_size" />
+            android:textSize="@dimen/semi_featured_font"
+            android:textStyle="bold"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -30,7 +31,8 @@
             android:text="$129.95"
             android:textAlignment="center"
             android:textColor="@color/colorFont"
-            android:textSize="@dimen/heading_font_size" />
+            android:textSize="@dimen/heading_font_size"
+            android:textStyle="bold"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -195,7 +197,8 @@
                     android:layout_height="wrap_content"
                     android:background="@color/ButtonBrown"
                     android:text="@string/button_continue"
-                    android:textColor="@color/White" />
+                    android:textColor="@color/White"
+                    android:textSize="@dimen/small_body_text_size" />
             </LinearLayout>
 
         </ScrollView>
@@ -206,8 +209,10 @@
     <android.support.design.widget.NavigationView
         android:id="@+id/navigation_view"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="start"
         app:menu="@menu/drawer_menu"
+        android:background="@color/ButtonBrown"
+        app:itemTextColor="@color/White"
         />
 </android.support.v4.widget.DrawerLayout>
