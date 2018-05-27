@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/LimeGreenBackGround"
     android:orientation="vertical"
     android:padding="10dp"
     tools:context="com.sit374group9.androidprototype.LoginActivity">
@@ -15,15 +15,15 @@
         android:layout_marginBottom="20dp"
         android:text="@string/title_login"
         android:textAlignment="center"
-        android:textSize="@dimen/heading_font_size"
-        android:textColor="@color/colorFont"/>
+        android:textColor="@color/colorFont"
+        android:textSize="@dimen/heading_font_size" />
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:contentDescription="@string/description_logo"
-        android:src="@drawable/logo"/>
+        android:src="@drawable/logo" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,56 +32,63 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="15dp"
+            android:layout_height="wrap_content"
             android:labelFor="@id/edit_username"
             android:text="@string/text_email"
-            android:textColor="@color/colorFont"/>
+            android:textColor="@color/colorFont"
+            android:textSize="@dimen/small_body_text_size" />
 
         <EditText
             android:id="@+id/edit_username"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:inputType="textEmailAddress"
-            android:textColor="@color/colorFont"/>
+            android:textColor="@color/colorFont" />
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="15dp"
+            android:layout_height="wrap_content"
             android:labelFor="@id/edit_password"
             android:text="@string/text_password"
-            android:textColor="@color/colorFont"/>
+            android:textColor="@color/colorFont"
+            android:textSize="@dimen/small_body_text_size" />
 
         <EditText
             android:id="@+id/edit_password"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:inputType="textPassword"
-            android:textColor="@color/colorFont"/>
+            android:textColor="@color/colorFont" />
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/small_body_text_size" />
 
         <TextView
             android:id="@+id/error_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:textColor="@color/error"/>
+            android:textColor="@color/error"
+            android:textSize="@dimen/small_body_text_size" />
 
         <Button
             android:id="@+id/button_login"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="@string/text_login" />
+            android:background="@color/ButtonBrown"
+            android:text="@string/text_login"
+            android:textColor="@color/White"
+            android:textSize="@dimen/small_body_text_size" />
 
         <ProgressBar
             android:id="@+id/progress_bar_login"
             style="?android:attr/progressBarStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
     </LinearLayout>
 </LinearLayout>

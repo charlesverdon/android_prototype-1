@@ -11,37 +11,48 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/LimeGreenBackGround"
         android:orientation="vertical"
-        android:padding="10dp"
-        >
+        android:padding="10dp">
 
         <Button
             android:id="@+id/button_contact_us"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@color/ButtonBrown"
             android:text="@string/button_contact_us"
-            />
+            android:textColor="@color/White"
+            android:textSize="@dimen/small_body_text_size"/>
 
         <Button
             android:id="@+id/button_feedback"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@color/ButtonBrown"
             android:text="@string/button_feedback"
-            />
+            android:textColor="@color/White"
+            android:textSize="@dimen/small_body_text_size" />
 
         <Button
             android:id="@+id/button_about_us"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@color/ButtonBrown"
             android:text="@string/button_about_us"
-            />
+            android:textColor="@color/White"
+            android:textSize="@dimen/small_body_text_size"/>
 
         <Button
             android:id="@+id/button_termsconditions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/ButtonBrown"
             android:text="@string/button_terms_conditions"
-            />
+            android:textColor="@color/White"
+            android:textSize="@dimen/small_body_text_size"/>
 
     </LinearLayout>
 
@@ -51,6 +62,8 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:menu="@menu/drawer_menu"
+        android:background="@color/ButtonBrown"
+        app:itemTextColor="@color/White"
         />
 
 </android.support.v4.widget.DrawerLayout>

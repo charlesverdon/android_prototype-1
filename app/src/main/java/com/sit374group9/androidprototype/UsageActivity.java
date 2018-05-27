@@ -78,12 +78,16 @@ public class UsageActivity extends AppCompatActivity implements NavigationView.O
 
         LineGraphSeries<DataPoint> usageLineGraphSeries = new LineGraphSeries<>(getUsageData());
         usageLineGraphSeries.setTitle("Estimate recent usage");
-        usageLineGraphSeries.setColor(Color.GREEN);
+        usageLineGraphSeries.setColor(Color.rgb(75, 96, 54));
+        usageLineGraphSeries.setThickness(10);
         graphView.addSeries(usageLineGraphSeries);
 
         LineGraphSeries<DataPoint> usageProjectedGraphSeries = new LineGraphSeries<>(getProjectedData());
         usageProjectedGraphSeries.setTitle("Projected usage");
-        usageProjectedGraphSeries.setColor(Color.RED);
+        usageProjectedGraphSeries.setColor(Color.rgb(179, 152, 97));
+        usageProjectedGraphSeries.setDrawBackground(true);
+        usageProjectedGraphSeries.setBackgroundColor(Color.argb(100, 179, 152, 97));
+
         graphView.addSeries(usageProjectedGraphSeries);
 
         graphView.setTitle("Average recent usage in kWh");

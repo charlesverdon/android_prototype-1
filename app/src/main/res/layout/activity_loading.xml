@@ -13,15 +13,15 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="30dp"
-        >
+        android:background="@color/LimeGreenBackGround"
+        android:padding="30dp">
 
         <LinearLayout
             android:id="@+id/progress_bar_account"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_centerVertical="true">
+            android:layout_centerVertical="true"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
@@ -29,14 +29,13 @@
                 android:text="@string/loading_fetching"
                 android:textAlignment="center"
                 android:textColor="@color/colorFont"
-                />
+                android:textSize="@dimen/small_body_text_size" />
 
             <ProgressBar
+                style="@android:style/Widget.Material.ProgressBar.Horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@android:style/Widget.Material.ProgressBar.Horizontal"
-                android:indeterminate="true"
-                />
+                android:indeterminate="true" />
         </LinearLayout>
     </RelativeLayout>
 
@@ -46,6 +45,8 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:menu="@menu/drawer_menu"
+        android:background="@color/ButtonBrown"
+        app:itemTextColor="@color/White"
         />
 
 </android.support.v4.widget.DrawerLayout>

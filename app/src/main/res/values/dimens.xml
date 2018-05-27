@@ -7,8 +7,8 @@
     <dimen name="account_field_length">75dp</dimen>
     <dimen name="usage_field_length">100dp</dimen>
     <dimen name="body_text_size">16sp</dimen>
-    <dimen name="small_body_text_size">14sp</dimen>
-    <dimen name="large_body_text_size">20sp</dimen>
+    <dimen name="small_body_text_size">18sp</dimen>
+    <dimen name="large_body_text_size">22sp</dimen>
     <dimen name="heading_font_size">40sp</dimen>
     <dimen name="subheading_font_size">25sp</dimen>
     <dimen name="featured_font">60sp</dimen>

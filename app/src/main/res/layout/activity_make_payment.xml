@@ -11,6 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/LimeGreenBackGround"
         android:orientation="vertical"
         android:padding="10dp">
 
@@ -18,27 +19,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/text_amount_due"
-            android:textSize="@dimen/subheading_font_size"
             android:textAlignment="center"
             android:textColor="@color/colorFont"
-            />
+            android:textSize="@dimen/semi_featured_font"
+            android:textStyle="bold"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="$129.95"
-            android:textSize="@dimen/heading_font_size"
-            android:textAlignment="center"
             android:paddingBottom="40dp"
+            android:text="$129.95"
+            android:textAlignment="center"
             android:textColor="@color/colorFont"
-            />
+            android:textSize="@dimen/heading_font_size"
+            android:textStyle="bold"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/text_payment_type"
-            android:textSize="@dimen/large_body_text_size"
-            android:textColor="@color/colorFont"/>
+            android:textColor="@color/colorFont"
+            android:textSize="@dimen/large_body_text_size" />
 
         <RadioGroup
             android:layout_width="wrap_content"
@@ -47,34 +48,32 @@
 
             <RadioButton
                 android:id="@+id/radio_credit"
-                android:checked="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="onRadioButtonClicked"
-                />
+                android:checked="true"
+                android:onClick="onRadioButtonClicked" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="@string/text_credit_card"
-                android:textSize="@dimen/body_text_size"
-                android:textColor="@color/colorFont"/>
+                android:textColor="@color/colorFont"
+                android:textSize="@dimen/body_text_size" />
 
             <RadioButton
                 android:id="@+id/radio_bank"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="onRadioButtonClicked"
-                />
+                android:onClick="onRadioButtonClicked" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="@string/text_direct_debit"
-                android:textSize="@dimen/body_text_size"
-                android:textColor="@color/colorFont"/>
+                android:textColor="@color/colorFont"
+                android:textSize="@dimen/body_text_size" />
 
         </RadioGroup>
 
@@ -98,8 +97,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/text_credit_card"
-                        android:textSize="@dimen/large_body_text_size"
-                        />
+                        android:textSize="@dimen/large_body_text_size" />
 
                     <RadioGroup
                         android:layout_width="wrap_content"
@@ -108,32 +106,32 @@
 
                         <RadioButton
                             android:id="@+id/radio_visa"
-                            android:checked="true"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:onClick="onRadioButtonClicked"/>
+                            android:checked="true"
+                            android:onClick="onRadioButtonClicked" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:gravity="center"
                             android:text="@string/text_visa"
-                            android:textSize="@dimen/body_text_size"
-                            android:textColor="@color/colorFont"/>
+                            android:textColor="@color/colorFont"
+                            android:textSize="@dimen/body_text_size" />
 
                         <RadioButton
                             android:id="@+id/radio_mastercard"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:onClick="onRadioButtonClicked"/>
+                            android:onClick="onRadioButtonClicked" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:gravity="center"
                             android:text="@string/text_mastercard"
-                            android:textSize="@dimen/body_text_size"
-                            android:textColor="@color/colorFont"/>
+                            android:textColor="@color/colorFont"
+                            android:textSize="@dimen/body_text_size" />
 
                     </RadioGroup>
 
@@ -141,65 +139,66 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/text_card_name"
-                        android:textColor="@color/colorFont"/>
+                        android:textColor="@color/colorFont" />
 
 
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/text_card_number"
-                        android:textColor="@color/colorFont"/>
+                        android:textColor="@color/colorFont" />
 
 
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/text_expiry_date"
-                        android:textColor="@color/colorFont"/>
+                        android:textColor="@color/colorFont" />
 
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/text_cvv"
-                        android:textColor="@color/colorFont"/>
+                        android:textColor="@color/colorFont" />
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/view_bank"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:visibility="gone"
-                    android:id="@+id/view_bank">
+                    android:visibility="gone">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/text_direct_debit"
-                        android:textSize="@dimen/large_body_text_size"
-                        />
+                        android:textSize="@dimen/large_body_text_size" />
 
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/text_account_name"/>
-                    
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/text_bsb_number"/>
+                        android:hint="@string/text_account_name" />
 
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/text_account_number"/>
+                        android:hint="@string/text_bsb_number" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/text_account_number" />
 
                 </LinearLayout>
 
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/ButtonBrown"
                     android:text="@string/button_continue"
-                    />
+                    android:textColor="@color/White"
+                    android:textSize="@dimen/small_body_text_size" />
             </LinearLayout>
 
         </ScrollView>
@@ -210,8 +209,10 @@
     <android.support.design.widget.NavigationView
         android:id="@+id/navigation_view"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="start"
         app:menu="@menu/drawer_menu"
+        android:background="@color/ButtonBrown"
+        app:itemTextColor="@color/White"
         />
 </android.support.v4.widget.DrawerLayout>

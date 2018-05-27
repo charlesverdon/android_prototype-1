@@ -3,6 +3,7 @@ package com.sit374group9.androidprototype;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -83,6 +84,7 @@ public class PaymentsActivity extends AppCompatActivity implements NavigationVie
         graphView.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
 
         barGraphSeries.setSpacing(5);
+        barGraphSeries.setColor(Color.rgb(179, 152, 97));
 
     }
 

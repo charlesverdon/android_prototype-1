@@ -11,34 +11,35 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/LimeGreenBackGround"
         android:orientation="vertical"
-        android:padding="10dp"
-        >
+        android:padding="10dp">
 
         <TextView
             android:id="@+id/usagepay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:textSize="@dimen/featured_font"
             android:textColor="@color/colorFont"
-            />
+            android:textSize="@dimen/featured_font"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/duedate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingBottom="30dp"
             android:textAlignment="center"
-            android:textSize="@dimen/large_body_text_size"
             android:textColor="@color/colorFont"
-            android:paddingBottom="30dp"/>
+            android:textSize="@dimen/large_body_text_size"
+            android:textStyle="bold"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:baselineAligned="false"
-            android:orientation="vertical"
-            android:layout_marginBottom="20dp">
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -49,19 +50,19 @@
                     android:id="@+id/dateissued"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAlignment="center"
                     android:layout_weight="1"
-                    android:textSize="@dimen/subheading_font_size"
-                    android:textColor="@color/colorFont"/>
+                    android:textAlignment="center"
+                    android:textColor="@color/colorFont"
+                    android:textSize="@dimen/subheading_font_size" />
 
                 <TextView
                     android:id="@+id/period"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAlignment="center"
                     android:layout_weight="1"
-                    android:textSize="@dimen/subheading_font_size"
-                    android:textColor="@color/colorFont"/>
+                    android:textAlignment="center"
+                    android:textColor="@color/colorFont"
+                    android:textSize="@dimen/subheading_font_size" />
             </LinearLayout>
 
             <LinearLayout
@@ -72,20 +73,20 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:text="Date Issued"
                     android:layout_weight="1"
-                    android:textSize="@dimen/small_body_text_size"
-                    android:textColor="@color/colorFont"/>
+                    android:text="Date Issued"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorFont"
+                    android:textSize="@dimen/small_body_text_size" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:text="Service Period"
                     android:layout_weight="1"
-                    android:textSize="@dimen/small_body_text_size"
-                    android:textColor="@color/colorFont"/>
+                    android:text="Service Period"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorFont"
+                    android:textSize="@dimen/small_body_text_size" />
             </LinearLayout>
 
         </LinearLayout>
@@ -93,21 +94,26 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/button_make_a_payment"
+            android:background="@color/primaryColor"
             android:onClick="goToPayment"
-            />
+            android:text="@string/button_make_a_payment"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/White"
+            android:textSize="@dimen/small_body_text_size"/>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/button_download"
             android:layout_marginBottom="20dp"
-            />
-        
+            android:background="@color/ButtonBrown"
+            android:text="@string/button_download"
+            android:textColor="@color/White"
+            android:textSize="@dimen/small_body_text_size" />
+
         <com.jjoe64.graphview.GraphView
             android:id="@+id/graph_payment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
     </LinearLayout>
 
     <android.support.design.widget.NavigationView
@@ -116,6 +122,8 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:menu="@menu/drawer_menu"
+        android:background="@color/ButtonBrown"
+        app:itemTextColor="@color/White"
         />
 
 </android.support.v4.widget.DrawerLayout>
