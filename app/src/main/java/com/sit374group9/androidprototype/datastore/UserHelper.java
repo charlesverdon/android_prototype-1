@@ -38,6 +38,7 @@ public class UserHelper extends SQLiteOpenHelper {
                                                                 + UserContract.UserEntry.LIVE_COST + textType
                                                                 + UserContract.UserEntry.PAST_PAYMENTS + textType
                                                                 + UserContract.UserEntry.PROJECTED_COST + textType
+                                                                + UserContract.UserEntry.TARGET_COST
                                                                 + " text);";
 
     private static final String DROP_TABLE = "DROP TABLE IF EXISTS " + UserContract.UserEntry.TABLE_NAME;
